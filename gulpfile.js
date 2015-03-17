@@ -61,7 +61,7 @@ gulp.task('build/cylinder', function() {
       .pipe(sourcemaps.init())
       .pipe(traceur(TRACEUR_OPTIONS))
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest(PATH.BUILD));
+      .pipe(gulp.dest(PATH.BUILD + '/app'));
 
   gulp.src(CYLINDER_HTML, {base: './bower_components'})
     .pipe(gulp.dest(PATH.BUILD + '/app'));
