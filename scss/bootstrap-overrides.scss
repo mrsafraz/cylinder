@@ -1,0 +1,228 @@
+// Navbar =====================================================================
+
+.navbar {
+  // @include box-shadow(0 1px 2px rgba(0,0,0,.3));
+  &-inverse {
+
+    .badge {
+      background-color: #fff;
+      color: $brand-primary;
+    }
+  }
+}
+
+// Buttons ====================================================================
+
+.btn {
+//  border: none;
+}
+
+// Typography =================================================================
+
+.text-primary,
+.text-primary:hover {
+  color: $brand-primary;
+}
+
+.text-success,
+.text-success:hover {
+  color: $brand-success;
+}
+
+.text-danger,
+.text-danger:hover {
+  color: $brand-danger;
+}
+
+.text-warning,
+.text-warning:hover {
+  color: $brand-warning;
+}
+
+.text-info,
+.text-info:hover {
+  color: $brand-info;
+}
+
+// Tables =====================================================================
+
+/*
+table,
+.table {
+
+  a {
+    text-decoration: underline;
+  }
+
+  .success,
+  .warning,
+  .danger,
+  .info {
+    color: #fff;
+
+    a {
+      color: #fff;
+    }
+  }
+}
+*/
+
+// Forms ======================================================================
+
+.form-control {
+  border-color: #dce4ec;
+  border-width: 2px;
+}
+
+.form-control, .form-control:focus {
+  @include box-shadow(none);
+}
+
+.has-warning {
+  .help-block,
+  .control-label {
+    color: $brand-warning;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: $brand-warning;
+  }
+}
+
+.has-error {
+  .help-block,
+  .control-label {
+    color: $brand-danger;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: $brand-danger;
+  }
+}
+
+.has-success {
+  .help-block,
+  .control-label {
+    color: $brand-success;
+  }
+
+  .form-control,
+  .form-control:focus {
+    border-color: $brand-success;
+  }
+}
+
+// Navs =======================================================================
+
+.nav-pills {
+
+  & > li > a {
+//    border-radius: 0;
+  }
+}
+
+.dropdown-menu {
+  > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  & > li > a:hover,
+  & > li > a:focus {
+    background-image: none;
+  }
+}
+
+// Indicators =================================================================
+
+.alert {
+//  border: none;
+
+  .alert-link {
+    text-decoration: underline;
+    color: #fff;
+  }
+
+  .close {
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.4;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      opacity: 1;
+    }
+  }
+}
+
+.label {
+//  border-radius: 0;
+}
+
+// Progress bars ==============================================================
+
+.progress {
+  height: 8px;
+  @include box-shadow(none);
+  .progress-bar {
+    font-size: 8px;
+    line-height: 8px;
+  }
+}
+
+// Containers =================================================================
+
+.panel {
+  &-heading,
+  &-footer {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+}
+
+
+// Background variants =================================================================
+
+.bg-primary, .bg-success, .bg-info, .bg-warning, .bg-danger {
+  color: #FFF;
+}
+
+.container {
+  width: 100% !important;
+  padding: 0;
+  min-width: 100% !important;
+  max-width: 100% !important;
+}
+
+
+// .navbar-default {
+//   background-color: $brand-primary !important;
+//   border-color: $brand-primary !important;
+
+//   background-color: #000 !important;
+//   border-color: #000 !important;
+//   * {
+//     color: orange !important;
+//   }
+// }
+
+
+
+.form-control-minimal {
+  border-top-color: transparent !important;
+  border-left-color: transparent !important;
+  border-right-color: transparent !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+
+  padding-left: 0 !important;
+  border-width: 1px !important;
+}
+
+// .input-group.input-group-minimal {
+//   .form-control {
+//     border-radius: $input-border-radius;
+//   }
+// }

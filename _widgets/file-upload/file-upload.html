@@ -1,0 +1,35 @@
+<div>
+  <div class="filedrag" file-drag.bind="getFileData()" title.bind="getFile().name">
+    <div class="file-upload-container" style="${getFile().color ? 'background-color: ' + getFile().color : ''}">
+      <!-- ko if: getFile().isImage -->
+      <img class="file-upload-preview" src.bind="getFile().url" alt="Image">
+      <!-- /ko -->
+      <span class="file-upload-icon" if.bind="settings.editable && getFile().isEmpty">
+        <!-- <zf-iconic name="paperclip" color="dark" size="medium"></zf-iconic> -->
+        <i class="fa fa-paperclip"></i>
+      </span>
+      <!-- ko if: !getFile().isEmpty -->
+      <div class="file-upload-ext">
+        <div style="margin-bottom: 2px;">${getFile().ext}</div>
+        <small>${getFile().size}</small>
+      </div>
+      <div visible.bind="!getFile().isImage">
+        <span class="file-upload-dummy-name">${getFile().name}</span>
+      </div>
+      <div class="file-upload-banner">
+        <div class="file-upload-file-name">${getFile().name}</div>
+        <!-- ko if: settings.editable -->
+        <a class="file-upload-close" click.delegate="resetFile()">
+          <!-- &times; -->
+          <i class="fa fa-times-circle"></i>
+        </a>
+        <!-- /ko -->
+      </div>
+      <!-- /ko -->
+      <!-- ko if: settings.editable -->
+      <input type="file" name="image" file-input.bind="getFileData()"
+         accept.bind="settings.accept">
+      <!-- /ko -->
+    </div>
+  </div>
+</div>

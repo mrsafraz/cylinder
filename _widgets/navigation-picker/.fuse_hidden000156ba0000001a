@@ -1,0 +1,46 @@
+<!--
+<select class="form-control"
+        bind-options="entities"
+        bind-options-text="optionsText"
+        bind-value="valueObservable"
+        bind-options-caption="'-- Select --'">
+</select>
+-->
+
+<!--<h3>{{getSelectedValue()}}</h3>-->
+
+<div class="navigation-picker-container">
+  <div class="navigation-picker">
+    <div bind-if="multiple">
+      Multiple items 
+    </div>
+    <div class="selector">
+      <div bind-if="!editMode" class="list-group">
+        <a href="#" class="list-group-item" on-click="startEditing()">
+          <span class="indicator"><i class="fa fa-caret-down"></i></span>
+          <p class="list-group-item-text">
+            {{getSelectedValue()}} &nbsp;
+          </p>
+        </a>
+      </div>
+      <div bind-if="editMode">
+        <i class="fa fa-times-circle" bind-if="searchText !== ''" on-click="reset()"></i>
+        <input type="text" class="form-control" bind-value="searchText"
+               placeholder="{{getSelectedValue()}}" on-bluri="stopEditing()">
+      </div>
+    </div>
+    <div class="results">
+      <div class="list-group" bind-if="editMode">
+ <!--        <a href="#" class="list-group-item" on-click="selectValue(null)">
+          {{caption}}
+        </a> -->
+        <a href="#" class="list-group-item" bind-repeat="entities as option" on-click="selectValue(option)">
+          <i class="fa fa-check text-muted pull-left" bind-if="isOptionSelected(option)"></i>
+          <p class="list-group-item-text">
+            {{option[optionsText]}}
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

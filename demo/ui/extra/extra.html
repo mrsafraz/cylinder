@@ -1,0 +1,164 @@
+<div class="page-header">
+  <h1>Switch</h1>
+</div>
+
+<div class="list-group">
+  <label class="list-group-item">
+    Do something?
+    <div class="switch  switch-primary pull-right">
+      <input type="checkbox">
+    </div>
+  </label>
+  <div class="list-group-item">
+    Do something?
+    <div class="switch switch-success pull-right">
+      <input type="checkbox" checked>
+    </div>
+  </div>
+  <div class="list-group-item">
+    Do something?
+    <div class="switch switch-danger pull-right">
+      <input type="checkbox" checked>
+    </div>
+  </div>
+  <div class="list-group-item">
+    Do something?
+    <div class="switch switch-default pull-right">
+      <input type="checkbox" checked>
+    </div>
+  </div>
+</div>
+<hr>
+
+
+<div class="page-header">
+  <h1>Toggle radio button</h1>
+</div>
+
+<div class="form-group">
+  <label>How is the whether?</label>
+  <div class="toggle toggle-block">
+    <label>
+      <input type="radio" id="whether" name="rad">
+      <span>Cool</span>
+    </label>
+    <label>
+      <input type="radio" id="whether" name="rad">
+      <span>Hot</span>
+    </label>
+  </div>
+</div>
+
+<div class="form-group">
+  <label>Gender</label>
+  <div class="toggle toggle-sm toggle-danger">
+    <label>
+      <input type="radio" id="rad1" name="gender">
+      <span>Male</span>
+    </label>
+    <label>
+      <input type="radio" id="rad2" name="gender" checked="true">
+      <span>Female</span>
+    </label>
+  </div>
+</div>
+
+<hr>
+
+<div class="page-header">
+  <h1>HTML5 Input types</h1>
+</div>
+<form>
+  <div class="form-group">
+    <label>Date</label>
+    <input class="form-control" type="date">
+  </div>
+  
+  <div class="form-group">
+    <label>Range</label>
+    <div class="range">
+      <input type="range">
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Range</label>
+    <div class="range range-primary">
+      <input class="form-control" type="range">
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Range</label>
+    <div class="range range-danger">
+      <input class="form-control" type="range">
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Range</label>
+    <div class="range range-success">
+      <input class="form-control" type="range">
+    </div>
+  </div>
+</form>
+
+<div class="page-header">
+	<h1>Checkboxes and Radio buttons</h1>
+</div>
+<div class="bs-example">
+    <form role="form">
+    <div class="checkbox-list">
+      <label>
+        <input type="checkbox">
+        <span>Option one is this and that—be sure to include why it's great</span>
+      </label>
+      <label>
+          <input type="checkbox">
+          <span>Option two is this and that—be sure to include why it's great</span>
+      </label>
+      <label>
+          <input type="checkbox" disabled="">
+          <span>Option three is disabled</span>
+      </label>
+      <label>
+          <input type="checkbox" disabled="" checked="true">
+          <span>Option four is checked and disabled</span>
+      </label>
+    </div>
+      
+      <hr>
+      
+      <div class="radio-list list-group">
+        <label class="list-group-item">
+            <input type="radio" name="rad" checked="">
+            <span>Option one is this and that—be sure to include why it's great</span>
+        </label>
+        <label class="list-group-item">
+            <input type="radio" name="rad">
+            <span>Option two can be something else and selecting it will deselect option one</span>
+        </label>
+        <label class="list-group-item">
+            <input type="radio" name="rad" disabled="">
+            <span>Option three is disabled</span>
+        </label>
+        <label class="list-group-item">
+            <input type="radio" name="rad" disabled="" checked>
+            <span>Option four is checked and disabled</span>
+        </label>
+      </div>
+  
+    </form>
+  </div>
+
+<div class="page-header">
+  <h1>Button Variants</h1>
+</div>
+
+<div bind-repeat="['default', 'primary', 'success', 'info', 'danger']">
+  <button class="btn btn-{{row}}">{{row}} button</button>
+  &nbsp;
+  <button class="btn btn-{{row}} btn-round">{{row}} round button</button>
+  &nbsp;
+  <button class="btn btn-{{row}} btn-outline">{{row}} outline button</button>
+  &nbsp;
+  <button class="btn btn-{{row}} btn-outline btn-round btn-icon"><i class="fa fa-user"></i></button> Icon button  
+  <hr>
+</div>

@@ -1,0 +1,40 @@
+<div>
+  <div class="form-group" bind-repeat="settings.properties as property">
+    <div bind-if="editMode && property.formType == 'boolean'" class="checkbox-list pull-left">
+      <label>
+        <input type="checkbox" bind-checked="entity[property.name]">
+        <span>&nbsp;</span>
+      </label>
+    </div>
+    <label class="control-label">{{property.label}}</label>
+    <div bind-if="!editMode">
+      <p class="form-control-static" bind-if="['image', 'date'].indexOf(property.formType) === -1">
+        {{getValue(entity, property)}}
+      </p>
+      <div bind-if="property.formType == 'image'">
+            <img style="max-height: 200px; max-width: 200px;" 
+          bind-src="entity[property.name] && entity[property.name].url()">
+      </div>
+      <div bind-if="property.formType == 'date'">
+        {{entity[property.name]|date}}
+      </div>
+    </div>
+    <div bind-if="editMode">
+      <div bind-if="property.formType == 'image'" style="max-width: 200px; max-height: 200px;">
+        <image-upload bind-file="entity[property.name]"></image-upload>
+      </div>
+      <div bind-if="property.formType == 'navigation'">
+        <navigation-picker bind-entity="entity" 
+                           bind-property="property.name"
+        ></navigation-picker>
+      </div>
+      <div bind-if="['text', 'number'].indexOf(property.formType) !== -1">
+        <input class="form-control" type="{{property.formType}}" bind-value="entity[property.name]">
+      </div>
+      <div bind-if="property.formType == 'date'">
+        <date-input bind-object="entity" bind-property="property.name"></date-input>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>

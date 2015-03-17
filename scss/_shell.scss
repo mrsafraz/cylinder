@@ -1,0 +1,45 @@
+$side-nav-width: 50px;
+
+.shell-container {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	.shell-sidebar {
+		background: #777;
+		background: #888;
+		width: $side-nav-width;
+		height: 100%;
+		// .active a, a.active {
+		// 	background: #323232;
+		// }
+		.links {
+			a {
+				color: #FFF;
+				color: #EEE;
+				font-size: 20px;
+				text-align: center;
+				display: block;
+				padding: 10px;
+				// margin-bottom: 10px;
+				// background: #AAA;
+				// border: 1px solid red;
+				&:hover {
+					color: #FFF;
+				}
+				&.active {
+					background: #666;
+				}
+			}
+		}
+	}
+	.shell-main {
+		left: $side-nav-width;
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		box-shadow: 5px 0px 10px 5px rgba(0, 0, 0, 0.25);
+	}
+}

@@ -1,0 +1,107 @@
+// Ellipsis Text
+
+// $content-width: 100%;
+// $content-height: 3.2rem;
+// $content-height: 4.8em;
+$content-height: 3.2em;
+
+.ellipsis-container {
+  overflow: hidden;
+  position: relative;
+  line-height: 1.6;
+}
+
+.ellipsis-container:before {
+  content:"";
+  float: left;
+  width: 1px;
+  height: 100%;
+}
+
+.ellipsis-wrapper {
+  float: right;
+  width: 100%;
+  margin-left: -1px;
+}
+
+.ellipsis-content {
+  margin: 0;
+}
+
+.ellipsis {
+  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  float: right;
+  position: relative;
+  margin-right: 1px;
+  text-align: right;
+}
+
+
+/* page specific styling */
+.ellipsis-container {
+  // border: 5px solid #AAA;
+  width: 100%;
+  height: $content-height;
+}
+
+.ellipsis-content {
+  /* it's critical to set a fixed font-size and line-height in order for
+  the ellipsis position to be predictable */
+  // font-size: 16px;
+  // line-height: 18px;
+}
+
+.ellipsis {
+  /* set width of ellipsis.  width must equal margin-left */
+  width: 60px;
+  margin-left: -60px;
+  
+  /* set ellipsis position */
+  // bottom: 1.5em;
+  // bottom: 22px;
+  // bottom: 1.6em;
+  bottom: 2em;
+  right: -100%;
+  
+  /* add a gradient background */
+  background: -webkit-gradient(linear, left top, right top,
+    from(rgba(255, 255, 255, 0)), to(white), color-stop(50%, white));
+  background: -moz-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+  background: -o-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+  background: -ms-linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), white 50%, white);
+}
+
+/* make the ellipsis a link */
+.ellipsis a {
+  // text-decoration: none;
+  display: inline-block;
+  // font-size: 1em;
+  // height: 1em;
+  // background-color: #eee;
+  // color: #000;
+  // margin-right: 3px;
+  margin-right: 0;
+  padding: 3px;
+  // line-height: 5px;
+  
+  // box-sizing: border-box;
+  // -webkit-box-sizing: border-box;
+  // -moz-box-sizing: border-box;
+}
+
+.ellipsis a span {
+  background-color: #eee;
+  color: #000;
+  border-radius: 3px;
+  padding: 0 3px 2px 3px;
+}
+
+
+.ellipsis-container {
+  // height: lines * line-height
+  .ellipsis {
+  }
+}

@@ -1,0 +1,32 @@
+<div class="shell-container">
+    <div class="shell-sidebar">
+      <div class="links" if.bind="!isAuthenticated">
+        <a href="#user/login" title="Login" class="active">
+          <div class="icon-wrapper">
+            <div class="fa-container">
+              <i class="fa fa-user"></i>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="links" if.bind="isAuthenticated">
+        <a href="${route.href}" repeat.bind="route of navigation" title="${route.title}"
+        css.bind="{active: route.isActive}"
+        >
+          <div class="icon-wrapper">
+            <div class="fa-container" if.bind="route.icon">
+              <i class="fa fa-${route.icon}"></i>
+            </div>
+            <div if.bind="route.iconHtml">
+              <div html.bind="route.iconHtml"></div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="shell-main">
+      <div id="progress-loading-container"></div>
+      <loading-indicator is-loading.bind="isLoading"></loading-indicator>
+      <router transition.bind="'entrance'"></router>
+    </div>
+</div>

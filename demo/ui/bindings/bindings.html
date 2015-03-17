@@ -1,0 +1,13 @@
+<div class="top-nav">
+  <ul class="nav nav-tabs">
+    <li bind-repeat="navigation"
+        bind-active="row.isActive">
+      <a href="{{row.href}}">
+          {{row.title}}
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="content-container">
+  <view-port bind-transition="'entrance'" bind-cache-views="true"></view-port>
+</div>

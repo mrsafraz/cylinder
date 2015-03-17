@@ -1,0 +1,150 @@
+.login-page {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  left: -60px; /* hide the leftmost navbar */
+  right: 0;
+  overflow: auto;
+  background-color: #000;
+
+  legend, a {
+    color: @brand-color;
+  }
+
+  .form-control {
+    // border: 0;
+    background-color: transparent;
+    border-color: @brand-color;
+    border: 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFF;
+
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .btn-login {
+    background-color: @brand-color;
+    border-color: @brand-color;
+    color: #000;
+  }
+
+  .magnet-logo {
+    margin-bottom: 40px;
+    margin-top: 20px;
+  }
+
+  .progress {
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 0;
+    .progress-bar {
+      background-color: @brand-color;
+    }
+  }
+}
+
+.login-page {
+  background-color: @brand-color;
+  legend, a {
+    color: #FFF;
+  }
+  .form-control {
+    background-color: #FFF;
+    background-color: rgba(255, 255, 255, 0.35);
+    color: #000;
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+    &::-webkit-input-placeholder {
+      opacity: 1;
+      color: #FFF;
+    }
+  }
+  .btn-login {
+    background-color: #FFF;
+    color: @brand-color;
+  }
+  .progress {
+    background-color: rgba(255, 255, 255, 0.25);
+    border: 0;
+    .progress-bar {
+      background-color: #FFF;
+    }
+  }
+}
+
+form {
+  padding: 20px;
+  margin: auto;
+  margin-top: 50px;
+  max-width: 500px;
+}
+
+legend {
+  border: 0;
+}
+
+.btn-login {
+  position: relative;
+  .icon-loading {
+    position: absolute;
+    right: 10px;
+    font-size: 24px;
+  }
+}
+
+.shake-horizontal {
+  -webkit-animation: shake-horizontal infinite ease-in-out 100ms;
+  -ms-animation-name: shake-horizontal infinite ease-in-out 100ms;
+//  animation-name: shake-horizontal infinite ease-in-out 100ms;
+
+//  -webkit-animation-duration: 100ms;
+//  -ms-animation-duration: 100ms;
+//  animation-duration: 100ms;
+
+//  -webkit-animation-iteration-count: infinite;
+//  -ms-animation-iteration-count: infinite;
+//  animation-iteration-count: infinite;
+
+//  -webkit-animation-timing-function: ease-in-out;
+//  -ms-animation-timing-function: ease-in-out;
+//  animation-timing-function: ease-in-out;
+//
+//  -webkit-animation-delay: 0s;
+//  -ms-animation-delay: 0s;
+//  animation-delay: 0s;
+//
+//  -webkit-animation-play-state: running;
+//  -ms-animation-play-state: running;
+//  animation-play-state: running;
+}
+
+@progress-bar-width: 500px;
+@progress-bar-height: 4px;
+
+.loader {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  .progress-container {
+    .progress {
+      margin: 0;
+      height: @progress-bar-height;
+      border: 0;
+    }
+    // position: absolute;
+    // top: 50%;
+    // left: 0;
+    // right: 0;
+    margin: auto;
+    max-width: @progress-bar-width;
+    width: 100%;
+    padding: 0 15px;
+    height: @progress-bar-height;
+    // margin-top: -@progress-bar-height/2;
+  }
+}

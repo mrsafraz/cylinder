@@ -1,0 +1,79 @@
+<section>
+	<div class="page-header">
+		<h3>File Upload</h3>
+	</div>
+	<div>
+		<div class="attachment-container">
+			<div class="attachment-block">
+				<file-upload file.bind="attachment"></file-upload>
+			</div>
+		</div>
+	</div>
+	<div class="page-header">
+		<h3>Clamped Text</h3>
+	</div>
+	<div>
+		<clamped-text
+			text.bind="longText"
+			lines.bind="2"
+			reveal.bind="revealCallback()"
+		></clamped-text>
+	</div>
+	<div class="page-header">
+		<h3>Date Picker</h3>
+	</div>
+	<div>
+		<a class="btn btn-default">
+			<date-picker object.bind="myModel" property.bind="'someDate'" caption.bind="'No Date!'" on-change.bind="datePickerCallback()"></date-picker>
+		</a>
+	</div>
+	<div class="page-header">
+		<h3 click.delegate="dropdown($event)">Dropdown Picker</h3>
+	</div>
+	<div>
+		Color: ${myModel.color}
+		<!-- <date-picker object.bind="myModel" property.bind="'someDate'" caption.bind="'No Date!'" on-change.bind="datePickerCallback()"></date-picker> -->
+		<!-- <dropdown-picker object.bind="myModel" property.bind="'color'" options.bind="colors" caption.bind="'-- Choose Color --'"></dropdown-picker> -->
+	</div>
+	<div class="page-header">
+		<h3>Navigation Picker</h3>
+	</div>
+	<div>
+		Item: ${selectedItem.name}<br>
+		Item Group: ${selectedItem.itemGroup.name}
+		<navigation-picker entity.bind="selectedItem"
+		                   property.bind="'itemGroup.name'">
+		</navigation-picker>
+	</div>
+
+	<div class="page-header">
+		<h3>Paginator</h3>
+	</div>
+	<div>
+
+	<div class="row">
+		<div class="col-md-9">
+			<search-input paginator.bind="paginator" properties.bind="[
+			 'name',
+			 'itemGroup.name',
+			]" label.bind="'Search by Item name, Item group name'">
+			</search-input>
+		</div>
+		<div class="col-md-3">
+            <grid-header paginator.bind="paginator" property.bind="'name'" label.bind="'Item Name'"></grid-header>
+            <grid-header paginator.bind="paginator" property.bind="'itemGroup.name'" label.bind="'Item Group Name'"></grid-header>
+		</div>
+	</div>
+	<ul class="list-group">
+		<li class="list-group-item" repeat.for="item of items">
+			<p>
+				<strong>${item.name}</strong><br>
+				${item.itemGroup && item.itemGroup.name}
+			</p>
+		</li>
+	</ul>
+	<div>
+	  <pagination paginator.bind="paginator"></pagination>
+	</div>
+	</div>
+</section>

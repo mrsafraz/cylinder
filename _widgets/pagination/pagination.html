@@ -1,0 +1,55 @@
+<div>
+
+<span style="float: left; padding-left: 10px; line-height: 30px;">
+
+<!-- <button on-click="paginator.forceRefresh();" class="btn btn-icon btn-round btn-outline btn-default btn-xs">
+  <i class="fa fa-refresh"></i>
+</button> -->
+<span bind-if="paginator.totalResults">
+<span bind-if="paginator.totalPages > 1">
+ {{paginator.resultsFrom}} - {{paginator.resultsUntil}}  of 
+  </span>
+  <span bind-if="paginator.totalResults == 1">1 result</span>
+  <span bind-if="paginator.totalResults > 1">
+  {{paginator.totalResults}}
+   results.
+  </span>
+</span>
+<span bind-if="!paginator.totalResults">
+No results.
+</span>
+<!-- --><a href="#" on-click="refresh()">
+<small>Refresh
+  <i class="fa fa-circle-o-notch fa-spin icon-loading" bind-if="isLoading"></i>
+  </small>
+</a><!-- -->
+
+</span>
+
+<span style="float: right; line-height: 30px;">
+&nbsp;
+  <span bind-if="true || paginator.totalPages > 1">
+  <!-- Page  -->
+  {{paginator.currentPage}}
+<!--  <input style="display: inline; width: auto;" class="form-control input-sm" type="number" bind-value="paginator.currentPage" min="1" max="{{paginator.totalPages}}" kjon-change="paginator.refresh();">-->
+  <!-- of  -->
+  /
+  {{paginator.totalPages}}
+  &nbsp;
+  
+<!--  <a class="btn btn-round btn-icon btn-default btn-outline btn-sm" on-click="paginator.refresh()"><i class="fa fa-refresh"></i></a>-->
+
+<!--   <a class="{{paginator.currentPage == 1 ? 'disabled': ''}} btn btn-round btn-icon btn-primary btn-outline btn-sm" on-click="paginator.previousPage()"><i class="fa fa-angle-left"></i></a>
+  <a class="{{paginator.currentPage == paginator.totalPages ? 'disabled': ''}} btn btn-round btn-icon btn-primary btn-outline btn-sm" on-click="paginator.nextPage()"><i class="fa fa-angle-right"></i></a> -->
+
+  <a class="{{paginator.currentPage == 1 ? 'disabled btn-default': 'btn-primary'}} btn btn-minimal btn-sm" on-click="paginator.previousPage()" style="padding: 0 10px;">
+   <i class="fa fa-chevron-left fa-lg"></i>
+  </a>
+  <a class="{{paginator.currentPage == paginator.totalPages ? 'disabled btn-default': 'btn-primary'}} btn btn-minimal btn-sm" on-click="paginator.nextPage()" style="padding: 0 10px;">
+    <i class="fa fa-chevron-right fa-lg"></i>
+  </a>
+</span>
+
+</span>
+
+</div>

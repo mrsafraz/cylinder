@@ -1,0 +1,34 @@
+<div class="modal-content">
+	<div class="modal-header">
+        <input type="text" class="form-control input-sm" bind-value="searchText"
+               placeholder="{{getSelectedValue()}}" on-blur="stopEditing()">
+	</div>
+	<div class="modal-body" style="max-height: 200px; padding: 0;">
+<div class="dropdown-picker-container">
+  <div class="dropdown-picker">
+    <div class="selector">
+      <div bind-if="!editMode" class="list-group">
+        <a href="#" class="list-group-item" on-click="startEditing()">
+          <span class="indicator"><i class="fa fa-caret-down"></i></span>
+          <p class="list-group-item-text">
+            {{getSelectedValue()}} &nbsp;
+          </p>
+        </a>
+      </div>
+    </div>
+    <div class="results">
+      <div class="list-group" bind-if="editMode">
+        <a href="#" class="list-group-item" on-click="selectValue(null)">
+          {{caption}}
+        </a>
+        <a href="#" class="list-group-item" bind-repeat="options as option" on-click="selectValue(option)">
+          <p class="list-group-item-text">
+            {{displayValue(option)}}
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+	</div>
+</div>

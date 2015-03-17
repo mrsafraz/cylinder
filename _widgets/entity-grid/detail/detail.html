@@ -1,0 +1,38 @@
+<form on-submit="ok()">
+<div class="modal-header">
+  <h3 class="modal-title">
+    <span bind-if="editMode">{{isNew ? 'New' : 'Edit'}}</span>
+    {{settings.title|t}}
+<!--    <span bind-if="!editMode">Detail</span>-->
+  </h3>
+</div>
+
+<div class="modal-body">
+<!--
+  <div class="form-group" bind-repeat="properties as property">
+    <label class="control-label">{{property.label}}</label>
+    <input class="form-control" type="text" bind-value="entity[property.name]">
+  </div>
+  
+  <h2>Hel</h2>
+-->
+  <entity-detail bind-data="settings" bind-entity="entity" bind-edit-mode="editMode"></entity-detail>
+<!--
+  <div class="form-group">
+    <label class="control-label">{{'Description'}}</label>
+    <textarea class="form-control" bind-value="entity.description"></textarea>
+  </div>
+-->
+</div>
+
+<div class="modal-footer">
+  <div bind-if="!editMode">
+    <button type="button" class="btn btn-primary" on-click="editMode = true;">{{'Edit'|t}}</button>
+    <button type="button" on-click="cancel();" class="btn btn-default">{{'Close'|t}}</button>    
+  </div>
+  <div bind-if="editMode">
+    <button type="submit" class="btn btn-primary">{{'Save'|t}}</button>
+    <button type="button" on-click="cancel();" class="btn btn-default">{{'Cancel'|t}}</button>
+  </div>
+</div>
+</form>

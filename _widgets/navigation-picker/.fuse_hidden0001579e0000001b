@@ -1,0 +1,152 @@
+import {Widget, Observer, DataService} from 'kingdom';
+import $ from 'jquery';
+import {PropertyResolver} from '../entity-grid/_lib/PropertyResolver';
+
+class NavigationPickerWidget extends Widget  {
+
+  constructor(dataService: DataService, propertyResolver: PropertyResolver){
+
+    this.propertyResolver = propertyResolver;
+    this.dataService = dataService;
+    this.entity = null;
+    this.criteria = {};
+    this.options = {};
+    this.property = null;
+    this.entities = [];
+    this.optionsText = ()=> {};
+    this.searchText = '';
+    this.editMode = false;
+    this.view = null;
+    this.navigationEntityType = null;
+    Observer.observe(this, 'searchText', 'applyFilter');
+    this.caption = '-- Select --';
+    this.multiple = false;
+  }
+  
+  attached(view){
+    this.view = view;
+  }
+  
+  startEditing(){
+    this.editMode = true;
+    window.setTimeout(()=> {
+      $(this.view).find('.navigation-picker-container .selector .form-control').focus();
+    }, 10);
+  }
+  
+  stopEditing(){
+    window.setTimeout(()=> {
+      this.editMode = false;
+      this.searchText = '';
+    }, 100);
+  }
+
+  reset(){
+    // alert('col');
+    this.searchText = '';
+    window.setTimeout(()=> {
+      this.startEditing();
+    }, 101);
+  }
+  
+  selectValue(value){
+//    alert(this.valueObservable());
+    if(this.multiple){
+      var index = this.valueObservable.indexOf(value);
+      if(index !== -1){
+        this.valueObservable.splice(index, 1);
+        return;
+      }
+      this.valueObservable.push(value);
+      return;
+    }
+    if(this.valueObservable() === value){
+      this.valueObservable(null);
+      return;
+    }
+    this.valueObservable(value);
+  }
+  
+  getSelectedValue(){
+    var value = this.propertyResolver.getValue(this.entity, this.property);
+    this.multiple = Array.isArray(value);
+    if(!value || (this.multiple && !value.length)){
+      return this.caption;
+    }
+    return value;
+    var props = this.property.split('.');
+    var value = this.entity;
+    for(var i = 0; i < props.length; i++){
+      if(!value){
+        value = this.caption;
+        break;
+      }
+      value = value[props[i]];
+    }
+    return value;
+  }
+
+  isOptionSelected(option){
+    // console.log('All options', this.getSelectedValue());
+    // console.log('Current Option', option[this.optionsText]);
+    var selectedValue = this.getSelectedValue();
+    return selectedValue && selectedValue.indexOf(option[this.optionsText]) !== -1;
+  }
+  
+  applyFilter(searchText){
+//    this.entities = this.dataService.getAll(this.navigationEntityType, {
+//      [this.optionsText]: {$contains: searchText},
+//    });    
+    var criteria = {};
+    for(var key in this.criteria){
+      criteria[key] = this.criteria[key];
+    }
+    if(!(searchText === '' || searchText === null || searchText === undefined)){
+      criteria[this.optionsText] = {$contains: searchText};
+    }
+    var options = {};
+    for(var key in this.options){
+      options[key] = this.options[key];
+    }
+//    options.limit: 10;
+    options.sort = {[this.optionsText]: 1};
+    this.dataService.findAll(this.navigationEntityType, criteria, options).then(results => {
+      this.entities = results;
+    });
+  }
+
+  activate(settings){
+
+    // this.multiple = true;
+
+    this.entity = settings.entity;
+    this.property = settings.property;
+    
+    var entityType = this.entity.entityType;
+    var props = this.property.split('.');
+    var property = entityType.getProperty(props[0]);
+    this.optionsText = props[1];
+    // this.multiple = settings.multiple;
+    if(settings.caption){
+      this.caption = settings.caption;
+    }
+    if(settings.criteria){
+      this.criteria = settings.criteria;
+    }
+    if(settings.options){
+      this.options = settings.options;
+    }
+    this.valueObservable = Observer.getObservable(settings.entity, property.name);
+    this.navigationEntityType = property.entityType.shortName;
+    this.entities = this.dataService.getAll(this.navigationEntityType);
+    if(settings.preload){
+      this.applyFilter('');
+    }
+//    this.dataService.findAll(this.navigationEntityType, {}, {limit: 10, sort: {[this.optionsText]: 1}}).then(results => {
+//      this.entities = results;
+//    });
+  }
+
+}
+
+export default NavigationPickerWidget;

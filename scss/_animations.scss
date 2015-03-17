@@ -1,0 +1,69 @@
+
+@-webkit-keyframes popIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+    transform: scale3d(1.2, 1.2, 1.2);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.2, 1.2, 1.2);
+    -ms-transform: scale3d(1.2, 1.2, 1.2);
+    transform: scale3d(1.2, 1.2, 1.2);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.popIn {
+  -webkit-animation-name: popIn;
+  animation-name: popIn;
+}
+
+
+@-webkit-keyframes popOut {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    -webkit-transform: scale3d(.8, .8, .8);
+    transform: scale3d(.8, .8, .8);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes popOut {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    -webkit-transform: scale3d(.8, .8, .8);
+    -ms-transform: scale3d(.8, .8, .8);
+    transform: scale3d(.8, .8, .8);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.popOut {
+  -webkit-animation-name: popOut;
+  animation-name: popOut;
+}

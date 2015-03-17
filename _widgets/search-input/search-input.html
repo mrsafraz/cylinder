@@ -1,0 +1,7 @@
+<div class="search-input-container">
+  <form on-submit="search();">
+    <i class="fa fa-times-circle" on-click="reset();" bind-if="searchText"></i>
+    <i class="fa fa-search"></i>
+    <input type="search" placeholder="{{label}}" class="form-control form-control-round pull-right input-sm" bind-value="searchText" on-keyup="instantSearch();">
+  </form>
+</div>

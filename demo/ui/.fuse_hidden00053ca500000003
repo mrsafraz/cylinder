@@ -1,0 +1,58 @@
+<div class="drawer dock-left-side {{ isLeftSideActive ? 'left-side-active' : '' }} {{ isRightSideActive ? 'right-side-active' : '' }}">
+
+  <div class="overlay" on-click="isLeftSideActive = false; isRightSideActive = false;"></div>
+
+  <section class="left-side">
+      <header class="navbar navbar-default">
+        <a href="#" class="home-link btn btn-link navbar-btn navbar-link pull-left">
+          <i class="fa fa-home fa-lg"></i>
+        </a>
+        <a href="#" class="home-link btn btn-link navbar-btn navbar-link pull-right">
+          <i class="fa fa-gear fa-lg"></i>
+        </a>
+        <h1>
+            Bootstrap
+        </h1>
+      </header>
+      <div class="body">
+        <ul class="nav nav-pills nav-stacked">
+          <li bind-repeat="navigation"
+              bind-active="row.isActive">
+            <a href="{{row.href}}">
+                {{row.title}}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+  </section>
+
+  <section class="right-side">
+      <header class="navbar navbar-default">
+          <h1>
+              The Brand
+          </h1>
+      </header>
+      <div class="body">
+        right panel
+      </div>
+  </section>
+
+  <section class="main">
+      <header class="navbar navbar-default">
+
+  <button class="btn btn-link navbar-btn navbar-link left-side-toggle" type="button" on-click="isLeftSideActive = true;">
+    <i class="fa fa-bars fa-lg"></i>
+  </button>
+
+  <button class="btn btn-link navbar-btn navbar-link right-side-toggle" type="button" on-click="isRightSideActive = true;">
+    <i class="fa fa-comments fa-lg"></i>
+  </button>
+
+          <h1>{{title}}</h1>
+      </header>
+      <div class="body">
+          <view-port bind-transition="'entrance'" bind-cache-views="true"></view-port>
+      </div>
+  </section>
+</div>

@@ -1,0 +1,65 @@
+<header class="secondary">
+
+  <a class="btn-add-new btn btn-primary btn-minimal" href="#" on-click="addEntity()">
+    <i class="fa fa-plus-circle fa-lg"></i>
+    New {{settings.title|t}}
+  </a>
+
+  <search-input bind-paginator="paginator" bind-properties="getSearchProperties()" bind-label="'Search ' + settings.pluralTitle">
+  </search-input>
+
+</header>
+
+<div class="body has-header">
+
+<!--
+  <div class="list-group" bind-if="false">
+    <a class="list-group-item" bind-repeat="entities as row" href="#" on-click="editEntity(row)">
+        <span class="label label-default pull-right">{{row.code}}</span>
+      <h4 class="list-group-item-heading">
+        {{row.name}}
+      </h4>
+      <p class="list-group-item-text">
+        {{row.description}}
+        &nbsp;
+      </p>
+    </a>
+  </div>
+-->
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th bind-repeat="settings.properties as property">
+          <grid-header bind-paginator="paginator" bind-property="property.name"
+                       bind-label="property.label">
+          </grid-header>
+        </th>
+        <th class="column-actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr bind-repeat="entities as entity">
+        <td bind-repeat="settings.properties as property">
+        <div bind-if="property.formType != 'image'">
+          {{getValue(entity, property)}}
+        </div>
+        <div bind-if="property.formType == 'image'">
+              <img style="max-height: 50px; max-width: 50px;" 
+            bind-src="entity[property.name] && entity[property.name].url()">
+        </div>
+        </td>
+        <td class="column-actions">
+            <a on-click="editEntity(entity);" class="btn btn-primary btn-outline btn-xs btn-icon btn-round">
+              <i class="fa fa-info"></i>
+            </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div>
+    <pagination bind-paginator="paginator"></pagination>
+  </div>
+
+</div>

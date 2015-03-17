@@ -1,0 +1,47 @@
+<div>
+    <div class="page-header">
+        <h1>Tooltips</h1>
+    </div>
+    <div>
+        <a href="#" data-bind="tooltip: {title: 'Default tooltip'}">hover me!</a>
+
+        <a href="#" data-bind="tooltip: {title: 'Another tooltip', placement: 'right'}">me too!</a>
+    </div>
+    <div class="page-header">
+        <h1>Popovers</h1>
+    </div>
+    <div>
+        <h3>Simple Popover</h3>
+        <button class="btn btn-primary" data-bind="popover: {template: 'popoverTemplate', options: {title: 'Oh Yea'}}">Launch Simple Popover</button>
+
+        <button class="btn btn-primary" data-bind="popover: {template: 'popoverTemplate', options: {title: 'Oh Yea', trigger: 'hover'}}">Hover Simple Popover</button>
+
+        <button class="btn btn-primary" data-bind="popover: {template: 'popoverTemplate', options: {title: 'Oh Yea', trigger: 'focus'}}">Focus Simple Popover</button>
+
+        <script type="text/html" id="popoverTemplate">
+            <button class="close pull-right" type="button" data-dismiss="popover">×</button>
+            Hey I am some content in A popover
+        </script>
+
+        <h3>Two way binding popover</h3>
+        <h1 data-bind="text: popoverBindingHeader"></h1>
+        <button class="btn btn-default" data-bind="popover: {template: 'popoverBindingTemplate', title: 'Oh Yea Binding'}">
+            Launch Binding Popover
+        </button>
+
+        <script type="text/html" id="popoverBindingTemplate">
+            <button class="close pull-right" type="button" data-dismiss="popover">×</button>
+            <form>
+                <label>Popover Binding Header</label>
+                <input class="form-control" type="text" data-bind="value: popoverBindingHeader, valueUpdate:'afterkeydown'" />
+            </form>
+        </script>
+    </div>
+    <div class="page-header">
+        <h1>Alerts</h1>
+    </div>
+    <div>
+        <div data-bind="alert: alert" repeat.for="alert of alerts">
+        </div>
+    </div>
+</div>

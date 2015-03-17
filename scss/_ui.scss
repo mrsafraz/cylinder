@@ -1,0 +1,83 @@
+.range {
+  
+$knob-size: 30px;
+
+input[type="range"] {
+    display: inline-block;
+    overflow: hidden;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-right: 2px;
+    padding-left: 1px;
+    height: $knob-size + 15;
+    outline: none;
+    border: 0;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ddd), color-stop(100%, #ddd));
+    background: linear-gradient(to right, #ddd 0%, #ddd 100%);
+    background-position: center;
+    background-size: 99% 4px;
+    background-repeat: no-repeat;
+    -webkit-appearance: none; 
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    position: relative;
+    width: $knob-size;
+    height: $knob-size;
+    border-radius: 50px;
+    background-color: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5), 1px 3px 5px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    -webkit-appearance: none; 
+}
+
+input[type="range"]::-webkit-slider-thumb:before {
+    /* what creates the colorful line on the left side of the slider */
+    position: absolute;
+    top: 2*($knob-size/5);
+    left: -2001px;
+    width: 2000px;
+    height: $knob-size/5;
+    height: 4px;
+//    background: #444;
+    content: ' '; 
+}
+
+input[type="range"]::-webkit-slider-thumb:after {
+    /* create a larger (but hidden) hit area */
+    position: absolute;
+    top: -$knob-size;
+    left: -$knob-size;
+    padding: $knob-size + ($knob-size/2);
+    content: ' '; 
+}
+
+  @mixin range-variant($_bg){
+    input[type="range"]::-webkit-slider-thumb:before {
+      background: $_bg;
+    }
+  }
+  
+  @include range-variant($btn-default-bg);
+  
+  &.range-primary {
+    @include range-variant($btn-primary-bg);
+  }
+  &.range-danger {
+    @include range-variant($btn-danger-bg);
+  }
+  &.range-success {
+    @include range-variant($btn-success-bg);
+  }
+  &.range-warning {
+    @include range-variant($btn-warning-bg);
+  }
+  &.range-info {
+    @include range-variant($btn-info-bg);
+  }
+
+}
+
+.btn-light {
+  @include btn-light;
+}
