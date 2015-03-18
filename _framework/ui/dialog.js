@@ -1,8 +1,23 @@
-import app from 'durandal/app';
+import system from 'durandal/system';
 import dialog from 'plugins/dialog';
 import {RouteBuilder} from './route-builder';
 import {ModuleLoader} from '../core/module-loader';
 import {annotate, TransientScope} from 'di';
+
+
+function ensureDialogInstance(objOrModuleId) {
+  return system.defer(function (dfd) {
+      if (system.isString(objOrModuleId)) {
+          system.acquire(objOrModuleId).then(function (module) {
+              dfd.resolve(system.resolveObject(module));
+          }).fail(function (err) {
+              system.error('Failed to load dialog module (' + objOrModuleId + '). Details: ' + err.message);
+          });
+      } else {
+          dfd.resolve(objOrModuleId);
+      }
+  }).promise();
+}
 
 export class Dialog {
 
@@ -38,11 +53,18 @@ export class Dialog {
     return dialog.closeInstance(...params);
   }
 
-  static showInstance(moduleId, activationData){
+  static showInstance(moduleId, activationData, options = {}){
     if(typeof moduleId == 'string'){
       moduleId = RouteBuilder.prepareModuleId(moduleId);
     }
-    return dialog.show(moduleId, activationData);
+    ensureDialogInstance(moduleId).then(function(instance) {
+      if(instance instanceof Dialog){
+        instance.show(activationData, options);
+      }
+      else {
+        dialog.show(instance, activationData);
+      }
+    });
   }
 
 }

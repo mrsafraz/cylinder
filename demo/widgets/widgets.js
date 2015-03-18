@@ -1,5 +1,6 @@
 import {DataService, Paginator} from 'framework';
 import {Toast} from 'framework';
+import {Dialog} from 'framework';
 import TestDialog from './test-dialog/test-dialog';
 
 
@@ -68,7 +69,8 @@ class Widgets {
 		if($event){
 			options.popover = $event.target;
 		}
-		this.testDialog.show(data, options);
+		// this.testDialog.show(data, options);
+		Dialog.showInstance('cylinder/demo/widgets/test-dialog', data, options); // another way
 	}
 
 	activate(){
