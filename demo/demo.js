@@ -37,6 +37,13 @@ class Demo extends Module {
         nav: true,
       },
       {
+        route: 'branches',
+        moduleId: 'branches',
+        // hasChildRoutes: true,
+        title: 'Branches',
+        nav: true,
+      },
+      {
         route: 'components',
         moduleId: 'components',
         // hasChildRoutes: true,

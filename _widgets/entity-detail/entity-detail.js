@@ -1,4 +1,4 @@
-import {Widget} from 'kingdom';
+import {Widget} from 'framework';
 import {PropertyResolver} from '../entity-grid/_lib/PropertyResolver';
 
 class EntityDetailWidget extends Widget  {

@@ -1,6 +1,6 @@
-import {Dialog} from 'kingdom';
-import {DataService} from 'kingdom';
-import {Toast} from 'kingdom';
+import {Dialog} from 'framework';
+import {DataService} from 'framework';
+import {Toast} from 'framework';
 
 class EntityDialog extends Dialog  {
   

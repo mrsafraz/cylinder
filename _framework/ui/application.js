@@ -53,6 +53,9 @@ export class Application {
       'grid-header',
       'file-upload',
       'loading-indicator',
+
+      'entity-detail',
+      'entity-grid',
     ];
 
     var systemWidgets = [];

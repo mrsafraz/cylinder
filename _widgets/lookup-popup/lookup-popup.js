@@ -2,10 +2,9 @@ import {Dialog} from 'framework';
 import {Widget, Observer} from 'framework';
 import $ from 'jquery';
 
-class LookupPopup  {
+class LookupPopup extends Dialog {
 
   constructor(){
-  	this.autoclose = true;
     this.editMode = true;
     this.view = null;
     this.searchText = '';
@@ -16,7 +15,6 @@ class LookupPopup  {
     this.caption = ' -- Select -- ';
     this.valueObservable = null;
     this.displayValue = object => '' + object;
-    this.target = null;
     Observer.observe(this, 'searchText', 'applyFilter');
   }
 
@@ -74,7 +72,6 @@ class LookupPopup  {
     if(settings.displayValue){
       this.displayValue = settings.displayValue;
     }
-    this.target = settings.target;
     this.applyFilter(this.searchText);
     console.log('WIDGGG', this);
     console.log('WIDGGG settings', settings);

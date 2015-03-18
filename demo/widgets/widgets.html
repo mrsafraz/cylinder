@@ -43,7 +43,7 @@
 		</a>
 	</div>
 	<div class="page-header">
-		<h3 click.delegate="dropdown($event)">Dropdown Picker</h3>
+		<a click.delegate="dropdown($event)"><h3>Dropdown Picker</h3></a>
 	</div>
 	<div>
 		Color: ${myModel.color}
@@ -54,10 +54,10 @@
 		<h3>Navigation Picker</h3>
 	</div>
 	<div>
-		Item: ${selectedItem.name}<br>
-		Item Group: ${selectedItem.itemGroup.name}
-		<navigation-picker entity.bind="selectedItem"
-		                   property.bind="'itemGroup.name'">
+		Branch: ${selectedBranch.name}<br>
+		Branch Type: ${selectedBranch.branchType && selectedBranch.branchType.name}
+		<navigation-picker entity.bind="selectedBranch"
+		                   property.bind="'branchType.name'">
 		</navigation-picker>
 	</div>
 
@@ -70,20 +70,20 @@
 		<div class="col-md-9">
 			<search-input paginator.bind="paginator" properties.bind="[
 			 'name',
-			 'itemGroup.name',
-			]" label.bind="'Search by Item name, Item group name'">
+			 'branchType.name',
+			]" label.bind="'Search by Branch name, Branch Type'">
 			</search-input>
 		</div>
 		<div class="col-md-3">
-            <grid-header paginator.bind="paginator" property.bind="'name'" label.bind="'Item Name'"></grid-header>
-            <grid-header paginator.bind="paginator" property.bind="'itemGroup.name'" label.bind="'Item Group Name'"></grid-header>
+            <grid-header paginator.bind="paginator" property.bind="'name'" label.bind="'Branch Name'"></grid-header>
+            <grid-header paginator.bind="paginator" property.bind="'branchType.name'" label.bind="'Branch Type Name'"></grid-header>
 		</div>
 	</div>
 	<ul class="list-group">
-		<li class="list-group-item" repeat.for="item of items">
+		<li class="list-group-item" repeat.for="branch of branches">
 			<p>
-				<strong>${item.name}</strong><br>
-				${item.itemGroup && item.itemGroup.name}
+				<strong>${branch.name}</strong><br>
+				${branch.branchType && branch.branchType.name}
 			</p>
 		</li>
 	</ul>

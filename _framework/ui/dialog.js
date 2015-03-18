@@ -71,4 +71,4 @@ export class Dialog {
 
 }
 
-// annotate(Widget, new TransientScope);
+annotate(Dialog, new TransientScope);

@@ -1,5 +1,5 @@
-import {Widget} from 'kingdom';
-import {Paginator} from 'kingdom';
+import {Widget} from 'framework';
+import {Paginator} from 'framework';
 
 import DetailDialog from './detail/detail';
 import {PropertyResolver} from './_lib/PropertyResolver';

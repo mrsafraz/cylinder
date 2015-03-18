@@ -19,12 +19,12 @@ class Widgets {
 		this.colors = [
 			'blue', 'orange', 'red', 'green',
 		];
-		this.selectedItem = null;
-		this.items = [];
+		this.selectedBranch = null;
+		this.branches = [];
 	    this.paginator = paginator.create('Branch', {}, {}, (results) => {
-	      this.items = results;
+	      this.branches = results;
 	    });
-	    this.paginator.pageSize = 2; // for testing
+	    this.paginator.pageSize = 3; // for testing
 	    this.attachment = this.db.create('File');
 	    this.toast = toast;
 	    this.testDialog = testDialog;
@@ -50,12 +50,14 @@ class Widgets {
 	dropdown($event){
 		// 		<dropdown-picker object.bind="myModel" property.bind="'color'" 
 		// 		options.bind="colors" caption.bind="'-- Choose Color --'"></dropdown-picker>
-		dialog.showActionsheet('_widgets/lookup-popup/lookup-popup', {
+		Dialog.showInstance('cylinder/_widgets/lookup-popup', {
 			object: this.myModel,
 			property: 'color',
 			options: this.colors,
 			caption: '-- Choose Color --',
-			target: $event.target,
+		}, {
+			popover: $event.target,
+			autoclose: true,
 		});
 	}
 
@@ -74,12 +76,12 @@ class Widgets {
 		}
 		// this.testDialog.show(data, options);
 		Dialog.showInstance('cylinder/demo/widgets/test-dialog', data, options).then(result=> {
-			alert(result);
-		})
+			// alert(result);
+		});
 	}
 
 	activate(){
-		this.selectedItem = this.db.getOne('Item');
+		this.selectedBranch = this.db.getOne('Branch');
 		// console.log('iiii', this.item);
 		this.paginator.activate();
 	}
