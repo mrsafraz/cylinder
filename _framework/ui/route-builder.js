@@ -16,6 +16,17 @@ export class RouteBuilder {
     _moduleIdConvention = moduleIdConvention;
   }
 
+  static prepareModuleId(moduleId, includeRoutePrefix = false){
+    if(_moduleIdConvention){
+      var moduleIdParts = moduleId.split('/');
+      moduleId = route.moduleId + '/' + moduleIdParts[moduleIdParts.length - 1];
+    }
+    if(includeRoutePrefix && _routePrefix){
+      moduleId = _routePrefix + moduleId;
+    }
+    return moduleId;
+  }
+
   static buildRouteConfig(route, includeRoutePrefix = false){
     if(typeof route === "string"){
       route = {route: route};
@@ -41,14 +52,7 @@ export class RouteBuilder {
       throw new Error('"moduleId" not set for route: "' + route.route + '"');
     }
     route.moduleId = route.moduleId.replace('*details', '');
-    if(_moduleIdConvention){
-      var moduleIdParts = route.moduleId.split('/');
-      route.moduleId = route.moduleId + '/' + moduleIdParts[moduleIdParts.length - 1];
-    }
-    if(includeRoutePrefix && _routePrefix){
-      route.moduleId = _routePrefix + route.moduleId;
-    }
-
+    route.moduleId = RouteBuilder.prepareModuleId(route.moduleId, includeRoutePrefix);
     return route;
   }
 }

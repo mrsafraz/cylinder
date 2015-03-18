@@ -1,6 +1,7 @@
 import app from 'durandal/app';
 import dialog from 'plugins/dialog';
 import {RouteBuilder} from './route-builder';
+import {ModuleLoader} from '../core/module-loader';
 
 export class Dialog {
 
@@ -19,12 +20,15 @@ export class Dialog {
     return dialog.close(this, result);
   }
 
-  static show(moduleId, activationData){
-    var idSplit = moduleId.split('/');
-    idSplit.push('' + idSplit[idSplit.length-1]);
-    var moduleIdReal = idSplit.join('/');
-    moduleIdReal = RouteBuilder.getRoutePrefix() + moduleIdReal;
-    return dialog.show(moduleIdReal, activationData);
+  static closeInstance(...params){
+    return dialog.closeInstance(...params);
+  }
+
+  static showInstance(moduleId, activationData){
+    if(typeof moduleId == 'string'){
+      moduleId = RouteBuilder.prepareModuleId(moduleId);
+    }
+    return dialog.show(moduleId, activationData);
   }
 
 }
