@@ -187,10 +187,6 @@ class DatePicker extends Dialog {
 		}
 	}
 
-	close(){
-		this.close();
-	}
-
 	ok(){
 		var date =  new Date(this.dateObj.getTime());
 		date.setFullYear(this.selected.year);

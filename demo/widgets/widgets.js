@@ -65,12 +65,17 @@ class Widgets {
 
 	showDialog($event){
 		var data = {};
-		var options = {autoclose: true, overlay: false};
+		var options = {
+			autoclose: true,
+			// overlay: false
+		};
 		if($event){
 			options.popover = $event.target;
 		}
 		// this.testDialog.show(data, options);
-		Dialog.showInstance('cylinder/demo/widgets/test-dialog', data, options); // another way
+		Dialog.showInstance('cylinder/demo/widgets/test-dialog', data, options).then(result=> {
+			alert(result);
+		})
 	}
 
 	activate(){

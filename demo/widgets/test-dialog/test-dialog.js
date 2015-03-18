@@ -4,6 +4,10 @@ class TestDialog extends Dialog {
 	constructor(){
 	}
 
+	ok(){
+		this.close('YES!');
+	}
+
 	activate(settings = {}){
 	}
 }

@@ -57,13 +57,15 @@ export class Dialog {
     if(typeof moduleId == 'string'){
       moduleId = RouteBuilder.prepareModuleId(moduleId);
     }
-    ensureDialogInstance(moduleId).then(function(instance) {
-      if(instance instanceof Dialog){
-        instance.show(activationData, options);
-      }
-      else {
-        dialog.show(instance, activationData);
-      }
+    return new Promise((resolve, reject)=> {
+      ensureDialogInstance(moduleId).then(function(instance) {
+        if(instance instanceof Dialog){
+          instance.show(activationData, options).then(resolve, reject);
+        }
+        else {
+          dialog.show(instance, activationData).then(resolve, reject);
+        }
+      });
     });
   }
 
