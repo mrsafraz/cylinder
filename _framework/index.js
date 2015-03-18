@@ -22,5 +22,7 @@ export {Application} from './ui/application';
 export {Widget} from './ui/widget';
 export {Progress} from './ui/progress';
 export {Paginator} from './ui/paginator';
+export {Dialog} from './ui/dialog';
+export {Toast} from './ui/toast';
 
 export {Translator} from './trans/translator';
