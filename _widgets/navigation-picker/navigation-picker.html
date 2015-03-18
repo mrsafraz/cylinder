@@ -32,7 +32,7 @@
             <i class="fa fa-times-circle" bind-if="searchText !== ''" on-click="reset()"></i>
             <input type="text" class="form-control" bind-value="searchText"
                    placeholder="{{getSelectedValue()}}" on-blurk="stopEditing()">
-            <button class="btn btn-primary btn-minimal" type="button" on-click="dismiss()">Done</button>
+            <button class="btn btn-primary btn-light" type="button" on-click="dismiss()">Done</button>
         </div>
       </div>
       <div class="list-group" bind-if="editMode">

@@ -1,8 +1,8 @@
-import {Widget, Observer, DataService} from 'framework';
+import {Widget, Dialog, Observer, DataService} from 'framework';
 import $ from 'jquery';
 import {PropertyResolver} from '../entity-grid/_lib/PropertyResolver';
 
-class NavigationPickerWidget extends Widget  {
+class NavigationPicker extends Dialog  {
 
   constructor(dataService: DataService, propertyResolver: PropertyResolver){
 
@@ -16,26 +16,26 @@ class NavigationPickerWidget extends Widget  {
     this.entities = [];
     this.optionsText = ()=> {};
     this.searchText = '';
-    this.editMode = false;
+    this.editMode = true;
     this.view = null;
     this.navigationEntityType = null;
-    Observer.observe(this, 'searchText', 'applyFilter');
+    // Observer.observe(this, 'searchText', 'applyFilter');
     this.caption = '-- Select --';
     this.multiple = false;
     this.manyToMany = false;
   }
-  
+
   attached(view){
     this.view = view;
   }
-  
+
   startEditing(){
     this.editMode = true;
     window.setTimeout(()=> {
       $(this.view).find('.form-control').focus();
     }, 10);
   }
-  
+
   stopEditing(){
     window.setTimeout(()=> {
       this.editMode = false;
@@ -55,7 +55,7 @@ class NavigationPickerWidget extends Widget  {
       this.startEditing();
     }, 101);
   }
-  
+
   selectValue(value){
 //    alert(this.valueObservable());
     if(this.multiple){
@@ -88,6 +88,9 @@ class NavigationPickerWidget extends Widget  {
       return;
     }
     this.valueObservable(value);
+    if(this.selectedValueObservable){
+    	this.selectedValueObservable(this.getSelectedValue());
+    }
     this.dismiss();
   }
 
@@ -112,7 +115,7 @@ class NavigationPickerWidget extends Widget  {
     }
     return value[this.optionsText];
   }
-  
+
   getSelectedRawValue(){
     var value = this.propertyResolver.getRawValue(this.entity, this.property);
     this.multiple = Array.isArray(value);
@@ -154,20 +157,24 @@ class NavigationPickerWidget extends Widget  {
     var selectedValue = this.getSelectedRawValue();
     // console.log('NAVPROP,', this.multiple, option, this.manyToMany);
     if(this.multiple){
-      if(this.manyToMany){ 
+      if(this.manyToMany){
         // alert(this.manyToMany + ' : ' + this.entity.id + ' : ' + option.id);
         option = this.getManyToManyValue(option);
-        // console.log('OPTION...', option, selectedValue); 
+        // console.log('OPTION...', option, selectedValue);
       }
       return selectedValue && selectedValue.indexOf(option) !== -1;
     }
     return selectedValue === option;
   }
-  
+
+  quickFilter(searchText){
+  	return this.applyFilter(this.searchText);
+  }
+
   applyFilter(searchText){
 //    this.entities = this.dataService.getAll(this.navigationEntityType, {
 //      [this.optionsText]: {$contains: searchText},
-//    });    
+//    });
     var criteria = {};
     for(var key in this.criteria){
       criteria[key] = this.criteria[key];
@@ -192,7 +199,7 @@ class NavigationPickerWidget extends Widget  {
 
     this.entity = settings.entity;
     this.property = settings.property;
-    
+
     var entityType = this.entity.entityType;
     var props = this.property.split('.');
     var property = entityType.getProperty(props[0]);
@@ -211,7 +218,11 @@ class NavigationPickerWidget extends Widget  {
     if(settings.options){
       this.options = settings.options;
     }
-    this.valueObservable = Observer.getObservable(settings.entity, property.name);
+    this.valueObservable = settings.valueObservable || Observer.getObservable(settings.entity, property.name);
+    this.selectedValueObservable = settings.selectedValueObservable;
+    if(this.selectedValueObservable){
+    	this.selectedValueObservable(this.getSelectedValue());
+    }
     if(this.manyToMany){
       var navProperty = entityType.getProperty(props[0] + '.' + props[1]);
       this.navigationEntityType = navProperty.entityType.shortName;
@@ -230,4 +241,4 @@ class NavigationPickerWidget extends Widget  {
 
 }
 
-export default NavigationPickerWidget;
+export default NavigationPicker;

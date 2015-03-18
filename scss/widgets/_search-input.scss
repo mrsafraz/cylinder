@@ -1,0 +1,25 @@
+.search-input-container {
+  form {
+    position: relative;
+    margin: 0;
+    padding: 0;
+  }
+  .fa-times-circle {
+    position: absolute;
+    right: 0;
+    padding: 8px 10px 6px 5px;
+    color: #CCC;
+    cursor: pointer;
+  }
+  .fa-search {
+    position: absolute;
+    padding: 8px 5px 0 10px;
+    color: #CCC;
+  }
+  .form-control {
+    padding-left: 30px;
+    padding-right: 20px;
+    border-radius: 20px;
+    padding-left: 30px;
+  }
+}

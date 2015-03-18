@@ -1,0 +1,28 @@
+<div class="modal-content">
+	<div class="modal-header">
+	    <div class="input-container">
+	        <i class="fa fa-times-circle" bind-if="searchText !== ''" on-click="reset()"></i>
+<!-- 	        <input type="text" class="form-control" bind-value="searchText"
+	               placeholder="{{getSelectedValue()}}"> -->
+	        <input type="text" class="form-control" bind-value="searchText"
+	               placeholder="Search">
+	        <!-- <button class="btn btn-primary btn-light" type="button" on-click="dismiss()">Done</button> -->
+	    </div>
+	</div>
+	<div class="modal-body" style="max-height: 200px; padding: 0;">
+		<div class="navigation-picker-container">
+		  <div class="navigation-picker">
+		    <div class="results">
+		      <div class="list-group">
+		        <a href="#" class="list-group-item" bind-repeat="entities as option" on-click="selectValue(option)">
+		          <i class="fa fa-check text-muted pull-left" bind-if="isOptionSelected(option)"></i>
+		          <p class="list-group-item-text">
+		            {{option[optionsText]}} 
+		          </p>
+		        </a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>

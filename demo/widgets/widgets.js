@@ -47,6 +47,16 @@ class Widgets {
 		return this.updateSomeDate.bind(this);
 	}
 
+	navigation($event){
+		Dialog.showInstance('cylinder/_widgets/navigation-popup', {
+			entity: this.selectedBranch,
+			property: 'branchType.name',
+		}, {
+			popover: $event.target,
+			autoclose: true,
+		});
+	}
+
 	dropdown($event){
 		// 		<dropdown-picker object.bind="myModel" property.bind="'color'" 
 		// 		options.bind="colors" caption.bind="'-- Choose Color --'"></dropdown-picker>

@@ -10,6 +10,7 @@ class Branches extends Module {
         {name: 'branchType.name', label: 'Branch Type'},
         {name: 'code', label: 'Code'},
         {name: 'name', label: 'Name'},
+        {name: 'branchCourses.course.name', label: 'Courses'},
       ],
     };
   }
