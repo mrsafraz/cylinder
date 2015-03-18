@@ -2,8 +2,9 @@
 import dialog from 'plugins/dialog';
 import $ from 'jquery';
 import {Observer} from 'framework';
+import {Dialog} from 'framework';
 
-class DatePicker {
+class DatePicker extends Dialog { 
 	constructor(){
 		this.autoclose = true;
 		this.target = null;

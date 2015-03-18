@@ -1,4 +1,5 @@
-var _routePrefix = 'app/';
+// var _routePrefix = 'app/';
+var _routePrefix = '';
 var _moduleIdConvention = false;
 
 export class RouteBuilder {

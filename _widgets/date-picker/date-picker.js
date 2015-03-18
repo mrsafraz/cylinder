@@ -1,10 +1,12 @@
 import {Widget} from 'framework';
-import dialog from 'plugins/dialog';
+// import dialog from 'plugins/dialog';
 import $ from 'jquery';
 import {Observer} from 'framework';
+import DatePopupDialog from './popup/popup';
 
 class DatePickerWidget extends Widget {
-	constructor(){
+	constructor(datePopupDialog: DatePopupDialog){
+		this.datePopupDialog = datePopupDialog;
 		this.settings = {};
 		this.selectedValue = null;//new Date();
 		this.caption = 'Select';
@@ -21,14 +23,14 @@ class DatePickerWidget extends Widget {
 		var settings = this.settings;
 		settings.target = target;
 		settings.date = this.valueObservable();
-		dialog['showActionsheet']('_widgets/date-picker/popup/popup', settings).then(date => {
+		this.datePopupDialog.showAsPopover(settings).then(date => {
 			if(date){
 				this.valueObservable(date);
 				if(typeof this.onChange === 'function'){
 					return this.onChange(date, event);
 				}
 			}
-		})
+		});
 	}
 
 	attached(view){

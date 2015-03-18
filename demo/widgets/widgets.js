@@ -1,4 +1,5 @@
 import {DataService, Paginator} from 'framework';
+import {Toast} from 'framework';
 import dialog from 'plugins/dialog';
 
 class MyModel {
@@ -9,7 +10,7 @@ class MyModel {
 }
 
 class Widget {
-	constructor(db: DataService, paginator: Paginator){
+	constructor(db: DataService, paginator: Paginator, toast: Toast){
 		this.db = db;
 		this.longText = 'Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Integer molestie lorem at massa. Facilisis in pretium nisl aliquet. Nulla volutpat aliquam velit. Phasellus iaculis neque. Purus sodales ultricies. Vestibulum laoreet porttitor sem. Ac tristique libero volutpat at. Faucibus porta lacus fringilla vel. Aenean sit amet erat nunc. Eget porttitor lorem.  Consectetur adipiscing elit. Integer molestie lorem at massa. Facilisis in pretium nisl aliquet. Nulla volutpat aliquam velit. Phasellus iaculis neque. Purus sodales ultricies. Vestibulum laoreet porttitor sem. Ac tristique libero volutpat at. Faucibus porta lacus fringilla vel. Aenean sit amet erat nunc.';
 		this.myModel = new MyModel();
@@ -24,6 +25,7 @@ class Widget {
 	    });
 	    this.paginator.pageSize = 2; // for testing
 	    this.attachment = this.db.create('File');
+	    this.toast = toast;
 	}
 
 	showMore(event){
@@ -53,6 +55,10 @@ class Widget {
 			caption: '-- Choose Color --',
 			target: $event.target,
 		});
+	}
+
+	showToast(variant = ''){
+		this.toast['show' + variant]('This is a ' + variant + ' Toast')
 	}
 
 	activate(){
