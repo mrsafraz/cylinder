@@ -19,7 +19,7 @@ export class RouteBuilder {
   static prepareModuleId(moduleId, includeRoutePrefix = false){
     if(_moduleIdConvention){
       var moduleIdParts = moduleId.split('/');
-      moduleId = route.moduleId + '/' + moduleIdParts[moduleIdParts.length - 1];
+      moduleId = moduleId + '/' + moduleIdParts[moduleIdParts.length - 1];
     }
     if(includeRoutePrefix && _routePrefix){
       moduleId = _routePrefix + moduleId;

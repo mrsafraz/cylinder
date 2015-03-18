@@ -1,6 +1,7 @@
 import {DataService, Paginator} from 'framework';
 import {Toast} from 'framework';
-import dialog from 'plugins/dialog';
+import TestDialog from './test-dialog/test-dialog';
+
 
 class MyModel {
 	constructor(){
@@ -9,8 +10,8 @@ class MyModel {
 	}
 }
 
-class Widget {
-	constructor(db: DataService, paginator: Paginator, toast: Toast){
+class Widgets {
+	constructor(db: DataService, paginator: Paginator, toast: Toast, testDialog: TestDialog){
 		this.db = db;
 		this.longText = 'Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Integer molestie lorem at massa. Facilisis in pretium nisl aliquet. Nulla volutpat aliquam velit. Phasellus iaculis neque. Purus sodales ultricies. Vestibulum laoreet porttitor sem. Ac tristique libero volutpat at. Faucibus porta lacus fringilla vel. Aenean sit amet erat nunc. Eget porttitor lorem.  Consectetur adipiscing elit. Integer molestie lorem at massa. Facilisis in pretium nisl aliquet. Nulla volutpat aliquam velit. Phasellus iaculis neque. Purus sodales ultricies. Vestibulum laoreet porttitor sem. Ac tristique libero volutpat at. Faucibus porta lacus fringilla vel. Aenean sit amet erat nunc.';
 		this.myModel = new MyModel();
@@ -26,6 +27,7 @@ class Widget {
 	    this.paginator.pageSize = 2; // for testing
 	    this.attachment = this.db.create('File');
 	    this.toast = toast;
+	    this.testDialog = testDialog;
 	}
 
 	showMore(event){
@@ -61,6 +63,17 @@ class Widget {
 		this.toast['show' + variant]('This is a ' + variant + ' Toast')
 	}
 
+	showDialog($event){
+		var data = {};
+		if($event){
+			data.target = $event.target;
+			this.testDialog.showAsPopup(data);
+		}
+		else {
+			this.testDialog.show(data);
+		}
+	}
+
 	activate(){
 		this.selectedItem = this.db.getOne('Item');
 		// console.log('iiii', this.item);
@@ -68,4 +81,4 @@ class Widget {
 	}
 }
 
-export default Widget;
+export default Widgets;
