@@ -20,9 +20,8 @@ class Widgets {
 		];
 		this.selectedItem = null;
 		this.items = [];
-	    this.paginator = paginator.create('Item', {}, {}, (results) => {
+	    this.paginator = paginator.create('Branch', {}, {}, (results) => {
 	      this.items = results;
-			console.log('IEMS', this.items);
 	    });
 	    this.paginator.pageSize = 2; // for testing
 	    this.attachment = this.db.create('File');
@@ -65,13 +64,11 @@ class Widgets {
 
 	showDialog($event){
 		var data = {};
+		var options = {autoclose: true, overlay: false};
 		if($event){
-			data.target = $event.target;
-			this.testDialog.showAsPopup(data);
+			options.popover = $event.target;
 		}
-		else {
-			this.testDialog.show(data);
-		}
+		this.testDialog.show(data, options);
 	}
 
 	activate(){

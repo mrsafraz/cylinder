@@ -8,9 +8,9 @@
 			<i class="fa fa-chevron-left"></i>
 		</a>
 		<div class="select-wrapper">
-			<select class="form-control" options.bind="years" value.bind="current.year" change.delegate="calculateDates()">
+			<select options.bind="years" value.bind="current.year" change.delegate="calculateDates()">
 			</select>
-			<select class="form-control" options.bind="months" value.bind="current.month" change.delegate="calculateDates()">
+			<select options.bind="months" value.bind="current.month" change.delegate="calculateDates()">
 			</select>
 		</div>
 	</div>
@@ -30,58 +30,26 @@
 			${date}
 		</div>
 	</div>
-	<div>
 
-	<label>
-		<!-- Prefix/postfix -->
-		<span class="inline-label">
-			<span class="form-label">
-				<i class="fa fa-clock"></i>
-			</span>
-			<select options.bind="['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']" value.bind="timeHours" change.delegate="changeTime()">
-			</select>
-			<span class="form-label">
-				:
-			</span>
-			<select options.bind="['00', '15', '30', '45']" value.bind="timeMinutes" change.delegate="changeTime()">
-			</select>
-			<a href="#" class="secondary button" click.delegate="toggleTimeIsPm()">
+
+	<div class="clock-bar" if.bind="timeAlso">
+		<a href="#" class="next btn btn-primary btn-light" click.delegate="toggleTimeIsPm()">
 				${timeIsPm ? 'PM' : 'AM'}
-			</a>
-		</span>
-	</label>
-	</div>
-<!-- 	<div class="top-barx" style="display: none;">
-		<a href="#" class="next secondary button" click.delegate="nextMonth()">
-			AM
 		</a>
-		<a href="#" class="prev secondary button" click.delegate="prevMonth()">
-			<zf-iconic name="clock" size="small" data-direction="left"></zf-iconic>
+		<a href="#" class="disabled prev btn btn-default btn-light" click.delegate="prevMonth()">
+				<i class="fa fa-clock-o"></i>
 		</a>
 		<div class="select-wrapper">
-			<select options.bind="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]" value.bind="12">
+			<select options.bind="['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']" value.bind="timeHours" change.delegate="changeTime()">
 			</select>
-			<select options.bind="['00', 15, 30, 45]" value.bind="'00'">
+			<span class="separator">:</span>
+			<select options.bind="['00', '15', '30', '45']" value.bind="timeMinutes" change.delegate="changeTime()">
 			</select>
 		</div>
-	</div> -->
+	</div>
 	<div class="bottom-actions" style="xdisplay: none;">
 		<a style="width: 50%; float: left;" href="#" class="tiny btn btn-primary btn-light btn-sm" click.delegate="ok()">OK</a>
 		<a style="width: 50%; float: left; border-left: 1px solid #DDD;" href="#" class="btn btn-default btn-light btn-sm" click.delegate="close()">Cancel</a>
-<!-- 		<a href="#" class="secondary tiny button" click.delegate="selectToday()">Today</a>
-		<a href="#" class="secondary tiny button" click.delegate="return false;">Clear</a>
-		<a href="#" class="secondary tiny button" click.delegate="close()">Close</a> -->
-<!-- 		<ul class="button-group expand">
-			<li>
-				<a href="#">Today</a>
-			</li>
-			<li>
-				<a href="#">Clear</a>
-			</li>
-			<li>
-				<a href="#">Close</a>
-			</li>
-		</ul> -->
 	</div>
 </div>
 </div>

@@ -21,9 +21,12 @@ class DatePickerWidget extends Widget {
 		}
 		var target = $target.get(0);
 		var settings = this.settings;
-		settings.target = target;
 		settings.date = this.valueObservable();
-		this.datePopupDialog.showAsPopup(settings).then(date => {
+		this.datePopupDialog.showAsPopup(settings, {
+			popover: target,
+			position: 'bottom',
+			autoclose: true,
+		}).then(date => {
 			if(date){
 				this.valueObservable(date);
 				if(typeof this.onChange === 'function'){

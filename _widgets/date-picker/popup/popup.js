@@ -1,18 +1,8 @@
-// import {}
-import dialog from 'plugins/dialog';
 import $ from 'jquery';
-import {Observer} from 'framework';
 import {Dialog} from 'framework';
 
 class DatePicker extends Dialog { 
 	constructor(){
-		this.autoclose = true;
-		this.target = null;
-		this.overlay = true;
-		this.position = 'bottom';
-		this.position = 'right';
-
-
 		this.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 		this.years = [2015, 2014, 2013, 2012, 2011, 2010];
 		// this.weekNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
@@ -30,6 +20,9 @@ class DatePicker extends Dialog {
 		this.timeHours = '12';
 		this.timeMinutes = '00';
 		this.timeIsPm = true;
+		this.timeAlso = false;
+
+		this.selectCurrent();
 	}
 
 	selectCurrent(){
@@ -113,6 +106,7 @@ class DatePicker extends Dialog {
 		this.selected.year = this.current.year;
 		this.selected.month = this.current.month;
 		this.selected.date = date;
+		this.isDateActive(date);
 		// this.ok();
 	}
 
@@ -145,9 +139,10 @@ class DatePicker extends Dialog {
 			month = 0;
 			year++;
 		}
-		return date == this.selected.date 
+		var isActive = date == this.selected.date 
 		&& this.months[month] == this.selected.month 
-		&& year == this.selected.year
+		&& year == this.selected.year;
+		return isActive;
 	}
 
 	selectPrevDate(date){
@@ -193,7 +188,7 @@ class DatePicker extends Dialog {
 	}
 
 	close(){
-		dialog.close(this);
+		this.close();
 	}
 
 	ok(){
@@ -205,22 +200,19 @@ class DatePicker extends Dialog {
 		date.setHours(this.selected.hours);
 		date.setMinutes(this.selected.minutes);
 		console.log('SELECTED DATE: ', date);
-		dialog.close(this, date);
+		this.close(date);
 	}
 
 	activate(settings){
-		this.target = settings.target;
-		if(settings.position){
-			this.position = settings.position;
-		}
 		this.dateObj = new Date();
 		if(settings.date){
 			this.dateObj = new Date(settings.date.getTime());
 			console.log('SELECTED DATE (DEFAULT): ', this.dateObj);
 		}
+		if(settings.time){
+			this.timeAlso = true;
+		}
 		this.selectCurrent();
-		// Observer.observe(this.current, 'year', this.calculateDates.bind(this));
-		// Observer.observe(this.current, 'month', this.calculateDates.bind(this));
 	}
 }
 
