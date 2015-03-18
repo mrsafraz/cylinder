@@ -259,7 +259,7 @@ dialog.addContext('default', {
     }
 });
 
-dialog.addContext('actionsheet', {
+dialog.addContext('popup', {
     addHost: function(theDialog) {
         var model = theDialog.owner;
         ensureDialogAnimations(theDialog, {
@@ -362,9 +362,9 @@ dialog.MessageBox.prototype.animationSpeed = 'fast';
 dialog.MessageBox.prototype.animationEasing = 'bounceIn';
 dialog.MessageBox.prototype.style = 'height: auto;';
 
-['actionsheet', 'offcanvas'].forEach(function(name){
-    var helperName = 'show' + name.substr(0, 1).toUpperCase() + name.substr(1);
-    app[helperName] = dialog[helperName].bind(dialog);
-});
+// ['actionsheet', 'offcanvas'].forEach(function(name){
+//     var helperName = 'show' + name.substr(0, 1).toUpperCase() + name.substr(1);
+//     app[helperName] = dialog[helperName].bind(dialog);
+// });
 
 export default {};

@@ -12,13 +12,8 @@ export class Dialog {
     return dialog.show(this, params);
   }
 
-  // DEPRECATED
-  showAsPopover(...params){
-    return this.showAsPopover(...params);
-  }
-
   showAsPopup(...params){
-    return dialog.showActionsheet(this, params);
+    return dialog.showPopup(this, params);
   }
 
   close(result){
