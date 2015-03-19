@@ -22,9 +22,17 @@ class DatePickerWidget extends Widget {
 		var target = $target.get(0);
 		var settings = this.settings;
 		settings.date = this.valueObservable();
+		var position = 'bottom';
+		// var gap = $(window).height() - $(this.view).offset().top;
+		// if(gap < $(window).height()/2){
+		// 	position = 'top';
+		// }
+		if($(this.view).offset().top > $(window).height()/2){
+			position = 'top';
+		}
 		this.datePopupDialog.show(settings, {
 			popover: target,
-			position: 'bottom',
+			position: position,
 			autoclose: true,
 		}).then(date => {
 			if(date){
@@ -37,6 +45,7 @@ class DatePickerWidget extends Widget {
 	}
 
 	attached(view){
+		this.view = view;
 		$(view).parent().css({
 			display: 'inline',
 		})
