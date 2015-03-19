@@ -34,6 +34,13 @@ class Widgets {
 	    this.popoverAlignment = 'center';
 	}
 
+	treeSelect($event){
+		Dialog.showInstance('cylinder/_widgets/tree-selector', {}, {
+			popover: $event.target,
+			autoclose: true,
+		});
+	}
+
 	showMore(event){
 		alert(this.longText);
 		// dialog.show('complaint/detail/more/more', this.complaint);

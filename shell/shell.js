@@ -3,15 +3,17 @@ import {Module, RootModule} from 'framework';
 import {Initializer} from 'framework';
 import {Config} from 'framework';
 import $ from 'jquery';
+import EditAccountDialog from '../user/edit-account/edit-account';
 
 class Shell extends RootModule {
 
-  constructor(authenticator: Authenticator, initializer: Initializer, config: Config){
+  constructor(authenticator: Authenticator, initializer: Initializer, config: Config, editAccountDialog: EditAccountDialog){
     this.authenticator = authenticator;
     this.initializer = initializer;
     this.config = config;
     this.onAjaxRequest = false;
     this.isAuthenticated = !this.config.enableAuthentication;
+    this.editAccountDialog = editAccountDialog;
   }
 
   get routes(){
@@ -26,6 +28,18 @@ class Shell extends RootModule {
 
   get isLoading(){
     return this.router.isNavigating() || this.onAjaxRequest;
+  }
+
+  showUserControl($event){
+    var target = $event.target;
+    if(target.targName !== 'A'){
+      target = target.parentElement;
+    }
+    this.editAccountDialog.show(null, {
+      popover: target,
+      position: 'right bottom',
+      autoclose: true,
+    });
   }
 
   activate(){

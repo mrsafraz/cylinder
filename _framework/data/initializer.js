@@ -107,4 +107,8 @@ export class Initializer {
     });
   }
 
+  deinitialize(){
+    return this.preloader.unload();
+  }
+
 }

@@ -89,7 +89,7 @@ export class Authenticator {
 
   navigateBack(){
       var route = _previousRoute;
-      if(!route || route.indexOf(_logoutFragment) !== -1){
+      if(!route){
         route = '/';
       }
       window.setTimeout(function(){
@@ -119,7 +119,7 @@ export class Authenticator {
         }
   //        return false;
   //        return true;
-      if(location.hash.indexOf(loginFragment) === -1){
+      if(location.hash.indexOf(loginFragment) === -1 && location.hash.indexOf(_logoutFragment) === -1){
         _previousRoute = location.hash;
       }
 

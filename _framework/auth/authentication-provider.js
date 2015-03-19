@@ -47,14 +47,15 @@ export class AuthenticationProvider {
         url: this.authUrl + '/logout',
         dataType: 'json'
       }).done((data)=> {
+        alert("? " + data);
         if(data.success){
           resolve();
         }
         else {
-          reject(data.error || new Error('Logout failed.'));
+          reject(data.error || new Error('Logout failed. Error Occurred.'));
         }
       }).fail((error)=> {
-        reject(new Error('Logout failed.'));
+        reject(new Error('Logout failed. Unexpected Error.'));
       });
     });
   }

@@ -1,0 +1,35 @@
+<div class="modal-content">
+	<div class="modal-header">
+		<a class="btn btn-primary btn-light" click.delegate="done()"
+		 style="position: absolute; right: 0; top: 0; margin: 6px;">
+		 	<i class="fa fa-check"></i>
+		 </a>
+		<!-- <a href="#" click.delegate="reset()">${'Inquiry Nodes'|trans}</a> -->
+		<a href="#" click.delegate="reset()">
+			<i class="fa fa-list-ul"></i>
+		</a>
+		<a href="#" repeat.for="node of parentNodes" click.delegate="chooseNode(node)">
+			<i class="fa fa-chevron-right"></i>
+			${node.name}
+		</a>
+<!-- 		<span repeat.for="node of parentNodes">
+			<i class="fa fa-chevron-right"></i>
+			${node.name}
+		</span> -->
+	</div>
+	<div class="modal-body">
+		<div class="list-group">
+			<a href="#" class="list-group-item" repeat.for="node of nodes" click.delegate="chooseNode(node)">
+				<i class="fa fa-chevron-right pull-right" if.bind="node.children"></i>
+				<i class="fa fa-check" if.bind="isChosenNode(node)"></i>
+				${node.name}
+				<span if.bind="node.date">
+					${node.date|date}
+				</span>
+				<span if.bind="node.place">
+					${node.place}
+				</span>
+			</a>
+		</div>
+	</div>
+</div>

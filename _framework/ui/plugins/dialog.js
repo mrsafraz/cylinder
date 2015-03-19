@@ -342,10 +342,19 @@ dialog.addContext('popup', {
                 }
             }
 
-            theDialog.$dialog.css({
-                left: left,
-                top: top
-            });
+            if(positionPrimary == 'top' || positionSecondary == 'bottom'){
+                theDialog.$dialog.css({
+                    left: left,
+                    top: 'auto',
+                    bottom: $(window).height() - (top + theDialog.$dialog.outerHeight()),
+                });
+            }
+            else {
+                theDialog.$dialog.css({
+                    left: left,
+                    top: top
+                });
+            }
         }
         enableAutoclose(theDialog);
     }

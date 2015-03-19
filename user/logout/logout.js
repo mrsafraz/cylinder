@@ -1,31 +1,21 @@
-import {Module, Authenticator} from 'framework';
+import {Module} from 'framework';
+import $ from 'jquery';
+import {LogoutHelper} from '../logout-helper';
 
 class Logout extends Module {
-  constructor(authenticator: Authenticator){
-    this.authenticator = authenticator;
-    this.errorMessage = '';
-    this.isLogginOut = false;
+  constructor(logoutHelper: LogoutHelper){
+    this.logoutHelper = logoutHelper;
   }
-  startLogout(){
-    this.errorMessage = '';
-    this.isLogginOut = true;
-  }
-  finishLogout(){
-    this.isLogginOut = false;
-  }
+
   logout(){
-    this.startLogout();
-    this.authenticator.deauthenticate().then(() => {
-      this.finishLogout();
-      // this.authenticator.navigateBack();
-    }, (error) => {
-      this.errorMessage = error;
-      this.finishLogout();
-    }).catch((error) => {
-      alert('system error');
-      this.finishLogout();
-    });
+    this.logoutHelper.logout();
   }
+
+  attached(view){
+  	this.mask = $(view).find('.logout-mask');
+  	this.mask.appendTo(document.body);
+  }
+
   activate(){
     this.logout();
   }

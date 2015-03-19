@@ -11,6 +11,9 @@ var _previousRouteGuard = null;
 
 var {EntityManager, EntityQuery} = breeze;
 
+var STORAGE_PRELOADED_ENTITIES = 'PRELOADED_ENTITIES';
+var STORAGE_PRELOADED_METADATA = 'PRELOADED_METADATA';
+
 export class Preloader {
 
   constructor(entityManager: EntityManager, config: Config, storage: Storage, dataService: DataService){
@@ -42,7 +45,7 @@ export class Preloader {
         return;
       }
       if(this.config.cachePreloadedData){
-        var preloadedMetadata = this.storage.get('PRELOAD_METADATA');
+        var preloadedMetadata = this.storage.get(STORAGE_PRELOADED_METADATA);
         if(preloadedMetadata){
           this.importMetadata(preloadedMetadata);
           window.setTimeout(()=> resolve(), 1);
@@ -50,13 +53,13 @@ export class Preloader {
         }
       }
       else {
-        this.storage.set('PRELOAD_METADATA', null);
+        this.storage.set(STORAGE_PRELOADED_METADATA, null);
       }
       this.entityManager.fetchMetadata().then((metadata)=> {
         try {
           metadata = this.importMetadata(metadata);
           if(this.config.cachePreloadedData){
-            this.storage.set('PRELOAD_METADATA', this.entityManager.metadataStore.exportMetadata());
+            this.storage.set(STORAGE_PRELOADED_METADATA, this.entityManager.metadataStore.exportMetadata());
           }
           resolve(metadata);
         }
@@ -98,7 +101,7 @@ export class Preloader {
 
   preloadEntities(entities = []){
     if(this.config.cachePreloadedData){
-      var preloadedEntities = this.storage.get('PRELOAD_ENTITIES');
+      var preloadedEntities = this.storage.get(STORAGE_PRELOADED_ENTITIES);
       if(preloadedEntities){
         return new Promise((resolve, reject)=> {
           this.entityManager.importEntities(preloadedEntities);
@@ -107,7 +110,7 @@ export class Preloader {
       }
     }
     else {
-      this.storage.set('PRELOAD_ENTITIES', null);
+      this.storage.set(STORAGE_PRELOADED_ENTITIES, null);
     }
     return new Promise((resolve, reject)=> {
       var entityTypes = [];
@@ -140,7 +143,7 @@ export class Preloader {
         });
         if(allFetched){
           var preloadEntities = this.entityManager.exportEntities(undefined, false);
-          this.storage.set('PRELOAD_ENTITIES', preloadEntities);
+          this.storage.set(STORAGE_PRELOADED_ENTITIES, preloadEntities);
           resolve();
         }
       }
@@ -159,6 +162,14 @@ export class Preloader {
           return;
         });
       }
+    });
+  }
+
+  unload(){
+    return new Promise((resolve, reject) => {
+      this.storage.set(STORAGE_PRELOADED_METADATA, null);
+      this.storage.set(STORAGE_PRELOADED_ENTITIES, null);
+      resolve();
     });
   }
 
