@@ -94,7 +94,7 @@
     position: fixed;
 
     border: 1px solid rgba(0,0,0,.2);
-    border: animations solid rgba(0,0,0,.2);
+    // border: animations solid rgba(0,0,0,.2);
     border-radius: 6px;
   }
   .modal-header, .modal-content {
@@ -102,6 +102,7 @@
     border-radius: 6px;
   }
 }
+
 
 @media (max-width: 767px) {
   .modal-popover {
@@ -111,6 +112,12 @@
       left: 0 !important;
       top: auto !important;
       bottom: 0 !important;
+      border-radius: 0 !important;
+      border-left: 0 !important;
+      border-right: 0 !important;
+      .modal-content {
+        border-radius: 0 !important;
+      }
     }
   }
 }

@@ -285,10 +285,10 @@ $fade-in-small-offset: 20px;
 
 .popoverOut {
 	&.bottom {
-		@extend .fadeOutUpSmall;
+		@extend .fadeOutDownSmall;
 	}
 	&.top {
-		@extend .fadeOutDownSmall;
+		@extend .fadeOutUpSmall;
 	}
 	&.right {
 		@extend .fadeOutRightSmall;
@@ -296,4 +296,15 @@ $fade-in-small-offset: 20px;
 	&.left {
 		@extend .fadeOutLeftSmall;
 	}
+}
+
+@media (max-width: 767px) {
+  .popoverIn {
+    -webkit-animation-name: fadeInUp !important;
+    animation-name: fadeInUp !important;
+  }
+  .popoverOut {
+    -webkit-animation-name: fadeOutDown !important;
+    animation-name: fadeOutDown !important;
+  }
 }

@@ -109,3 +109,10 @@ $modal-arrow-edge-offset-negative: $modal-arrow-edge-offset/2;
     bottom: $modal-arrow-edge-offset-negative;
   }
 }
+
+
+@media (max-width: 767px) {
+  #{$modal-popover} > .arrow {
+    display: none;
+  }
+}
