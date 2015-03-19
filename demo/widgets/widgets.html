@@ -13,6 +13,20 @@
 	<div>
 		<a href="#" click.delegate="showDialog()">Show Dialog</a>
 		<a click.delegate="showDialog($event)">Show as Popup</a>
+		Position:
+		<div class="toggle toggle-xs">
+			<label repeat.for="position of popoverPositions">
+				<input type="radio" checked.bind="popoverPosition" value.bind="position">
+				<span>${position}</span>
+			</label>
+		</div>
+		Alignment:
+		<div class="toggle toggle-xs">
+			<label repeat.for="alignment of popoverAlignments">
+				<input type="radio" checked.bind="popoverAlignment" value.bind="alignment">
+				<span>${alignment}</span>
+			</label>
+		</div>
 	</div>
 	<div class="page-header">
 		<h3>File Upload</h3>

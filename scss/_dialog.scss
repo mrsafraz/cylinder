@@ -92,9 +92,14 @@
     width: 300px;
     margin: 0;
     position: fixed;
+
+    border: 1px solid rgba(0,0,0,.2);
+    border: animations solid rgba(0,0,0,.2);
+    border-radius: 6px;
   }
   .modal-header, .modal-content {
-    // border-radius: 6px;
+    border: 0;
+    border-radius: 6px;
   }
 }
 
@@ -117,3 +122,6 @@
 .modal-dialog {
   z-index: 1041;
 }
+
+@import "dialog-arrow";
+@import "dialog-animations";

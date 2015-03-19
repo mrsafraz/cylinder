@@ -28,6 +28,10 @@ class Widgets {
 	    this.attachment = this.db.create('File');
 	    this.toast = toast;
 	    this.testDialog = testDialog;
+	    this.popoverPositions = ['bottom', 'top', 'right', 'left'];
+	    this.popoverPosition = 'bottom';
+	    this.popoverAlignments = ['center', 'top', 'right', 'left', 'bottom'];
+	    this.popoverAlignment = 'center';
 	}
 
 	showMore(event){
@@ -83,6 +87,7 @@ class Widgets {
 		};
 		if($event){
 			options.popover = $event.target;
+			options.position = this.popoverPosition + ' ' + this.popoverAlignment;
 		}
 		// this.testDialog.show(data, options);
 		Dialog.showInstance('cylinder/demo/widgets/test-dialog', data, options).then(result=> {

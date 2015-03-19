@@ -224,29 +224,35 @@ function animateOut(theDialog, callback){
     });
 }
 
+function processTheDialog(theDialog){
+    var model = theDialog.owner;
+    var size = model.size || '';
+    var sizes = {sm: 'sm', lg: 'lg', small: 'sm', large: 'lg'}
+    var style = model.style || '';
+    theDialog.$container = $('<div class="modal"></div>')
+        .appendTo(document.body);
+    theDialog.$overlay = $('<div class="modal-backdrop"></div>')
+        .appendTo(theDialog.$container);
+    theDialog.$dialog = $('<div class="modal-dialog"></div>').appendTo(theDialog.$container);
+    theDialog.host = theDialog.$dialog.get(0);
+    if(model.overlay === false) {
+        theDialog.$overlay.css('background-color', 'transparent');
+    }
+    if(size){
+        theDialog.$dialog.addClass('modal-' + (sizes[size] || size));
+    }
+    // animateIn(theDialog);
+    return theDialog;
+}
+
 dialog.addContext('default', {
     addHost: function(theDialog) {
-        var model = theDialog.owner;
         ensureDialogAnimations(theDialog, {
             animationIn: 'fadeInUp',
             animationOut: 'fadeOutDown',
         });
-        var size = model.size || '';
-        var sizes = {sm: 'sm', lg: 'lg', small: 'sm', large: 'lg'}
-        var style = model.style || '';
-        theDialog.$container = $('<div class="modal"></div>')
-            .appendTo(document.body);
-        theDialog.$overlay = $('<div class="modal-backdrop"></div>')
-            .appendTo(theDialog.$container);
-        theDialog.$dialog = $('<div class="modal-dialog"></div>').appendTo(theDialog.$container);
-        theDialog.host = theDialog.$dialog.get(0);
-        if(model.overlay === false) {
-            theDialog.$overlay.css('background-color', 'transparent');
-        }
+        processTheDialog(theDialog);
         animateIn(theDialog);
-        if(sizes[size]){
-            theDialog.$dialog.addClass('modal-' + sizes[size]);
-        }
     },
     removeHost: function(theDialog) {
         animateOut(theDialog);
@@ -262,28 +268,26 @@ dialog.addContext('default', {
 dialog.addContext('popup', {
     addHost: function(theDialog) {
         var model = theDialog.owner;
-        ensureDialogAnimations(theDialog, {
+        model.position = model.position || 'bottom';
+        var aniation = {
             animationIn: 'fadeIn',
             animationOut: 'fadeOut',
-        });
-        var size = model.size || '';
-        var sizes = {sm: 'sm', lg: 'lg', small: 'sm', large: 'lg'}
-        var style = model.style || '';
+        };
+        processTheDialog(theDialog);
         theDialog.$target = $(model.target);
-        model.position = model.position || 'bottom';
-        theDialog.$container = $('<div class="modal-popover modal"><div class="arrow"></div></div>')
-            .appendTo(document.body);
-        theDialog.$overlay = $('<div class="modal-backdrop"></div>')
-            .appendTo(theDialog.$container);
-        theDialog.$dialog = $('<div class="modal-dialog"></div>').appendTo(theDialog.$container);
-        theDialog.host = theDialog.$dialog.get(0);
-        if(model.overlay === false) {
-            theDialog.$overlay.css('background-color', 'transparent');
+        theDialog.$container.addClass('modal-popover');
+        aniation.animationIn = 'popoverIn';
+        aniation.animationOut = 'popoverOut';
+        var position = (model.position || '').split(' ');
+        var positionPrimary = position[0]; var positionSecondary = position[1];
+        if(positionPrimary){
+            theDialog.$dialog.addClass(positionPrimary);
+            if(positionSecondary){
+                theDialog.$dialog.addClass([positionPrimary, positionSecondary].join('-'));
+            }
         }
+        ensureDialogAnimations(theDialog, aniation);
         animateIn(theDialog);
-        if(sizes[size]){
-            theDialog.$dialog.addClass('modal-' + sizes[size]);
-        }
     },
     removeHost: function(theDialog) {
         animateOut(theDialog);
@@ -293,32 +297,51 @@ dialog.addContext('popup', {
         theDialog.$container.show();
         enableAutoclose(theDialog);
         $(child).find('.autofocus').first().focus();
+        //
         var theDialog = dialog.getDialog(context.model);
         var model = theDialog.owner;
         if(theDialog.$target.length){
             var offset = theDialog.$target.offset();
             var top = offset.top - $(document).scrollTop();
             var left = offset.left - $(document).scrollLeft();
-            var arrowSize = 0, arrowWidth = arrowSize*2;
-            var position = model.position;
-            if(position == 'bottom' || position == 'top'){
+            var arrowSize = 0;
+            var position = (model.position || '').split(' ');
+            var positionPrimary = position[0]; var positionSecondary = position[1];
+            if(positionPrimary){
+                theDialog.$dialog.prepend('<div class="arrow"></div>');
+                arrowSize = 10;
+            }
+            if(positionPrimary == 'bottom' || positionPrimary == 'top'){
                 left -= (theDialog.$dialog.outerWidth() - theDialog.$target.outerWidth())/2;
-                if(position == 'bottom'){
+                if(positionPrimary == 'bottom'){
                     top += theDialog.$target.outerHeight() + arrowSize;
                 }
-                else if(position == 'top'){
+                else if(positionPrimary == 'top'){
                     top -= theDialog.$dialog.outerHeight() + arrowSize;
                 }
+                if(positionSecondary == 'left'){
+                    left += theDialog.$dialog.outerWidth()/2 - theDialog.$target.outerWidth()/2;
+                }
+                if(positionSecondary == 'right'){
+                    left -= theDialog.$dialog.outerWidth()/2 - theDialog.$target.outerWidth()/2;
+                }
             }
-            else if(position == 'right' || position == 'left'){
+            else if(positionPrimary == 'right' || positionPrimary == 'left'){
                 top -= (theDialog.$dialog.outerHeight() - theDialog.$target.outerHeight())/2;
-                if(position == 'right'){
+                if(positionPrimary == 'right'){
                     left += theDialog.$target.outerWidth() + arrowSize;
                 }
-                else if(position == 'left'){
+                else if(positionPrimary == 'left'){
                     left -= theDialog.$dialog.outerWidth() + arrowSize;
                 }
+                if(positionSecondary == 'top'){
+                    top += theDialog.$dialog.outerHeight()/2 - theDialog.$target.outerHeight()/2;
+                }
+                if(positionSecondary == 'bottom'){
+                    top -= theDialog.$dialog.outerHeight()/2 - theDialog.$target.outerHeight()/2;
+                }
             }
+
             theDialog.$dialog.css({
                 left: left,
                 top: top
