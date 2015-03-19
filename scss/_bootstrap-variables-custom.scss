@@ -24,7 +24,8 @@ $gray-lighter:           lighten($gray-base, 90%); // #eee
 
 $brand-primary:         #2780E3;
 $brand-success:         #3FB618;
-$brand-info:            #9954BB;
+$brand-info:            #9954BB; // original
+$brand-info:            #5bc0de; // modified
 $brand-warning:         #FF7518;
 $brand-danger:          #FF0039;
 
@@ -157,7 +158,8 @@ $table-border-color:            #ddd;
 $btn-font-weight:                normal;
 
 $btn-default-color:              #fff;
-$btn-default-bg:                 $gray-darker;
+$btn-default-bg:                 $gray-darker; // original
+$btn-default-bg:                 $gray; // modified
 $btn-default-border:             $btn-default-bg;
 
 $btn-primary-color:              $btn-default-color;

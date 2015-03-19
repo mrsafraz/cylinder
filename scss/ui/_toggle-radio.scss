@@ -1,0 +1,150 @@
+.toggle {
+
+  display: inline-block;
+//  float: left;
+  &.toggle-block {
+    display: block;
+    @include clearfix;
+    // margin-bottom: 15px;
+  }
+
+/* fastclick fix */
+label > * { pointer-events: none; }
+
+$selector: label;
+$selector-next: span;
+
+#{$selector} {
+  padding: 0;
+  margin: 0;
+  padding: 7px 0;
+  padding: 0;
+  float: left;
+  cursor: pointer;
+}
+
+#{$selector} + #{$selector} {
+  margin: 0;
+  margin-left: -1px;
+}
+
+/*
+  Hide radio button (the round disc)
+  we will use just the label to create pushbutton effect
+*/
+#{$selector} input[type="radio"] {
+    display:none;
+//    margin:10px;
+    /*margin: 0;*/
+}
+
+/*
+  Change the look'n'feel of labels (which are adjacent to radiobuttons).
+  Add some margin, padding to label
+*/
+#{$selector} input[type="radio"] + #{$selector-next} {
+    display:inline-block;
+    margin: 0;
+    /*margin: 0 -4px 0 0;*/
+    /*padding: 4px 12px;*/
+    border: 1px solid transparent;
+    /*color: #222;*/
+    /*background-color: #FFF;*/
+    /*border: 1px solid transparent;*/
+    /*border-color: #BBB;*/
+    @include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $border-radius-base);
+
+    /*border: 1px solid;*/
+    /*border-radius: 5px;*/
+    /*    border-color: #AAA;
+        border-right-width: 0;*/
+    @include  transition(background 200ms ease);
+/*    &:active {
+        background-color: $btn-primary-bg;
+        color: $btn-primary-color;
+    }*/
+    min-width: 80px;
+    text-align: center;
+
+}
+
+&.toggle-sm {
+
+#{$selector} input[type="radio"] + #{$selector-next} {
+  @include button-size($padding-small-vertical, $padding-small-horizontal, $font-size-small, $line-height-small, $border-radius-small);
+    min-width: 60px;
+}
+
+}
+
+&.toggle-lg {
+
+#{$selector} input[type="radio"] + #{$selector-next} {
+  @include button-size($padding-large-vertical, $padding-large-horizontal, $font-size-large, $line-height-large, $border-radius-large);
+    min-width: 60px;
+}
+
+}
+
+&.toggle-xs {
+
+#{$selector} input[type="radio"] + #{$selector-next} {
+  @include button-size($padding-xs-vertical, $padding-xs-horizontal, $font-size-small, $line-height-small, $border-radius-small);
+    min-width: 60px;
+}
+
+}
+
+#{$selector}:not(:last-of-type) input[type="radio"] + #{$selector-next} {
+    /*border-radius: 4px 0 0 4px;*/
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-right: 0;
+}
+#{$selector} + #{$selector} input[type="radio"] + #{$selector-next} {
+    /*    border-right-width: 1px;
+        border-radius: 0 4px 4px 0;*/
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+/*
+ Change background color for label next to checked radio button
+ to make it look like highlighted button
+*/
+
+@mixin toggle-variant($_bg, $_color, $_border){
+
+  #{$selector} input[type="radio"] + #{$selector-next} {
+    @include button-variant($_bg, $_color, $_border);
+  }
+
+  #{$selector}:hover input[type="radio"] + #{$selector-next} {
+    background: lighten($_bg, 48%);
+    background: #EEE;
+    background: lighten($_bg, 45%);
+  }
+
+  #{$selector} input[type="radio"]:checked + #{$selector-next} {
+    @include button-variant($_color, $_bg, $_border);
+  }
+}
+
+    @include toggle-variant($btn-primary-bg, $btn-primary-color, $btn-primary-border);
+
+  &.toggle-default {
+    @include toggle-variant($btn-default-bg, $btn-default-color, $btn-default-border);
+  }
+  &.toggle-success {
+    @include toggle-variant($btn-success-bg, $btn-success-color, $btn-success-border);
+  }
+  &.toggle-danger {
+    @include toggle-variant($btn-danger-bg, $btn-danger-color, $btn-danger-border);
+  }
+  &.toggle-warning {
+    @include toggle-variant($btn-warning-bg, $btn-warning-color, $btn-warning-border);
+  }
+  &.toggle-info {
+    @include toggle-variant($btn-info-bg, $btn-info-color, $btn-info-border);
+  }
+}

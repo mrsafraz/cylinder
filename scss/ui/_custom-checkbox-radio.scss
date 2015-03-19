@@ -1,0 +1,103 @@
+/*** custom checkboxes and radio ***/
+
+@mixin custom-checkbox-radio(
+  $_type, $icon-unchecked, $icon-checked, $icon-height: 22px, $icon-opacity: 0.25){
+
+  $selector: ".#{$_type}-list label";
+  $sub-selector: span;
+//  $sub-selector: label;
+
+  #{$selector} {
+  //  font-size: ;
+    line-height: $icon-height;
+    cursor: pointer;
+    display: block;
+    font-weight: normal;
+    /* fastclick fix */
+    & > * { pointer-events: none; }
+  }
+
+  #{$selector} label {
+    padding-left: 0;
+  }
+  #{$selector} input[type="#{$_type}"] {
+    display:none;
+//    width: 100%;
+//    z-index: 2;
+//    appearance: none;
+//    background: transparent;
+//    border: 0;
+//    -webkit-appearance: none;
+//    -moz-appearance: none;
+//    height: 100%;
+//    outline: 0;
+//    cursor: pointer;
+    & + #{$sub-selector} {
+      display: inline-block;
+      line-height: $icon-height;
+    }
+    & + #{$sub-selector}:before {
+      font-family: FontAwesome;
+      display: inline-block;
+  //    content: "\f096";
+      content: $icon-unchecked;
+      width: $icon-height + 5;
+      font-size: $icon-height;
+      float: left;
+      display: inline-block;
+      opacity: 0.5;
+      opacity: $icon-opacity;
+      :hover &{
+      }
+    }
+    & + #{$sub-selector}.text-right:before {
+      float: right;
+    }
+    &:checked {
+      &+ #{$sub-selector} {
+       color: $brand-primary;
+      }
+      &+ #{$sub-selector}:before {
+  //      content: "\f046";
+        content: $icon-checked;
+//        color: $brand-primary;
+       opacity: 1;
+      }
+    }
+    &[disabled] {
+      &+ #{$sub-selector}, + #{$sub-selector}:before {
+        opacity: 0.5;
+      }
+      & + #{$sub-selector}:before {
+        content: $icon-unchecked;
+      }
+      &:checked + #{$sub-selector}:before {
+        content: $icon-checked;
+      }
+    }
+  }
+
+  $selector-inline: ".#{$_type}-list-inline";
+
+  #{$selector-inline} {
+    @include clearfix;
+    &#{$selector} {
+      float: left;
+      // margin-right: 10px;
+      margin-right: 15px;
+      margin-right: 20px;
+    }
+  }
+}
+
+$icon-height: 22px;
+
+// @include custom-checkbox-radio(checkbox, "\f0c8", "\f14a", $icon-height);
+@include custom-checkbox-radio(checkbox, "\f096", "\f14a", $icon-height, 0.25);
+// @include custom-checkbox-radio(checkbox, "\f096", "\f046", $icon-height, 0.25);
+// @include custom-checkbox-radio(checkbox, "\f111", "\f058", $icon-height, 0.15);
+@include custom-checkbox-radio(radio, "\f10c", "\f192", $icon-height, 0.25);
+
+.checkbox-list label input[type="checkbox"]:checked + span:before {
+  font-size: $icon-height - 2;
+}

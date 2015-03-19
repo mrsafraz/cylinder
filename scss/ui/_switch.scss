@@ -1,0 +1,113 @@
+.switch {
+
+  $checkbox-width: 45px;
+  $checkbox-height: 16px;
+  $checkbox-height: 12px;
+  // $knob-width: $checkbox-height;
+  $knob-width: 24px;
+
+
+  $knob-top: -1 * ($knob-width/2 - $checkbox-height/2);
+
+  display: inline-block;
+
+  input[type="checkbox"] {
+      -webkit-appearance: none;
+      cursor: pointer;
+      position: relative;
+      vertical-align: top;
+    background: #FFF;
+
+    height: $checkbox-height;
+    width: $checkbox-width;
+    outline: 0;
+    // border: 0;
+    border-radius: 0;
+    border-radius: 100px;
+    // 
+    background: #FAFAFA;
+    background: #EEE;
+    background: #D1D1D1;
+  }
+
+  input[type="checkbox"]::after {
+      content: '';
+      display: block;
+//      height: 24px;
+      position: absolute;
+
+    right: auto;
+    left: -1px;
+    // left: 0;
+    top: -3px;
+    width: $knob-width;
+    height: $checkbox-height + 4px;
+    height: $knob-width;
+
+    top: -1* ($checkbox-height/4 + $knob-width/4);
+    top: $knob-top;
+//    margin-left: -1px;
+
+    background: #FFF;
+    // background: #CCC;
+    box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+    -webkit-transition: left 200ms;
+    transition: left 200ms;
+
+    border-radius: 0;
+    border-radius: 100px;
+  }
+
+  input[type="checkbox"]:checked::after {
+    background: #FFF;
+    left: $checkbox-width - $knob-width;
+  }
+
+  input[type="checkbox"] {
+//      margin-right: 10px;
+//      margin-top: 0;
+//      margin: 0;
+  }
+
+@mixin switch-variant($bg-color, $border-color) {
+  input[type="checkbox"],
+  input[type="checkbox"]::after {
+      // border: 1px solid $border-color;
+  }
+
+  input[type="checkbox"]:checked {
+//    padding-left: 18px;
+    background: lighten($bg-color, 25%);
+  }
+
+  input[type="checkbox"]:checked::after {
+      // border: 1px solid $border-color;
+      background: $bg-color;
+   }
+
+}
+
+    @include switch-variant($btn-primary-bg, $btn-primary-border);
+
+  &.switch-default {
+    @include switch-variant($btn-default-bg, $btn-default-border);
+  }
+  &.switch-danger {
+    @include switch-variant($btn-danger-bg, $btn-danger-border);
+  }
+  &.switch-success {
+    @include switch-variant($btn-success-bg, $btn-success-border);
+  }
+  &.switch-warning {
+    @include switch-variant($btn-warning-bg, $btn-warning-border);
+  }
+  &.switch-info {
+    @include switch-variant($btn-info-bg, $btn-info-border);
+  }
+
+//  input[type="checkbox"],
+//  input[type="checkbox"]::after {
+//    border-color: $brand-primary;
+//  }
+
+}
