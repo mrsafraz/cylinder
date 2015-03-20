@@ -57,6 +57,7 @@ export class Application {
       'entity-detail',
       'entity-grid',
       'tree-selector',
+      'chart',
     ];
 
     var systemWidgets = [];

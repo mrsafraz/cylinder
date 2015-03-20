@@ -2,7 +2,7 @@ import {DataService, Paginator} from 'framework';
 import {Toast} from 'framework';
 import {Dialog} from 'framework';
 import TestDialog from './test-dialog/test-dialog';
-
+import {ChartFactory} from 'framework';
 
 class MyModel {
 	constructor(){
@@ -12,7 +12,7 @@ class MyModel {
 }
 
 class Widgets {
-	constructor(db: DataService, paginator: Paginator, toast: Toast, testDialog: TestDialog){
+	constructor(db: DataService, paginator: Paginator, toast: Toast, testDialog: TestDialog, chartFactory: ChartFactory){
 		this.db = db;
 		this.longText = 'Lorem ipsum dolor sit amet. Consectetur adipiscing elit. Integer molestie lorem at massa. Facilisis in pretium nisl aliquet. Nulla volutpat aliquam velit. Phasellus iaculis neque. Purus sodales ultricies. Vestibulum laoreet porttitor sem. Ac tristique libero volutpat at. Faucibus porta lacus fringilla vel. Aenean sit amet erat nunc. Eget porttitor lorem.  Consectetur adipiscing elit. Integer molestie lorem at massa. Facilisis in pretium nisl aliquet. Nulla volutpat aliquam velit. Phasellus iaculis neque. Purus sodales ultricies. Vestibulum laoreet porttitor sem. Ac tristique libero volutpat at. Faucibus porta lacus fringilla vel. Aenean sit amet erat nunc.';
 		this.myModel = new MyModel();
@@ -32,6 +32,26 @@ class Widgets {
 	    this.popoverPosition = 'bottom';
 	    this.popoverAlignments = ['center', 'top', 'right', 'left', 'bottom'];
 	    this.popoverAlignment = 'center';
+	    this.chartFactory = chartFactory;
+	    this.initTestChart();
+	}
+
+	initTestChart(){
+		this.testChart = this.chartFactory.generate({
+		    data: {
+		        columns: [
+		            ['data1', 30, 200, 100, 400, 150, 250],
+		            ['data2', 50, 20, 10, 40, 15, 25]
+		        ]
+		    }
+		});
+		setTimeout(()=> {
+		    this.testChart.load({
+		        columns: [
+		            ['data1', 230, 190, 300, 500, 300, 400]
+		        ]
+		    });
+		}, 3000);
 	}
 
 	treeSelect($event){
