@@ -12,6 +12,8 @@ var browserSync = require('browser-sync');
 var gulpWatch   = require('gulp-watch');
 var batch       = require('gulp-batch');
 
+require('./gulp-generate-tasks');
+
 var BASE_PATH = process.cwd();
 var REQUIREJS_CONFIG;
 var DEPS_CONFIG;
