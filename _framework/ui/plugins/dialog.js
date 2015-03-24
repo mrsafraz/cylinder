@@ -268,7 +268,7 @@ dialog.addContext('default', {
 dialog.addContext('popup', {
     addHost: function(theDialog) {
         var model = theDialog.owner;
-        model.position = model.position || 'bottom';
+        model.position = model.position || 'auto';
         var aniation = {
             animationIn: 'fadeIn',
             animationOut: 'fadeOut',
@@ -279,11 +279,18 @@ dialog.addContext('popup', {
         aniation.animationIn = 'popoverIn';
         aniation.animationOut = 'popoverOut';
         var position = (model.position || '').split(' ');
-        var positionPrimary = position[0]; var positionSecondary = position[1];
-        if(positionPrimary){
-            theDialog.$dialog.addClass(positionPrimary);
-            if(positionSecondary){
-                theDialog.$dialog.addClass([positionPrimary, positionSecondary].join('-'));
+        theDialog.positionPrimary = position[0];
+        theDialog.positionSecondary = position[1];
+        if(theDialog.positionPrimary == 'auto' && theDialog.$target){
+                theDialog.positionPrimary = 'bottom';
+                if(theDialog.$target.offset().top > $(window).height()/2){
+                    theDialog.positionPrimary = 'top';
+                }
+        }
+        if(theDialog.positionPrimary){
+            theDialog.$dialog.addClass(theDialog.positionPrimary);
+            if(theDialog.positionSecondary){
+                theDialog.$dialog.addClass([theDialog.positionPrimary, theDialog.positionSecondary].join('-'));
             }
         }
         ensureDialogAnimations(theDialog, aniation);
@@ -305,8 +312,8 @@ dialog.addContext('popup', {
             var top = offset.top - $(document).scrollTop();
             var left = offset.left - $(document).scrollLeft();
             var arrowSize = 0;
-            var position = (model.position || '').split(' ');
-            var positionPrimary = position[0]; var positionSecondary = position[1];
+            var positionPrimary = theDialog.positionPrimary;
+            var positionSecondary = theDialog.positionSecondary;
             if(positionPrimary){
                 theDialog.$dialog.prepend('<div class="arrow"></div>');
                 arrowSize = 10;

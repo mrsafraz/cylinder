@@ -32,7 +32,7 @@ class DatePickerWidget extends Widget {
 		}
 		this.datePopupDialog.show(settings, {
 			popover: target,
-			position: position,
+			// position: position,
 			autoclose: true,
 		}).then(date => {
 			if(date){

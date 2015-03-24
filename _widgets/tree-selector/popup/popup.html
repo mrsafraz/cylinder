@@ -18,7 +18,7 @@
 		</span> -->
 	</div>
 	<div class="modal-body">
-		<div class="list-group collapse">
+		<div class="list-group collapsed">
 			<a href="#" class="list-group-item" repeat.for="node of nodes" click.delegate="chooseNode(node)">
 				<i class="fa fa-chevron-right pull-right" if.bind="node.children"></i>
 				<i class="fa fa-check" if.bind="isChosenNode(node)"></i>

@@ -3,6 +3,7 @@ export {Q, Deferred} from './core/promise-adapter';
 export {ModuleLoader} from './core/module-loader';
 export {Observer} from './core/observer';
 export {Http} from './core/http';
+export {Node} from './core/node';
 
 export {Authenticator} from './auth/authenticator';
 export {AuthenticationProvider} from './auth/authentication-provider';

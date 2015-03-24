@@ -3,6 +3,7 @@ import {Toast} from 'framework';
 import {Dialog} from 'framework';
 import TestDialog from './test-dialog/test-dialog';
 import {ChartFactory} from 'framework';
+import {Node} from 'framework';
 
 class MyModel {
 	constructor(){
@@ -34,6 +35,30 @@ class Widgets {
 	    this.popoverAlignment = 'center';
 	    this.chartFactory = chartFactory;
 	    this.initTestChart();
+	    this.nodes = [
+				new Node('Visitingx Inquiry'),
+				new Node('Telephone Inquiry'),
+				new Node('Web Inquiry'),
+				new Node('Some Parent', [
+					new Node('A child'),
+					new Node('A child 2'),
+				]),
+				new Node('Some Other Parent', [
+					new Node('A child'),
+					new Node('A child 2'),
+					new Node('A child with Children', [
+						new Node('Level 3?'),
+						new Node('Oh no!', [
+							new Node('This is too much!'),
+							new Node('Enough!'),
+						]),
+						new Node('Yes'),
+					]),
+					new Node('Some Parent', [
+						new Node('one and only'),
+					]),
+				]),
+			];
 	}
 
 	initTestChart(){
@@ -59,6 +84,14 @@ class Widgets {
 			popover: $event.target,
 			autoclose: true,
 		});
+	}
+
+	onNodeSelect(node){
+		alert('Node selected ' + node);
+	}
+
+	onNodeSelectCallback(){
+		return this.onNodeSelect.bind(this);
 	}
 
 	showMore(event){

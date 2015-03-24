@@ -1,0 +1,79 @@
+
+
+zheader.secondary {
+  $add-new-btn-width: 200px;
+  background: #FAFAFA;
+  padding: 10px;
+
+  h1 {
+    color: #000;
+    // position: absolute;
+    // width: 100%;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    // margin-top: -8px;
+    line-height: 100%;
+    font-size: 16px;
+    color: #888;
+    font-weight: bold;
+  }
+
+  .form-control {
+    background-color: #FFF;
+    border-color: #EEE;
+    // @include input-sm;
+    &:focus {
+      border-color: $brand-primary;
+    }
+  }
+  
+  .search-input-container {
+    padding-right: $add-new-btn-width;
+    form {
+      position: relative;
+      margin: 0;
+      padding: 0;
+    }
+    .fa-times-circle {
+      position: absolute;
+      right: 0;
+      padding: 8px 10px 6px 5px;
+      color: #CCC;
+      cursor: pointer;
+    }
+    .fa-search {
+      position: absolute;
+      padding: 8px 5px 0 10px;
+      color: #CCC;
+    }
+    .form-control {
+      padding-left: 30px;
+      padding-right: 20px;
+      border-radius: 20px;
+      padding-left: 30px;
+    }
+  }
+  
+  .btn-light {
+//    padding-top: 5px;
+//    padding-bottom: 5px;
+    padding: 5px;
+  }
+  
+    .pull-right .btn-light, .btn-light.pull-right {
+      margin-left: 10px;
+    }
+  
+  .btn-add-new {
+    float: right;
+    width: $add-new-btn-width;
+    text-align: center;
+//    text-align: right;
+//    background: #FFF !important;
+    .fa-plus-circle {
+//      display: none;
+      margin-right: 5px;
+    }
+  }
+}

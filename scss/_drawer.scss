@@ -128,9 +128,9 @@ $zindex-main: 1;
     bottom: $footer-height;
   }
 
-  .body > div, .body > section {
-    padding: 15px;
-  }
+  // .body > div, .body > section {
+  //   padding: 15px;
+  // }
   .body > div > .durandal-module {
     position: absolute;
     top: 0;
@@ -191,7 +191,7 @@ $zindex-main: 1;
       bottom: 0;
       right: 0;
       .body {
-          // padding: 15px;
+          padding: 15px;
       }
     z-index: $zindex-main;
   }

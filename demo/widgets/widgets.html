@@ -3,11 +3,13 @@
 		<h3>Chart</h3>
 	</div>
 	<div>
-	<div class="page-header">
 		<chart chart.bind="testChart"></chart>
 	</div>
+	<div class="page-header">
+		<h3>Tree Selector</h3>
+	</div>
 	<div>
-		<tree-selector></tree-selector>
+		<tree-selector nodes.bind="nodes" on-select.bind="onNodeSelectCallback()"></tree-selector>
 	</div>
 	<div class="page-header">
 		<h3>Toast</h3>
