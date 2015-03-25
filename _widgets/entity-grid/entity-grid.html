@@ -37,9 +37,14 @@
     <thead>
       <tr>
         <th bind-repeat="settings.properties as property">
-          <grid-header bind-paginator="paginator" bind-property="property.name"
-                       bind-label="property.label">
-          </grid-header>
+          <span if.bind="property.sortable === false">
+            ${property.label}
+          </span>
+          <span if.bind="property.sortable !== false">
+            <grid-header bind-paginator="paginator" bind-property="property.name"
+                         bind-label="property.label">
+            </grid-header>
+          </span>
         </th>
         <th class="column-actions"></th>
       </tr>

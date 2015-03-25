@@ -135,13 +135,16 @@ $zindex-main: 1;
     // left: 0;
     // bottom: 0;
   }
-  .body > div > .durandal-module {
+  .body > div > .durandal-wrapper,
+  .body > div > .drawer,
+  .body > div > [data-view]
+  {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
-    // padding: 15px;
+    padding: 15px;
     // padding: 15px 30px;
 //    padding: 30px;
     // padding: 15px;
@@ -198,6 +201,10 @@ $zindex-main: 1;
           padding: 15px;
       }
     z-index: $zindex-main;
+  }
+
+  .left-side .body, .right-side .body {
+    padding: 0;
   }
 
   .left-side-toggle {

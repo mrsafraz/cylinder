@@ -13,7 +13,7 @@ class EntityGridsWidget extends Widget  {
     this.title = settings.title;
     this.$root = settings.$root;
     this.isLeftSideActive = false;
-    this.isRightSideActive = false;    
+    this.isRightSideActive = false;
   }
 
 }

@@ -67,3 +67,129 @@
   -webkit-animation-name: popOut;
   animation-name: popOut;
 }
+
+@import "dialog-animations";
+
+
+
+@-webkit-keyframes zoomEnterInSmall {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomEnterInSmall {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    -ms-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.zoomEnterInSmall {
+  -webkit-animation-name: zoomEnterInSmall;
+  animation-name: zoomEnterInSmall;
+}
+
+
+@-webkit-keyframes zoomEnterOutSmall {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+}
+
+@keyframes zoomEnterOutSmall {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    -ms-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+}
+
+.zoomEnterOutSmall {
+  -webkit-animation-name: zoomEnterOutSmall;
+  animation-name: zoomEnterOutSmall;
+}
+
+@-webkit-keyframes zoomExitInSmall {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomExitInSmall {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    -ms-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.zoomExitInSmall {
+  -webkit-animation-name: zoomExitInSmall;
+  animation-name: zoomExitInSmall;
+}
+
+
+@-webkit-keyframes zoomExitOutSmall {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+}
+
+@keyframes zoomExitOutSmall {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    -ms-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+}
+
+.zoomExitOutSmall {
+  -webkit-animation-name: zoomExitOutSmall;
+  animation-name: zoomExitOutSmall;
+}
