@@ -1,10 +1,10 @@
 .toggle {
 
-  display: inline-block;
+  display: block;
 //  float: left;
-  &.toggle-block {
-    display: block;
-    @include clearfix;
+  @include clearfix;
+  &.toggle-inline {
+    display: inline-block;
     // margin-bottom: 15px;
   }
 

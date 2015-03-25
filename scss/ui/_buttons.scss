@@ -160,3 +160,11 @@ $btn-outline-bg: #FFF;
     }
   }
 }
+
+.btn-light {
+  @include btn-light;
+}
+
+.navbar .btn-light {
+    background: transparent !important;
+}

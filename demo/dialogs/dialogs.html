@@ -1,0 +1,98 @@
+<section>
+<pre><code class="js" hljs.bind="true">
+import {Dialog} from 'framework';
+</code></pre>
+	<h2>Message Boxes</h2>
+		<a href="#" click.delegate="showBasicMessage()">Show Basic Message</a>
+
+<pre><code hljs.bind="true" class="js">
+Dialog.showMessage('This is a message', 'This is the title');
+</code></pre>
+
+		<a href="#" click.delegate="showConfirmMessage()">Show Confirm Message</a>
+<pre><code hljs.bind="true" class="js">
+Dialog.showConfirm('This is a confirmation message', 'This is the title', ['Yes', 'No']).then((ok) => {
+	if(ok){
+		// Yes
+	}
+});
+</code></pre>
+
+	<h2>Basic Dialog</h2>
+	<div>
+		<a href="#" click.delegate="showBasicDialog()">Show Basic Dialog</a>
+<pre><code hljs.bind="true" class="html">
+&lt;a href="#" click.delegate="showBasicDialog()"&gt;Show Basic Dialog&lt;/a&gt;
+</code></pre>
+<pre><code hljs.bind="true" class="js">
+showBasicDialog(){
+	Dialog.showInstance('cylinder/demo/dialogs/my-greeting', {name: 'Cylinder'}, {
+		autoclose: true,
+		size: 'large', // 'small', default 'medium'
+	});
+}
+</code></pre>
+	</div>
+
+	<h2>Popover</h2>
+	<div>
+		<a href="#" click.delegate="showPopover($event)">Show Popover</a>
+
+<pre><code hljs.bind="true" class="html">
+&lt;a href="#" click.delegate="showPopover($event)"&gt;Show Popover&lt;/a&gt;
+</code></pre>
+<pre><code hljs.bind="true" class="js">
+showPopover($event){
+	Dialog.showInstance('cylinder/demo/dialogs/my-greeting', {name: 'Cylinder'}, {
+		popover: $event.target,
+		autoclose: true,
+	});
+}
+</code></pre>
+
+	<h2>Action Sheet</h2>
+	<div>
+		<a href="#" click.delegate="showActionSheet($event)">Show Action Sheet</a>
+
+<pre><code hljs.bind="true" class="html">
+&lt;a href="#" click.delegate="showActionSheet($event)"&gt;Show Action Sheet&lt;/a&gt;
+</code></pre>
+<pre><code hljs.bind="true" class="js">
+showActionSheet($event){
+	Dialog.showActionSheet(['Comment', 'Reply', 'Delete', 'Cancel'], 'Actions Title', {
+		popover: $event.target,
+		autoclose: true,
+	}).then((action)=> {
+		if(action == 'Reply'){
+			alert('Replying...');
+		}
+		if(action == 'Comment'){
+			alert('Commenting...');
+		}
+	});
+}
+</code></pre>
+
+	<h2>Toast</h2>
+	<div>
+		<a href="#" click.delegate="showToast()">Show Basic Toast</a>
+		<a href="#" click.delegate="showPositiveToast()">Show Positive Toast</a>
+		<a href="#" click.delegate="showNegativeToast()">Show Negative Toast</a>
+
+<pre><code hljs.bind="true" class="js">
+import {Toast} from 'framework';
+// ...
+showToast(){
+	Toast.show('This is a toast message!');
+}
+showPositiveToast(){
+	Toast.showPositive('This is a positive toast message!');
+}
+showNegativeToast(){
+	Toast.show('This is a negative toast message!');
+}
+</code></pre>
+</code></pre>
+
+	</div>
+</section>

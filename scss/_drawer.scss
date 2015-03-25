@@ -107,7 +107,6 @@ $zindex-main: 1;
         position: absolute;
         right: 0;
       }
-    
   }
 
   footer {
@@ -128,9 +127,14 @@ $zindex-main: 1;
     bottom: $footer-height;
   }
 
-  // .body > div, .body > section {
-  //   padding: 15px;
-  // }
+  .body > div, .body > section {
+    // padding: 15px;
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    // left: 0;
+    // bottom: 0;
+  }
   .body > div > .durandal-module {
     position: absolute;
     top: 0;

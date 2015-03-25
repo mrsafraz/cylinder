@@ -1,47 +1,252 @@
-<div>
-    <div class="page-header">
-        <h1>Tooltips</h1>
-    </div>
-    <div>
-        <a href="#" data-bind="tooltip: {title: 'Default tooltip'}">hover me!</a>
-
-        <a href="#" data-bind="tooltip: {title: 'Another tooltip', placement: 'right'}">me too!</a>
-    </div>
-    <div class="page-header">
-        <h1>Popovers</h1>
-    </div>
-    <div>
-        <h3>Simple Popover</h3>
-        <button class="btn btn-primary" data-bind="popover: {template: 'popoverTemplate', options: {title: 'Oh Yea'}}">Launch Simple Popover</button>
-
-        <button class="btn btn-primary" data-bind="popover: {template: 'popoverTemplate', options: {title: 'Oh Yea', trigger: 'hover'}}">Hover Simple Popover</button>
-
-        <button class="btn btn-primary" data-bind="popover: {template: 'popoverTemplate', options: {title: 'Oh Yea', trigger: 'focus'}}">Focus Simple Popover</button>
-
-        <script type="text/html" id="popoverTemplate">
-            <button class="close pull-right" type="button" data-dismiss="popover">×</button>
-            Hey I am some content in A popover
-        </script>
-
-        <h3>Two way binding popover</h3>
-        <h1 data-bind="text: popoverBindingHeader"></h1>
-        <button class="btn btn-default" data-bind="popover: {template: 'popoverBindingTemplate', title: 'Oh Yea Binding'}">
-            Launch Binding Popover
-        </button>
-
-        <script type="text/html" id="popoverBindingTemplate">
-            <button class="close pull-right" type="button" data-dismiss="popover">×</button>
-            <form>
-                <label>Popover Binding Header</label>
-                <input class="form-control" type="text" data-bind="value: popoverBindingHeader, valueUpdate:'afterkeydown'" />
-            </form>
-        </script>
-    </div>
-    <div class="page-header">
-        <h1>Alerts</h1>
-    </div>
-    <div>
-        <div data-bind="alert: alert" repeat.for="alert of alerts">
-        </div>
-    </div>
+<section>
+<div class="page-header">
+  <h1>Switch</h1>
 </div>
+
+<pre><code class="html" hljs.bind="true">
+&lt;div class="switch"&gt;
+  &lt;input type="checkbox"&gt;
+&lt;/div&gt;
+</code></pre>
+
+<div class="list-group">
+  <label class="list-group-item">
+    Do something?
+    <div class="switch  switch-primary pull-right">
+      <input type="checkbox">
+    </div>
+  </label>
+  <div class="list-group-item">
+    Do something?
+    <div class="switch switch-success pull-right">
+      <input type="checkbox" checked>
+    </div>
+  </div>
+  <div class="list-group-item">
+    Do something?
+    <div class="switch switch-danger pull-right">
+      <input type="checkbox" checked>
+    </div>
+  </div>
+  <div class="list-group-item">
+    Do something?
+    <div class="switch switch-default pull-right">
+      <input type="checkbox" checked>
+    </div>
+  </div>
+</div>
+<hr>
+
+
+<div class="page-header">
+  <h1>Toggle radio button</h1>
+</div>
+
+<pre><code class="html" hljs.bind="true">
+&lt;div class="toggle [toggle-inline]"&gt;
+    &lt;label&gt;
+      &lt;input type="radio" id="rad1" name="gender"&gt;
+      &lt;span&gt;Male&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;label&gt;
+      &lt;input type="radio" id="rad2" name="gender" checked="true"&gt;
+      &lt;span&gt;Female&lt;/span&gt;
+    &lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+
+<div class="form-group">
+  <label>How is the whether?</label>
+  <div class="toggle">
+    <label>
+      <input type="radio" id="whether" name="rad">
+      <span>Cool</span>
+    </label>
+    <label>
+      <input type="radio" id="whether" name="rad">
+      <span>Hot</span>
+    </label>
+  </div>
+</div>
+
+<div class="form-group">
+  <label>Gender (Inline) </label>
+  <div class="toggle toggle-sm toggle-danger toggle-inline">
+    <label>
+      <input type="radio" id="rad1" name="gender">
+      <span>Male</span>
+    </label>
+    <label>
+      <input type="radio" id="rad2" name="gender" checked="true">
+      <span>Female</span>
+    </label>
+  </div>
+</div>
+
+<hr>
+
+<div class="page-header">
+  <h1>Slider</h1>
+</div>
+
+<pre><code class="html" hljs.bind="true">
+&lt;div class="slider"&gt;
+  &lt;input class="form-control" type="range"&gt;
+&lt;/div&gt;
+</code></pre>
+
+<form>
+  <div class="form-group">
+    <label>Slider</label>
+    <div class="slider">
+      <input type="range">
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Slider</label>
+    <div class="slider slider-default">
+      <input class="form-control" type="range" value="80">
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Slider</label>
+    <div class="slider slider-danger">
+      <input class="form-control" type="range" value="60">
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Slider</label>
+    <div class="slider slider-success">
+      <input class="form-control" type="range" value="30">
+    </div>
+  </div>
+</form>
+
+<div class="page-header">
+    <h1>Checkboxes and Radio buttons</h1>
+</div>
+
+<pre><code class="html" hljs.bind="true">
+&lt;div class="checkbox-list [checkbox-list-inline]"&gt;
+  &lt;label&gt;
+    &lt;input type="checkbox"&gt;
+    &lt;span&gt;Option one is this and that—be sure to include why it's great&lt;/span&gt;
+  &lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+<div class="bs-example">
+    <form role="form">
+    <div class="checkbox-list">
+      <label>
+        <input type="checkbox">
+        <span>Option one is this and that—be sure to include why it's great</span>
+      </label>
+      <label>
+          <input type="checkbox">
+          <span>Option two is this and that—be sure to include why it's great</span>
+      </label>
+      <label>
+          <input type="checkbox" disabled="">
+          <span>Option three is disabled</span>
+      </label>
+      <label>
+          <input type="checkbox" disabled="" checked="true">
+          <span>Option four is checked and disabled</span>
+      </label>
+    </div>
+
+
+    <h3>Inline</h3>
+    <div class="checkbox-list checkbox-list-inline">
+      <label>
+        <input type="checkbox" checked="checked">
+        <span>JavaScript</span>
+      </label>
+      <label>
+          <input type="checkbox">
+          <span>PHP</span>
+      </label>
+      <label>
+          <input type="checkbox">
+          <span>HTML</span>
+      </label>
+    </div>
+
+
+      <hr>
+
+
+<pre><code class="html" hljs.bind="true">
+&lt;div class="radio-list [radio-list-inline]"&gt;
+    &lt;label&gt;
+        &lt;input type="radio" name="rad" checked="checked"&gt;
+        &lt;span&gt;Option one is this and that—be sure to include why it's great&lt;/span&gt;
+    &lt;/label&gt;
+&lt;/div>
+</code></pre>
+      <div class="radio-list list-group">
+        <label class="list-group-item">
+            <input type="radio" name="rad" checked="">
+            <span>Option one is this and that—be sure to include why it's great</span>
+        </label>
+        <label class="list-group-item">
+            <input type="radio" name="rad">
+            <span>Option two can be something else and selecting it will deselect option one</span>
+        </label>
+        <label class="list-group-item">
+            <input type="radio" name="rad" disabled="">
+            <span>Option three is disabled</span>
+        </label>
+        <label class="list-group-item">
+            <input type="radio" name="rad" disabled="" checked>
+            <span>Option four is checked and disabled</span>
+        </label>
+      </div>
+
+      <h3>Inline</h3>
+      <div class="radio-list radio-list-inline">
+        <label>
+            <input type="radio" name="rad" checked="">
+            <span>Male</span>
+        </label>
+        <label>
+            <input type="radio" name="rad">
+            <span>Female</span>
+        </label>
+      </div>
+  
+    </form>
+  </div>
+
+<div class="page-header">
+  <h1>Button Variants</h1>
+</div>
+<pre><code class="html" hljs.bind="true">
+&lt;button class="btn btn-primary btn-light">Button&lt;/button&gt;
+
+&lt;button class="btn btn-success btn-outline btn-round btn-icon"&gt;
+    &lt;i class="fa fa-user"&gt;&lt;/i&gt;
+&lt;/button&gt;
+</code></pre>
+
+<div repeat.for="type of ['default', 'primary', 'success', 'info', 'danger']">
+        <span repeat.for="size of ['']">
+    <span repeat.for="variant of ['', 'round', 'outline', 'light']">
+          <button class="btn btn-${type} btn-${variant} btn-${size}">${type} btn-${variant}</button>
+          &nbsp;
+        </span>
+       <button class="btn btn-${type} btn-${size} btn-outline btn-round btn-icon"><i class="fa fa-user"></i></button> &nbsp;
+       <button class="btn btn-${type} btn-${size} btn-light btn-round btn-icon"><i class="fa fa-user"></i></button> ${type} btn-icon
+       <br>
+       <br>
+    </span>
+<!--   <button class="btn btn-${type} btn-round">${type} round</button>
+  &nbsp;
+  <button class="btn btn-${type} btn-outline">${type} outline</button>
+  &nbsp;
+  <button class="btn btn-${type} btn-light">${type} light</button>
+  &nbsp; -->
+  <!-- <button class="btn btn-${type} btn-outline btn-round btn-icon"><i class="fa fa-user"></i></button> ${type} icon -->
+  <hr>
+</div>
+</section>

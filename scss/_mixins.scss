@@ -1,5 +1,6 @@
 @mixin btn-light {
   background: transparent !important;
+  background-color: #FAFAFA !important;
   border-color: transparent !important;
   font-weight: bold;
   @include box-shadow(none);
@@ -11,6 +12,9 @@
   }
   &.btn-danger {
     color: $btn-danger-bg;
+  }
+  &.btn-info {
+    color: $btn-info-bg;
   }
   &.btn-success {
     color: $btn-success-bg;

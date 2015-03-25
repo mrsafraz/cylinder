@@ -1,16 +1,22 @@
-<header class="secondary">
+<div class="drawer">
+    <section class="mainx">
+        <header class="navbar navbar-default">
 
-  <a class="btn-add-new btn btn-primary btn-light" href="#" on-click="addEntity()">
+        <div class="search-container">
+          <search-input bind-paginator="paginator" bind-properties="getSearchProperties()" bind-label="'Search ' + settings.pluralTitle">
+          </search-input>
+        </div>
+
+          <button class="btn btn-light navbar-btn navbar-link right-side-toggle" type="button" click.delegate="addEntity()">
     <i class="fa fa-plus-circle fa-lg"></i>
-    New {{settings.title|t}}
-  </a>
-
-  <search-input bind-paginator="paginator" bind-properties="getSearchProperties()" bind-label="'Search ' + settings.pluralTitle">
-  </search-input>
-
-</header>
-
-<div class="body has-header">
+    New ${settings.title|trans}
+          </button>
+          <h1>
+            <!-- ${title} -->
+            ${settings.pluralTitle}
+          </h1>
+        </header>
+        <div class="body">
 
 <!--
   <div class="list-group" bind-if="false">
@@ -62,4 +68,6 @@
     <pagination bind-paginator="paginator"></pagination>
   </div>
 
+</div>
+</section>
 </div>

@@ -1,0 +1,26 @@
+<section class="demo-font-awesome">
+<div class="search-form-container">
+  <form on-submit="search();" class="search-form">
+      <i class="fa fa-times-circle" on-click="resetSearch();" bind-if="searchText">
+      </i>
+      <i class="fa fa-search"></i>
+      <input type="search" placeholder="Search..." class="form-control form-control-round pull-right input-sm" bind-value="searchText" on-keyup="instantSearch();">
+  </form>
+</div>
+<div class="font-awesome-list" bind-css="{'search-active': searchActive}">
+  <div class="all-icons">
+    <div class="col-md-3 col-sm-4" bind-repeat="icons">
+      <div class="fa-container">
+        <i class="fa fa-{{row.id}}"></i> <span class="faprefix">fa-</span><span class="faid">{{row.id}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="search-results">
+    <div class="col-md-3 col-sm-4" bind-repeat="searchResults">
+      <div class="fa-container">
+        <i class="fa fa-{{row.id}}"></i> <span class="faprefix">fa-</span><span class="faid">{{row.id}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>

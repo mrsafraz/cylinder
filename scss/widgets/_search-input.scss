@@ -23,3 +23,15 @@
     padding-left: 30px;
   }
 }
+
+
+.navbar {
+  .search-container {
+    max-width: 220px;
+    margin: 8px 15px;
+    float: left;
+    .form-control {
+      border-radius: $input-border-radius;
+    }
+  }
+}

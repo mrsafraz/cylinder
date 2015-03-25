@@ -1,0 +1,8 @@
+<!-- <div>
+	<div>
+		<entity-grid data.bind="data"></entity-grid>
+	</div>
+</div> -->
+<div bind-if="dataProvider.selectedModel">
+  <entity-grid bind-data="dataProvider.selectedModel"></entity-grid>
+</div>

@@ -1,0 +1,13 @@
+<section class="modal-content">
+	<div class="modal-header">
+		<h3 class="modal-title">${'My Greeting'|trans}</h3>
+	</div>
+	<div class="modal-body">
+		Hello ${name}
+		<br>
+		<input type="text" class="form-control" value.bind="name">
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn btn-primary btn-light" click.delegate="ok()">OK</a>
+		<a href="#" class="btn btn-default btn-light" click.delegate="cancel()">Cancel</a>
+</section>

@@ -43,6 +43,12 @@
 @media (max-width: 767px){
 
   .modal .modal-footer .btn {
+    // width: 100%;
+    // margin: 0;
+    // margin-top: 5px;
+  }
+
+  .messageBox .modal-footer .btn {
     width: 100%;
     margin: 0;
     margin-top: 5px;
@@ -163,4 +169,16 @@
     .btn {
       float: right;
     }
+}
+
+.messageBox {
+  top: 50px;
+}
+
+.messageBox .modal-footer {
+  position: static;
+  padding: 15px 20px;
+  .btn {
+    float: none;
+  }
 }

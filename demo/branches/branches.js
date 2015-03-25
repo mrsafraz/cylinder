@@ -1,18 +1,21 @@
 import {Module} from 'framework';
+import {DataProvider} from './data-provider';
 
 class Branches extends Module {
-  get data(){
-    return {
-      entityType: 'Branch',
-      title: 'Branch',
-      pluralTitle: 'Branches',
-      properties: [
-        {name: 'branchType.name', label: 'Branch Type'},
-        {name: 'code', label: 'Code'},
-        {name: 'name', label: 'Name'},
-        {name: 'branchCourses.course.name', label: 'Courses'},
-      ],
-    };
+  constructor(dataProvider: DataProvider){
+    this.dataProvider = dataProvider;
+    this.isLeftSideActive = false;
+    this.isRightSideActive = false;
+  }
+
+  get routes(){
+    return this.dataProvider.getRoutes();
+  }
+
+  activate(entityType){
+    this.dataProvider.selectEntityType(entityType);
+    this.isLeftSideActive = false;
+    this.isRightSideActive = false;
   }
 }
 

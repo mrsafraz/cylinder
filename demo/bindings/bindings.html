@@ -1,0 +1,13 @@
+<div class="top-nav">
+  <ul class="nav nav-tabs">
+    <li repeat.for="row of navigation"
+        css.bind="{active: row.isActive}">
+      <a href="${row.href}">
+          ${row.title}
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="content-container">
+  <view-port cache-views.bind="true"></view-port>
+</div>

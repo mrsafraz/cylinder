@@ -1,0 +1,84 @@
+.demo-font-awesome {
+
+.fa-container {
+  color: #888;
+  font-size: 14px;
+  line-height: 35px;
+  // height: 35px;
+  cursor: pointer;
+  &:hover {
+    color: #000;
+    font-size: 18px;
+  }
+}
+
+.search-form {
+  position: relative;
+  .fa-times-circle {
+    position: absolute;
+    right: 0;
+    padding: 8px 10px 0 5px; 
+    color: #CCC;
+    cursor: pointer;
+  }
+  .fa-search {
+    position: absolute;
+    padding: 8px 5px 0 10px;
+    color: #CCC;
+  }
+  .form-control {
+    padding-left: 30px;
+    background: #FAFAFA;
+    border-color: #FAFAFA;
+    margin-bottom: 20px;
+ }
+}
+
+.search-results {
+  display: none;
+}
+
+.search-active {
+  .all-icons {
+    display: none;
+  }
+  .search-results {
+    display: block;
+  }
+}
+
+.faprefix {
+  display: none;
+}
+
+.faid .higlight {
+  background: yellow;
+}
+
+.search-form-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  padding: 10px;
+
+  background: #FAFAFA;
+  .search-form .form-control {
+    // background: #FFF;
+    // border-color: #FFF;
+  }
+}
+
+.font-awesome-list {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  bottom: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+}

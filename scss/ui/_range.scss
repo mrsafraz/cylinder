@@ -1,4 +1,6 @@
-.range {
+$range-selector: ".slider";
+
+#{$range-selector} {
 
 $knob-size: 30px;
 $knob-size: 24px;
@@ -70,24 +72,20 @@ input[type="range"]::-webkit-slider-thumb:after {
 
   @include range-variant($btn-primary-bg);
 
-  &.range-default {
+  &#{$range-selector}-default {
     @include range-variant($btn-default-bg);
   }
-  &.range-danger {
+  &#{$range-selector}-danger {
     @include range-variant($btn-danger-bg);
   }
-  &.range-success {
+  &#{$range-selector}-success {
     @include range-variant($btn-success-bg);
   }
-  &.range-warning {
+  &#{$range-selector}-warning {
     @include range-variant($btn-warning-bg);
   }
-  &.range-info {
+  &#{$range-selector}-info {
     @include range-variant($btn-info-bg);
   }
 
-}
-
-.btn-light {
-  @include btn-light;
 }
