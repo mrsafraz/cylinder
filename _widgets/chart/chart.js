@@ -10,25 +10,52 @@ import $ from 'jquery';
 class ChartWidget extends Widget {
 
 	constructor(){
-		this.view = null;
-		this.chartOptions = {};
+		// this.view = null;
+		// this._chartObj = {};
 	}
 
-	draw(){
-		var $elem = $(this.view).find('.chart');
+	draw(view){
+		var $elem = $(view).find('.chart');
 		var elem = $elem.get(0);
-		this.chartOptions.bindto = elem;
-		var chart = c3.generate(this.chartOptions);
-		this.chartOptions.setChart(chart);
+		// this._chartObj.bindto = elem;
+		// $elem.append(this._chartObj.element);
+		var isActive = this._chartObj.isActive;
+		if(!isActive){
+			var chart = c3.generate(this._chartObj);
+			this._chartObj.setChart(chart);
+		}
+		// alert($(this._chartObj.element).height());
+		$elem.append(this._chartObj.element);
+		if(!isActive){
+			window.setTimeout(()=> {
+				// this._chartObj.flush();
+				$(window).trigger('resize');
+			}, 500);
+		}
+	}
+
+	drawOld(view){
+
+		var $elem = $(view).find('.chart');
+		var elem = $elem.get(0);
+		this._chartObj.bindto = elem;
+		var chart = c3.generate(this._chartObj);
+		this._chartObj.setChart(chart);
+
+		// var $elem = $(view).find('.chart');
+		// var elem = $elem.get(0);
+		// this._chartObj.bindto = elem;
+		// var chart = c3.generate(this._chartObj);
+		// this._chartObj.setChart(chart);
 	}
 
 	attached(view){
-		this.view = view;
-		this.draw();
+		// this.view = view;
+		this.draw(view);
 	}
 
 	activate(settings){
-		this.chartOptions = settings.chart;
+		this._chartObj = settings.chart;
 	}
 
 }

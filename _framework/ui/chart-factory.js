@@ -6,7 +6,7 @@ import {ColorFactory} from './color-factory';
 
 export class Chart {
 	constructor(){
-		this.data = {columns: []};
+		this.data = {rows: []};
 		this.isActive = false;
 		this._loadCallbacks = [];
 	}
@@ -43,20 +43,34 @@ export class ChartFactory {
 		this.colorManager = colorManager;
 	}
 	mapColors(colorMap){
-		this.colorManager.colorMap = colorMap;
+		for(var key in colorMap){
+			this.mapColor(key, colorMap[key]);
+		}
+	}
+	mapColor(key, value){
+		this.colorManager.colorMap[key] = value;
 	}
 	generate(options = {}){
-		// return c3.generate(options);
-		var chart = new Chart();
-		for(var key in options){
-			chart[key] = options[key];
+		if(!options.data){
+			options.data = {rows: []};
 		}
-		if(!(chart.data && chart.data.color)){
-			chart.data.color = (color, d)=> {
+		if(!options.data.color){
+			options.data.color = (color, d)=> {
 				var key = d.id || d;
 				return this.colorManager.getColor(key);
 			};
 		}
+		// var chart = c3.generate(options); return chart;
+		var chart = new Chart();
+		for(var key in options){
+			chart[key] = options[key];
+		}
+		// if(chart.data && !chart.data.color){
+		// 	chart.data.color = (color, d)=> {
+		// 		var key = d.id || d;
+		// 		return this.colorManager.getColor(key);
+		// 	};
+		// }
 		chart.color = {};
 		var cat1 = d3.scale.category20c().range().concat([]),
 		cat2 = d3.scale.category20b().range().concat([]),

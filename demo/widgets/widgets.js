@@ -12,6 +12,10 @@ class MyModel {
 	}
 }
 
+function getRandomInt (min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 class Widgets {
 	constructor(db: DataService, paginator: Paginator, toast: Toast, testDialog: TestDialog, chartFactory: ChartFactory){
 		this.db = db;
@@ -62,21 +66,27 @@ class Widgets {
 	}
 
 	initTestChart(){
+		if(this.testChart){
+			return;
+		}
 		this.testChart = this.chartFactory.generate({
-		    data: {
-		        columns: [
-		            ['data1', 30, 200, 100, 400, 150, 250],
-		            ['data2', 50, 20, 10, 40, 15, 25]
-		        ]
-		    }
 		});
-		setTimeout(()=> {
-		    this.testChart.load({
-		        columns: [
-		            ['data1', 230, 190, 300, 500, 300, 400]
-		        ]
-		    });
-		}, 3000);
+		this.testChart.onGenerate(()=> {
+			this.refreshTestChart();
+		});
+		// this.refreshTestChart();
+	}
+
+	refreshTestChart(){
+		// window.setTimeout(()=> {
+		// 	this.refreshTestChart();
+		// }, 5000);
+	    this.testChart.load({
+	        columns: [
+	            ['data1', getRandomInt(10, 300), getRandomInt(10, 300), getRandomInt(10, 300), getRandomInt(10, 300), getRandomInt(10, 300), getRandomInt(10, 300)],
+	            ['data2', getRandomInt(10, 100), getRandomInt(10, 100), getRandomInt(10, 100), getRandomInt(10, 100), getRandomInt(10, 100), getRandomInt(10, 100)]
+	        ]
+	    });
 	}
 
 	treeSelect($event){
