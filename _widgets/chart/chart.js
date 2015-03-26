@@ -35,23 +35,16 @@ class ChartWidget extends Widget {
 	}
 
 	drawOld(view){
-
 		var $elem = $(view).find('.chart');
 		var elem = $elem.get(0);
 		this._chartObj.bindto = elem;
 		var chart = c3.generate(this._chartObj);
 		this._chartObj.setChart(chart);
-
-		// var $elem = $(view).find('.chart');
-		// var elem = $elem.get(0);
-		// this._chartObj.bindto = elem;
-		// var chart = c3.generate(this._chartObj);
-		// this._chartObj.setChart(chart);
 	}
 
 	attached(view){
 		// this.view = view;
-		this.draw(view);
+		this.drawOld(view);
 	}
 
 	activate(settings){
