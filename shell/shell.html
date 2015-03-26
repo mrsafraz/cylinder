@@ -35,6 +35,6 @@
     <div class="shell-main">
       <div id="progress-loading-container"></div>
       <loading-indicator is-loading.bind="isLoading"></loading-indicator>
-      <router transition.bind="'intro'"></router>
+      <router transition.bind="'intro'" cache-views.bind="true"></router>
     </div>
 </div>
