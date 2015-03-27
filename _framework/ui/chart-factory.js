@@ -24,7 +24,7 @@ export class Chart {
 	}
 }
 
-class ColorManager {
+export class ColorManager {
 	constructor(colorFactory: ColorFactory){
 		this.colorFactory = colorFactory;
 		this.colorMap = {};
