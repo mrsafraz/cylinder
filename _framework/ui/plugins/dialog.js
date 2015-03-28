@@ -7,8 +7,11 @@ function enableAutoclose(theDialog, targetOnly){
     if(targetOnly === undefined){
         targetOnly = true;
     }
-    if (theDialog.owner && theDialog.owner.autoclose){
+    if (theDialog.owner){
         theDialog.$overlay.on('click', function (e) {
+            if(!theDialog.owner.autoclose){
+                return;
+            }
             if(!targetOnly || e.target == this){ // only if the target itself has been clicked
                 theDialog.close();
             }
