@@ -1,0 +1,19 @@
+<div class="dock dock-left-side" data-bind="css: {'left-side-active': isNavActive}">
+	<div class="overlay" click.delegate="activateNav(false)"></div>
+	<nav class="left-side">
+		Left Side
+	</nav>
+	<div class="main">
+		<header class="navbar navbar-default">
+			<button class="btn btn-light navbar-btn navbar-link left-side-toggle" type="button" click.delegate="activateNav(true)">
+				<i class="fa fa-bars fa-lg"></i>
+			</button>
+			<h1>Left Nav</h1>
+		</header>
+		<div class="body has-header">
+			<ul>
+				<li repeat.for="line of new Array(100)">A long list</li>
+			</ul>
+		</div>
+	</div>
+</div>

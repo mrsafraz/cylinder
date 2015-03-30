@@ -1,37 +1,40 @@
 <div>
   <div class="form-group" bind-repeat="settings.properties as property">
-    <div bind-if="editMode && property.formType == 'boolean'" class="checkbox-list pull-left">
+    <div if.bind="isEditable(property) && property.formType == 'boolean'" class="checkbox-list pull-left">
       <label>
         <input type="checkbox" bind-checked="entity[property.name]">
         <span>&nbsp;</span>
       </label>
     </div>
     <label class="control-label">{{property.label}}</label>
-    <div bind-if="!editMode">
-      <p class="form-control-static" bind-if="['image', 'date'].indexOf(property.formType) === -1">
+    <div if.bind="!isEditable(property)">
+      <p class="form-control-static" if.bind="['image', 'date'].indexOf(property.formType) === -1">
         {{getValue(entity, property)}}
       </p>
-      <div bind-if="property.formType == 'image'">
+      <div if.bind="property.formType == 'image'">
             <img style="max-height: 200px; max-width: 200px;" 
           bind-src="entity[property.name] && entity[property.name].url()">
       </div>
-      <div bind-if="property.formType == 'date'">
+      <div if.bind="property.formType == 'date'">
         {{entity[property.name]|date}}
       </div>
     </div>
-    <div bind-if="editMode">
-      <div bind-if="property.formType == 'image'" style="max-width: 200px; max-height: 200px;">
+    <div if.bind="isEditable(property)">
+      <div if.bind="property.formType == 'image'" style="max-width: 200px; max-height: 200px;">
         <image-upload bind-file="entity[property.name]"></image-upload>
       </div>
-      <div bind-if="property.formType == 'navigation'">
+      <div if.bind="property.formType == 'navigation'">
         <navigation-picker bind-entity="entity" 
                            bind-property="property.name"
         ></navigation-picker>
       </div>
-      <div bind-if="['text', 'number'].indexOf(property.formType) !== -1">
+      <div if.bind="['text', 'number'].indexOf(property.formType) !== -1">
         <input class="form-control" type="{{property.formType}}" bind-value="entity[property.name]">
       </div>
-      <div bind-if="property.formType == 'date'">
+      <div if.bind="property.formType == 'textarea'">
+        <textarea class="form-control" bind-value="entity[property.name]"></textarea>
+      </div>
+      <div if.bind="property.formType == 'date'">
         <date-input bind-object="entity" bind-property="property.name"></date-input>
       </div>
       </div>

@@ -76,6 +76,10 @@ class Login {
         this.progress.done();
         this.authenticator.navigateBack();
       });
+    }, (error)=> {
+      this.errorMessage = error.message || error;
+      this.loginFailed();
+      this.stopLoggingIn();
     });
   }
 

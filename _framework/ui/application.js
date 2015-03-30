@@ -114,6 +114,9 @@ export class Application {
         viewLocator.useConvention();
       }
       app.setRoot(this.config.shellModuleId || 'shell/shell', this.config.shellTransition || 'entrance');
+    }, (error)=> {
+      alert('Failed to run application. Error occured');
+      console.log(error.stack);
     });
   }
 

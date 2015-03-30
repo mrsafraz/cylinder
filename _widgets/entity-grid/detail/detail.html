@@ -3,7 +3,7 @@
 <div class="modal-header">
   <h3 class="modal-title">
     <span bind-if="editMode">{{isNew ? 'New' : 'Edit'}}</span>
-    {{settings.title|t}}
+    {{settings.title|trans}}
 <!--    <span bind-if="!editMode">Detail</span>-->
   </h3>
 </div>
@@ -28,12 +28,12 @@
 
 <div class="modal-footer">
   <div bind-if="!editMode">
-    <button type="button" class="btn btn-primary" on-click="editMode = true;">{{'Edit'|t}}</button>
-    <button type="button" on-click="cancel();" class="btn btn-default">{{'Close'|t}}</button>    
+    <button type="button" class="btn btn-primary" on-click="editMode = true;" if.bind="settings.canEdit !== false">{{'Edit'|trans}}</button>
+    <button type="button" on-click="cancel();" class="btn btn-default">{{'Close'|trans}}</button>    
   </div>
   <div bind-if="editMode">
-    <button type="submit" class="btn btn-primary">{{'Save'|t}}</button>
-    <button type="button" on-click="cancel();" class="btn btn-default">{{'Cancel'|t}}</button>
+    <button type="submit" class="btn btn-primary">{{'Save'|trans}}</button>
+    <button type="button" on-click="cancel();" class="btn btn-default">{{'Cancel'|trans}}</button>
   </div>
 </div>
 </form>

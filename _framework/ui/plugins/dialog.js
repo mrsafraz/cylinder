@@ -352,17 +352,25 @@ dialog.addContext('popup', {
                 }
             }
 
+            var $body = theDialog.$dialog.find('.modal-body');
             if(positionPrimary == 'top' || positionSecondary == 'bottom'){
+                var bottom = $(window).height() - (top + theDialog.$dialog.outerHeight());
                 theDialog.$dialog.css({
                     left: left,
                     top: 'auto',
-                    bottom: $(window).height() - (top + theDialog.$dialog.outerHeight()),
+                    bottom: bottom,
+                });
+                $body.css({
+                    'max-height': ($(window).height() - bottom - 60) + 'px',
                 });
             }
             else {
                 theDialog.$dialog.css({
                     left: left,
                     top: top
+                });
+                $body.css({
+                    'max-height': ($(window).height() - top - 60) + 'px',
                 });
             }
         }

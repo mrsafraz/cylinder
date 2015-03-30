@@ -1,16 +1,18 @@
 <div>
   <!-- loading ${loadingPercentage}% -->
   <div class="login-box">
-  	<p class="text-success text-center" if.bind="isLoggedIn">Login Success. Redirecting...</p>
+  	<p class="text-success text-center" if.bind="isLoggedIn">${'Logged in successfully. Redirecting...'}</p>
 	<form submit.delegate="login()" if.bind="!isLoggedIn">
 	  <div class="panel panel-default">
-	  	<div class="panel-heading">
+<!-- 	  	<div class="panel-heading">
 	    	<h3 class="panel-title">
-	    		<!-- <i class="fa fa-user"></i> -->
 	    		User Login
 	    	</h3>
-	  	</div>
+	  	</div> -->
 	  	<div class="panel-body">
+	  		<div class="login-brand-logo">
+	  			<brand-logo></brand-logo>
+	  		</div>
 	    	<p class="text-danger" if.bind="errorMessage">${errorMessage}</p>
 	  		<div class="form-group">
 	  			<input disabled.bind="isLoggingIn" type="text" class="form-control" placeholder="Username" value.bind="username">

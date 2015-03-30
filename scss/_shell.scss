@@ -51,12 +51,23 @@ $side-nav-width: 50px;
 	}
 }
 
-.brand {
+.brand-logo {
+	font-size: 20px;
+}
+
+.shell-brand-logo {
 	display: block;
-	background: lighten($brand-primary, 10%);
+	background: $brand-primary;
 	height: 50px;
 	text-align: center;
 	padding: 15px;
 	color: #FFF;
-	font-size: 20px;
+	&:hover, &:active, &:focus {
+		color: #FFF;
+	}
+}
+
+.login-brand-logo {
+	color: $brand-primary;
+	margin-bottom: 15px;
 }

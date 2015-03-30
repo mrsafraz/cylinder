@@ -1,6 +1,6 @@
 <div>
 	<!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css"> -->
-	<div class="drawer dock-left-side ${ isLeftSideActive ? 'left-side-active' : '' } ${ isRightSideActive ? 'right-side-active' : '' }">
+	<div class="dock dock-left-side ${ isLeftSideActive ? 'left-side-active' : '' } ${ isRightSideActive ? 'right-side-active' : '' }">
 
 	  <div class="overlay" click.delegate="resetSideBars()"></div>
 
@@ -16,7 +16,7 @@
 	            Demo
 	        </h1>
 	      </header>
-	      <div class="body">
+	      <div class="body has-header">
 	        <ul class="nav nav-pills nav-stacked">
 	          <li repeat.for="route of navigation" css.bind="{active: route.isActive}">
 	            <a href.bind="route.href">
@@ -34,13 +34,13 @@
 	              The Brand
 	          </h1>
 	      </header>
-	      <div class="body">
+	      <div class="body has-header">
 	        right panel
 	      </div>
 	  </section>
 
 	  <section class="main">
-	      <header class="navbar navbar-default" xstyle="display: none;">
+	      <header class="navbar navbar-default">
 				  <button class="btn btn-light navbar-btn navbar-link left-side-toggle" type="button" click.delegate="isLeftSideActive = true;">
 				    <i class="fa fa-bars fa-lg"></i>
 				  </button>
@@ -50,7 +50,7 @@
 				  </button>
 		      <h1>${title}</h1>
 	      </header>
-	      <div class="body" xstyle="top: 0;">
+	      <div class="body has-header">
 	          <view-port transition.bind="'entrance'" cache-views.bind="true"></view-port>
 	          <!-- <view-port transition.bind="'animate'" cache-views.bind="true"></view-port> -->
 	      </div>

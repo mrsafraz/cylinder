@@ -1,9 +1,9 @@
 <div class="shell-container">
-    <div class="shell-sidebar">
-      <a href="#" class="brand">
-        <i class="fa fa-home"></i>
+    <div class="shell-sidebar" if.bind="isAuthenticated">
+      <a href="#" class="shell-brand-logo">
+        <brand-logo icon-only.bind="true"></brand-logo>
       </a>
-      <div class="navigation links" if.bind="!isAuthenticated">
+<!--       <div class="navigation links" if.bind="!isAuthenticated">
         <a href="#user/login" title="Login" class="active">
           <div class="icon-wrapper">
             <div class="fa-container">
@@ -11,7 +11,7 @@
             </div>
           </div>
         </a>
-      </div>
+      </div> -->
       <div class="navigation links" if.bind="isAuthenticated">
         <a href="${route.href}" repeat.bind="route of navigation" title="${route.title}"
         css.bind="{active: route.isActive}"
@@ -32,7 +32,7 @@
         </a>
       </div>
     </div>
-    <div class="shell-main">
+    <div class="${isAuthenticated? 'shell-main' : ''}">
       <div id="progress-loading-container"></div>
       <loading-indicator is-loading.bind="isLoading"></loading-indicator>
       <router transition.bind="'intro'" cache-views.bind="true"></router>

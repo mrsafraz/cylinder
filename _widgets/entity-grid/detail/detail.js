@@ -4,22 +4,25 @@ import {Toast} from 'framework';
 
 class EntityDialog extends Dialog  {
   
-  constructor(dataService: DataService, toast: Toast){
+  constructor(dataService: DataService){
     this.dataService = dataService;
-    this.toast = toast;
     this.entity = null;
     this.isNew = false;
     this.editMode = false;
     this.properties = [];
     this.settings = {};
   }
+
+  get autoclose(){
+    return !this.editMode;
+  }
   
   saveChanges(){
     var entities = [this.entity];
     this.dataService.saveChanges(entities).then((data)=> {
-      this.toast.showPositive('Data saved successfully');
+      Toast.showPositive('Data saved successfully');
     }, (error)=> {
-      this.toast.showNegative('Error occured while saving');
+      Toast.showNegative('Error occured while saving');
     });
   }
   

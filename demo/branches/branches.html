@@ -1,4 +1,4 @@
-<div class="drawer dock-left-side {{ isLeftSideActive ? 'left-side-active' : '' }} {{ isRightSideActive ? 'right-side-active' : '' }}">
+<div class="dock dock-left-side {{ isLeftSideActive ? 'left-side-active' : '' }} {{ isRightSideActive ? 'right-side-active' : '' }}">
 
   <div class="overlay" on-click="isLeftSideActive = false; isRightSideActive = false;"></div>
 
@@ -6,7 +6,7 @@
       <header class="navbar navbar-default">
         <h1>Grid</h1>
       </header>
-      <div class="body">
+      <div class="body has-header">
         <ul class="nav nav-pills nav-stacked">
           <li bind-repeat="navigation"
               bind-css="{active: row.isActive}">
@@ -20,8 +20,8 @@
   </section>
 
   <section class="main">
-    <div class="body" style="top: 0;">
-      <view-port bind-transition="'entrance'" bind-cache-views="true"></view-port>
+    <div class="body">
+      <view-port transition.bind="'entrance'" bind-cache-views="true"></view-port>
     </div>
   </section>
 </div>

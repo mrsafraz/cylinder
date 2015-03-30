@@ -1,5 +1,4 @@
-<div class="drawer">
-    <section class="mainx">
+<div class="dock">
         <header class="navbar navbar-default">
 
         <div class="search-container">
@@ -7,16 +6,16 @@
           </search-input>
         </div>
 
-          <button class="btn btn-light navbar-btn navbar-link right-side-toggle" type="button" click.delegate="addEntity()">
-    <i class="fa fa-plus-circle fa-lg"></i>
-    New ${settings.title|trans}
+          <button class="btn btn-light navbar-btn navbar-link right-side-toggle" type="button" click.delegate="addEntity()" if.bind="settings.canAdd !== false">
+            <i class="fa fa-plus-circle fa-lg"></i>
+            New ${settings.title|trans}
           </button>
           <h1>
             <!-- ${title} -->
             ${settings.pluralTitle}
           </h1>
         </header>
-        <div class="body">
+        <div class="body has-header">
 
 <!--
   <div class="list-group" bind-if="false">
@@ -74,5 +73,4 @@
   </div>
 
 </div>
-</section>
 </div>

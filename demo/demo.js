@@ -1,11 +1,13 @@
 import {Module} from 'framework';
-import hljs from '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js';
+// import hljs from '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js';
 // import hljsCss from 'text!//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css';
 import ko from 'knockout';
 
 ko.bindingHandlers.hljs = {
     update: function(element, valueAccessor) {
-      hljs.highlightBlock(element);
+      if(typeof hljs !== "undefined"){
+        hljs.highlightBlock(element);
+      }
     }
 };
 
@@ -14,6 +16,7 @@ var hljsInjected = false;
 class Demo extends Module {
   constructor(){
     this.resetSideBars();
+    this.injectHljs();
   }
   resetSideBars(){
     this.isLeftSideActive = false;
@@ -96,6 +99,13 @@ class Demo extends Module {
         title: 'UI Elements',
         nav: true,
       },
+      {
+        route: 'layout',
+        moduleId: 'layout',
+        title: 'Layout',
+        hasChildRoutes: true,
+        nav: true,
+      }
     ];
   }
 
@@ -103,9 +113,9 @@ class Demo extends Module {
     if(hljsInjected){
       return;
     }
-    // var hljsScript = document.createElement('script');
-    // hljsScript.setAttribute('src','//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js');
-    // document.head.appendChild(hljsScript);
+    var hljsScript = document.createElement('script');
+    hljsScript.setAttribute('src','//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js');
+    document.head.appendChild(hljsScript);
 
 
     var styles = document.createElement('link');
@@ -119,7 +129,6 @@ class Demo extends Module {
   }
   activate(){
     this.resetSideBars();
-    this.injectHljs();
   }
 }
 

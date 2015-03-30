@@ -1,3 +1,70 @@
+.user-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #EEE;
+  background: #FAFAFA;
+  .panel {
+    border: 0;
+    @include box-shadow(none);
+    background: transparent;
+    .panel-heading {
+      background: transparent;
+      border: 0;
+    }
+    .btn-primary {
+      // background: #DDD;
+      // border: 2px solid #CCC;
+      // background: #FFF;
+      // border: 2px solid #EEE;
+
+      // background: lighten($brand-primary, 10%);
+    }
+  }
+}
+.user-containerx {
+  $user-bg: $brand-primary;
+  $user-bg: #AAA;
+  $user-bg: #CCC;
+  $user-bg: #DDD;
+  $user-bg: #EEE;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: $user-bg;
+
+  .panel {
+    background: transparent;
+    border: 0;
+    .panel-heading {
+      background: transparent;
+      border: 0;
+      color: #FFF;
+      font-weight: bold;
+    }
+    .btn-primary {
+      background: rgba(255, 255, 255, 0.8);
+      border: 0;
+      color: $user-bg;
+      &:hover, &:focus {
+        background: rgba(255, 255, 255, 0.9);
+      }
+    }
+    .form-control {
+      border: 0;
+      // background: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.6);
+      &:focus {
+        background: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+}
+
 .login-box {
 	width: 400px;
 	max-width: 90%;

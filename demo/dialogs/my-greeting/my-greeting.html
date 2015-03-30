@@ -6,6 +6,9 @@
 		Hello ${name}
 		<br>
 		<input type="text" class="form-control" value.bind="name">
+		<ul>
+			<li repeat.for="line of new Array(100)">Long list</li>
+		</ul>
 	</div>
 	<div class="modal-footer">
 		<a href="#" class="btn btn-primary btn-light" click.delegate="ok()">OK</a>

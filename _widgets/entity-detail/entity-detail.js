@@ -8,13 +8,17 @@ class EntityDetailWidget extends Widget  {
     this.propertyResolver = propertyResolver;
     this.editMode = false;
   }
-  
+
   getValue(entity, property){
     var value = this.propertyResolver.getValue(entity, property);
     if(Array.isArray(value)){
       return value.join(', ');
     }
     return value;
+  }
+
+  isEditable(property){
+    return this.editMode && property.canEdit !== false;
   }
 
   activate(settings){
