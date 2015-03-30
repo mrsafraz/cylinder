@@ -11,6 +11,37 @@
 			<h1>Left Nav</h1>
 		</header>
 		<div class="body has-header">
+<pre><code hljs.bind="true" class="javascript">
+  constructor(){
+  	this.isNavActive = false;
+  }
+
+  activateNav(activate){
+  	this.isNavActive = activate;
+  }
+</code></pre>
+		<pre><code hljs.bind="true">
+&lt;div class="dock dock-left-side" data-bind="css: {'left-side-active': isNavActive}"&gt;
+	&lt;div class="overlay" click.delegate="activateNav(false)"&gt;&lt;/div&gt;
+	&lt;nav class="left-side"&gt;
+		Left Side
+	&lt;/nav&gt;
+	&lt;div class="main"&gt;
+		&lt;header class="navbar navbar-default"&gt;
+			&lt;button class="btn btn-light navbar-btn navbar-link left-side-toggle" type="button" click.delegate="activateNav(true)"&gt;
+				&lt;i class="fa fa-bars fa-lg"&gt;&lt;/i&gt;
+			&lt;/button&gt;
+			&lt;h1&gt;Left Nav&lt;/h1&gt;
+		&lt;/header&gt;
+		&lt;div class="body has-header"&gt;
+			&lt;ul&gt;
+				&lt;li repeat.for="line of new Array(100)"&gt;A long list&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+		</code></pre>
+
 			<ul>
 				<li repeat.for="line of new Array(100)">A long list</li>
 			</ul>

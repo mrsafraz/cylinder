@@ -1,5 +1,5 @@
 import {Module} from 'framework';
-// import hljs from '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js';
+import hljs from '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js';
 // import hljsCss from 'text!//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css';
 import ko from 'knockout';
 
@@ -113,9 +113,6 @@ class Demo extends Module {
     if(hljsInjected){
       return;
     }
-    var hljsScript = document.createElement('script');
-    hljsScript.setAttribute('src','//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js');
-    document.head.appendChild(hljsScript);
 
 
     var styles = document.createElement('link');
@@ -126,6 +123,13 @@ class Demo extends Module {
     document.getElementsByTagName('head')[0].appendChild(styles);
 
     hljsInjected = true;
+
+    return;
+
+    var hljsScript = document.createElement('script');
+    hljsScript.setAttribute('src','//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js');
+    document.head.appendChild(hljsScript);
+
   }
   activate(){
     this.resetSideBars();
