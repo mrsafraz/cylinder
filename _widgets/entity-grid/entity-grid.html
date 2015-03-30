@@ -51,12 +51,15 @@
     <tbody>
       <tr bind-repeat="entities as entity">
         <td bind-repeat="settings.properties as property">
-        <div bind-if="property.formType != 'image'">
+        <div bind-if="['date', 'image'].indexOf(property.formType) === -1">
           {{getValue(entity, property)}}
         </div>
         <div bind-if="property.formType == 'image'">
               <img style="max-height: 50px; max-width: 50px;" 
             bind-src="entity[property.name] && entity[property.name].url()">
+        </div>
+        <div bind-if="property.formType == 'date'">
+          ${getValue(entity, property)|date}
         </div>
         </td>
         <td class="column-actions">

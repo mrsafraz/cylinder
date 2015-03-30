@@ -71,7 +71,7 @@ class DatePickerWidget extends Widget {
 	activate(settings){
 		this.settings = settings;
 		this.valueObservable = Observer.getObservable(this.settings.object, this.settings.property);
-		this.caption = this.settings.caption;
+		this.caption = this.settings.caption || 'Select';
 		this.onChange = this.settings.onChange;
 	}
 }

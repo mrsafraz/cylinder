@@ -2,7 +2,7 @@
   <div class="form-group" bind-repeat="settings.properties as property">
     <div if.bind="isEditable(property) && property.formType == 'boolean'" class="checkbox-list pull-left">
       <label>
-        <input type="checkbox" bind-checked="entity[property.name]">
+        <input type="checkbox" bind-checked="getRawValue(entity, property)">
         <span>&nbsp;</span>
       </label>
     </div>
@@ -13,29 +13,31 @@
       </p>
       <div if.bind="property.formType == 'image'">
             <img style="max-height: 200px; max-width: 200px;" 
-          bind-src="entity[property.name] && entity[property.name].url()">
+          bind-src="getValue(entity, property) && getValue(entity, property).url()">
       </div>
       <div if.bind="property.formType == 'date'">
-        {{entity[property.name]|date}}
+        {{getValue(entity, property)|date}}
       </div>
     </div>
     <div if.bind="isEditable(property)">
       <div if.bind="property.formType == 'image'" style="max-width: 200px; max-height: 200px;">
-        <image-upload bind-file="entity[property.name]"></image-upload>
+        <image-upload bind-file="getRawValue(entity, property)"></image-upload>
       </div>
       <div if.bind="property.formType == 'navigation'">
-        <navigation-picker bind-entity="entity" 
-                           bind-property="property.name"
+        <navigation-picker bind-entity="entity"
+                           bind-property="property.name" bind-criteria="property.criteria" bind-options="property.options" bind-display-text="property.displayText"
         ></navigation-picker>
       </div>
       <div if.bind="['text', 'number'].indexOf(property.formType) !== -1">
-        <input class="form-control" type="{{property.formType}}" bind-value="entity[property.name]">
+        <input class="form-control" type="{{property.formType}}" bind-value="getRawValue(entity, property)">
       </div>
       <div if.bind="property.formType == 'textarea'">
-        <textarea class="form-control" bind-value="entity[property.name]"></textarea>
+        <textarea class="form-control" bind-value="getRawValue(entity, property)"></textarea>
       </div>
       <div if.bind="property.formType == 'date'">
-        <date-input bind-object="entity" bind-property="property.name"></date-input>
+        <a href="#">
+          <date-picker bind-object="entity" bind-property="property.name" bind-date-format="property.dateFormat" bind-caption="property.caption"></date-picker>
+        </a>
       </div>
       </div>
     </div>

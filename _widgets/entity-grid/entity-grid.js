@@ -37,6 +37,9 @@ class EntityGrid extends Widget  {
   }
   
   getValue(entity, property){
+    if(property.displayText){
+      return property.displayText(this.propertyResolver.getRawValue(entity, property));
+    }
     return this.propertyResolver.getValue(entity, property);
   }
   

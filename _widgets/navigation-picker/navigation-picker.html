@@ -42,7 +42,7 @@
         <a href="#" class="list-group-item" bind-repeat="entities as option" on-click="selectValue(option)">
           <i class="fa fa-check text-muted pull-left" bind-if="isOptionSelected(option)"></i>
           <p class="list-group-item-text">
-            {{option[optionsText]}} 
+            {{getOptionsText(option)}} 
           </p>
         </a>
       </div>

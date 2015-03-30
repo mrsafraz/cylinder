@@ -1,4 +1,5 @@
 import {Widget} from 'framework';
+import {Observer} from 'framework';
 import {PropertyResolver} from '../entity-grid/_lib/PropertyResolver';
 
 class EntityDetailWidget extends Widget  {
@@ -10,10 +11,20 @@ class EntityDetailWidget extends Widget  {
   }
 
   getValue(entity, property){
+    if(property.displayText){
+      return property.displayText(this.propertyResolver.getRawValue(entity, property));
+    }
     var value = this.propertyResolver.getValue(entity, property);
     if(Array.isArray(value)){
       return value.join(', ');
     }
+    return value;
+  }
+
+  getRawValue(entity, property){
+    return Observer.getObservable(entity, property.name);
+    return entity[property.name];
+    var value = this.propertyResolver.getValue(entity, property);
     return value;
   }
 

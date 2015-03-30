@@ -14,7 +14,7 @@ class NavigationPickerWidget extends Widget  {
     this.criteria = {};
     this.options = {};
     this.entities = [];
-    this.optionsText = ()=> {};
+    this.optionsText = '';
     this.searchText = '';
     this.editMode = false;
     this.view = null;
@@ -54,6 +54,18 @@ class NavigationPickerWidget extends Widget  {
     window.setTimeout(()=> {
       this.startEditing();
     }, 101);
+  }
+
+  getOptionsText(option){
+    if(this.displayText){
+      return this.displayText(option);
+    }
+    var value = option;
+    var props = this.optionsText.split('.');
+    for(var prop of props){
+      value = value[prop];
+    }
+    return value;
   }
   
   selectValue(value){
@@ -106,11 +118,11 @@ class NavigationPickerWidget extends Widget  {
           singleValue = singleValue[this.manyToMany];
           // console.log('SINGLE VALUE AFTER', singleValue);
         }
-        options.push(singleValue[this.optionsText]);
+        options.push(this.getOptionsText(singleValue));
       }
       return options.join(', ');
     }
-    return value[this.optionsText];
+    return this.getOptionsText(value);
   }
   
   getSelectedRawValue(){
@@ -197,9 +209,14 @@ class NavigationPickerWidget extends Widget  {
     var props = this.property.split('.');
     var property = entityType.getProperty(props[0]);
     this.navProperty = property;
-    this.optionsText = props[props.length - 1];
+    this.displayText = settings.displayText;
+    this.optionsText = props.slice(1).join('.');
     if(props.length > 2){
-      this.manyToMany = props[1];
+      var navProperty = entityType.getProperty(props[0]);
+      if(!navProperty.isScalar){
+        this.optionsText = props.slice(2).join('.');
+        this.manyToMany = props[1];
+      }
     }
     // this.multiple = settings.multiple;
     if(settings.caption){
@@ -219,7 +236,7 @@ class NavigationPickerWidget extends Widget  {
     else {
       this.navigationEntityType = property.entityType.shortName;
     }
-    this.entities = this.dataService.getAll(this.navigationEntityType, {}, {sort: {[this.optionsText]: 1}});
+    this.entities = this.dataService.getAll(this.navigationEntityType, this.criteria, {sort: {[this.optionsText]: 1}});
     if(settings.preload){
       this.applyFilter('');
     }
