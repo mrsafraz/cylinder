@@ -44,6 +44,9 @@ class EntityGrid extends Widget  {
   }
   
   getSearchProperties(){
+    if(this.settings.searchBy){
+      return this.settings.searchBy;
+    }
     var props = [];
     for(var i = 0; i < this.settings.properties.length; i++){
       var prop = this.settings.properties[i];

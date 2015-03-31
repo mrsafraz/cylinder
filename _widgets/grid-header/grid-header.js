@@ -20,17 +20,25 @@ class GridHeaderWidget extends Widget  {
     if(!this.paginator.options.sort){
 //      this.paginator.options.sort = {};
     }
-      this.paginator.options.sort = {};
+
+    this.paginator.options.sort = {};
+
+    var sortDirection;
     if(this.propertySortedUp){
       this.propertySortedUp = false;
       this.propertySortedDown = true;
-      this.paginator.options.sort[this.property] = -1;
+      sortDirection = -1;
     }
     else {
       this.propertySortedUp = true;
       this.propertySortedDown = false;
-      this.paginator.options.sort[this.property] = 1;
+      sortDirection = 1;
     }
+    var sortProperties = Array.isArray(this.property) ? this.property : [this.property];
+    for(var property of sortProperties){
+      this.paginator.options.sort[property] = sortDirection;
+    }
+
     // reset page
     this.paginator.currentPage = 1;
     this.paginator.refresh();

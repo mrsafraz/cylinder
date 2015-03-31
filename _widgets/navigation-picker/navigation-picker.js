@@ -1,13 +1,15 @@
 import {Widget, Observer, DataService} from 'framework';
 import $ from 'jquery';
 import {PropertyResolver} from '../entity-grid/_lib/PropertyResolver';
+import {SearchCriteriaBuilder} from '../search-input/SearchCriteriaBuilder';
 
 class NavigationPickerWidget extends Widget  {
 
-  constructor(dataService: DataService, propertyResolver: PropertyResolver){
+  constructor(dataService: DataService, propertyResolver: PropertyResolver, searchCriteriaBuilder: SearchCriteriaBuilder){
 
     this.propertyResolver = propertyResolver;
     this.dataService = dataService;
+    this.searchCriteriaBuilder = searchCriteriaBuilder;
     this.entity = null;
     this.property = null;
     this.navProperty = null;
@@ -176,7 +178,7 @@ class NavigationPickerWidget extends Widget  {
     return selectedValue === option;
   }
   
-  applyFilter(searchText){
+  applyFilter(searchText, localOnly = false){
 //    this.entities = this.dataService.getAll(this.navigationEntityType, {
 //      [this.optionsText]: {$contains: searchText},
 //    });    
@@ -185,14 +187,22 @@ class NavigationPickerWidget extends Widget  {
       criteria[key] = this.criteria[key];
     }
     if(!(searchText === '' || searchText === null || searchText === undefined)){
-      criteria[this.optionsText] = {$contains: searchText};
+      criteria['$or'] = this.searchCriteriaBuilder.getOrCriteria(searchText,
+          this.navigationEntityType, this.searchBy || this.optionsText);
+      // criteria[this.optionsText] = {$contains: searchText};
+      console.log('ncriteria', criteria);
     }
-    var options = {};
+    var options = {sort: {[this.optionsText]: 1}};
     for(var key in this.options){
       options[key] = this.options[key];
     }
 //    options.limit: 10;
     options.sort = {[this.optionsText]: 1};
+    if(localOnly){
+    // this.entities = this.dataService.getAll(this.navigationEntityType, this.criteria, {sort: {[this.optionsText]: 1}});
+      this.entities = this.dataService.getAll(this.navigationEntityType, criteria, options);
+      return;
+    }
     this.dataService.findAll(this.navigationEntityType, criteria, options).then(results => {
       this.entities = results;
     });
@@ -204,7 +214,7 @@ class NavigationPickerWidget extends Widget  {
 
     this.entity = settings.entity;
     this.property = settings.property;
-    
+    this.searchBy = settings.searchBy;
     var entityType = this.entity.entityType;
     var props = this.property.split('.');
     var property = entityType.getProperty(props[0]);
@@ -236,7 +246,7 @@ class NavigationPickerWidget extends Widget  {
     else {
       this.navigationEntityType = property.entityType.shortName;
     }
-    this.entities = this.dataService.getAll(this.navigationEntityType, this.criteria, {sort: {[this.optionsText]: 1}});
+    this.applyFilter('', true);
     if(settings.preload){
       this.applyFilter('');
     }

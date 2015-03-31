@@ -40,7 +40,7 @@
             ${property.label}
           </span>
           <span if.bind="property.sortable !== false">
-            <grid-header bind-paginator="paginator" bind-property="property.name"
+            <grid-header bind-paginator="paginator" bind-property="property.sortBy || property.name"
                          bind-label="property.label">
             </grid-header>
           </span>
@@ -51,7 +51,7 @@
     <tbody>
       <tr bind-repeat="entities as entity">
         <td bind-repeat="settings.properties as property">
-        <div bind-if="['date', 'image'].indexOf(property.formType) === -1">
+        <div bind-if="['date', 'image', 'boolean'].indexOf(property.formType) === -1">
           {{getValue(entity, property)}}
         </div>
         <div bind-if="property.formType == 'image'">
@@ -60,6 +60,9 @@
         </div>
         <div bind-if="property.formType == 'date'">
           ${getValue(entity, property)|date}
+        </div>
+        <div bind-if="property.formType == 'boolean'">
+          <i class="fa fa-check" bind-if="getValue(entity, property)"></i>
         </div>
         </td>
         <td class="column-actions">

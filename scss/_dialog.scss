@@ -182,10 +182,20 @@
     }
 }
 
+
 .messageBox .modal-footer .btn {
-  width: 100%;
-  margin: 0;
+  min-width: 70px;
   margin-top: 5px;
+  padding: 7px 15px;
+}
+
+@media (max-width: 767px) {
+  .messageBox .modal-footer .btn {
+    width: 100%;
+    margin: 0;
+    margin-top: 5px;
+    padding: 10px 15px;
+  }
 }
 
 
