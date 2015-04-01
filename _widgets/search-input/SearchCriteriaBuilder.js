@@ -40,12 +40,12 @@ export class SearchCriteriaBuilder {
         else if(property.dataType.name == 'String') {
           criteriaArray.push({[propertyPath]: {$contains: searchKeyword}});
         }
-        else if (property.dataType.name.indexOf('Int') === 0){
+        else if (property.dataType.name == 'Double' || property.dataType.name.indexOf('Int') === 0){
           if(!isNaN(searchKeyword)){
             criteriaArray.push({[propertyPath]: parseInt(searchKeyword)});
           }
         }
-        else {
+        else if(property.dataType.name != 'Boolean') {
           criteriaArray.push({[propertyPath]: searchKeyword});
         }
       }
