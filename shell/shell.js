@@ -42,7 +42,26 @@ class Shell extends RootModule {
     });
   }
 
+  reset(){
+    this.initializer.deinitialize().then(()=> {
+      window.location.reload();
+    });
+  }
+
+  addResetButton(){
+    var $resetButton = $('<a id="shell-reset-button" title="Reset" class="btn btn-light btn-primary" style="position: fixed; z-index: 999; bottom: 0; right: 0;"><i class="fa fa-refresh"></i></a>');
+    $resetButton.on('click', ()=>{
+      this.reset();
+    });
+    $('body').append($resetButton);
+  }
+
+  removeResetButton(){
+    $('#shell-reset-button').remove();
+  }
+
   activate(){
+    this.addResetButton();
     $(document).ajaxStart(()=> {
         this.onAjaxRequest = true;
     });
@@ -51,11 +70,16 @@ class Shell extends RootModule {
     });
     this.authenticator.onChange((authenticated)=> {
       this.isAuthenticated = authenticated;
+      if(this.isAuthenticated){
+        this.removeResetButton();
+      }
     });
     if(this.config.enableAuthentication || !this.config.enableApiServer){
+      this.removeResetButton();
       return super.activate();
     }
     return this.initializer.initialize().then(()=> {
+      this.removeResetButton();
       super.activate();
     });
   }

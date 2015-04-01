@@ -12,7 +12,12 @@ class EntityDetailWidget extends Widget  {
 
   getValue(entity, property){
     if(property.displayText){
-      return property.displayText(this.propertyResolver.getRawValue(entity, property));
+      try {
+        return property.displayText.call(entity, this.propertyResolver.getRawValue(entity, property));
+      }
+      catch(e){
+        return ''; // silently fail invalid displayText function
+      }
     }
     var value = this.propertyResolver.getValue(entity, property);
     if(Array.isArray(value)){
@@ -29,7 +34,11 @@ class EntityDetailWidget extends Widget  {
   }
 
   isEditable(property){
-    return this.editMode && property.canEdit !== false;
+    var canAttr = 'canEdit';
+    if(this.entity.entityAspect.entityState.isAdded()){
+      canAttr = 'canAdd';
+    }
+    return this.editMode && property[canAttr] !== false;
   }
 
   activate(settings){

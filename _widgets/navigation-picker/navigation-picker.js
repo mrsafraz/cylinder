@@ -60,7 +60,12 @@ class NavigationPickerWidget extends Widget  {
 
   getOptionsText(option){
     if(this.displayText){
-      return this.displayText(option);
+      try {
+        return this.displayText.call(this.entity, option);
+      }
+      catch(e){
+        return ''; // silently fail invalid displayText function
+      }
     }
     var value = option;
     var props = this.optionsText.split('.');

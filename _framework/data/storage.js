@@ -5,4 +5,7 @@ export class Storage {
   set(key, value){
     localStorage.setItem(key, JSON.stringify(value));
   }
+  clear(){
+  	localStorage.clear();
+  }
 }

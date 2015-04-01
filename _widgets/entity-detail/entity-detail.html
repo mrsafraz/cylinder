@@ -1,4 +1,4 @@
-<div>
+<div class="entity-detail-container">
   <div class="form-group" bind-repeat="settings.properties as property">
     <label class="control-label">{{property.label}}</label>
     <div if.bind="isEditable(property) && property.formType == 'boolean'" class="xcheckbox-list pull-leftx">
@@ -8,15 +8,20 @@
       </label>
     </div>
     <div if.bind="!isEditable(property)">
-      <p class="form-control-static" if.bind="['image', 'date'].indexOf(property.formType) === -1">
-        {{getValue(entity, property)}}
-      </p>
+      <span if.bind="['image', 'date', 'boolean'].indexOf(property.formType) === -1">
+        {{getValue(entity, property) || '~'}}
+      </span>
       <div if.bind="property.formType == 'image'">
             <img style="max-height: 200px; max-width: 200px;" 
           bind-src="getValue(entity, property) && getValue(entity, property).url()">
       </div>
       <div if.bind="property.formType == 'date'">
         {{getValue(entity, property)|date}}
+        <span if.bind="!getValue(entity, property)">~</span>
+      </div>
+      <div if.bind="property.formType == 'boolean'">
+        <i class="fa fa-check" if.bind="getValue(entity, property)"></i>
+        <span if.bind="!getValue(entity, property)">~</span>
       </div>
     </div>
     <div if.bind="isEditable(property)">
