@@ -59,7 +59,7 @@ class FontAwesomeModule extends Module  {
     // var results = _.where(icons, {id: this.searchText});
     var results = [], values;
     for(var icon of _icons){
-      values = [icon.id, icon.name];
+      values = [icon.id, icon.name].concat(icon.filter || []);
       if(icon.categories){
         values.push('' + icon.categories);
       }
