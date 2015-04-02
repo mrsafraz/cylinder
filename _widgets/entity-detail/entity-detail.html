@@ -1,5 +1,6 @@
 <div class="entity-detail-container">
-  <div class="form-group" bind-repeat="settings.properties as property">
+  <template bind-repeat="settings.properties as property">
+  <div class="form-group" bind-if="canShow(property)">
     <label class="control-label">{{property.label}}</label>
     <div if.bind="isEditable(property) && property.formType == 'boolean'" class="xcheckbox-list pull-leftx">
       <label class="switch">
@@ -46,5 +47,5 @@
       </div>
       </div>
     </div>
-  </div>
+    </template>
 </div>

@@ -58,6 +58,17 @@ class NavigationPickerWidget extends Widget  {
     }, 101);
   }
 
+  getPropValue(obj, prop){
+    var value = obj;
+    var props = prop.split('.');
+    for(var prop of props){
+      if(value){
+        value = value[prop];
+      }
+    }
+    return value;
+  }
+
   getOptionsText(option){
     if(this.displayText){
       try {
@@ -67,14 +78,9 @@ class NavigationPickerWidget extends Widget  {
         return ''; // silently fail invalid displayText function
       }
     }
-    var value = option;
-    var props = this.optionsText.split('.');
-    for(var prop of props){
-      value = value[prop];
-    }
-    return value;
+    return this.getPropValue(option, this.optionsText);
   }
-  
+
   selectValue(value){
 //    alert(this.valueObservable());
     if(this.multiple){
@@ -142,16 +148,6 @@ class NavigationPickerWidget extends Widget  {
       // return value.join(', ');
     }
     return value;
-    var props = this.property.split('.');
-    var value = this.entity;
-    for(var i = 0; i < props.length; i++){
-      if(!value){
-        value = this.caption;
-        break;
-      }
-      value = value[props[i]];
-    }
-    return value;
   }
 
   getManyToManyValue(value, alsoCreate = false){
@@ -189,7 +185,20 @@ class NavigationPickerWidget extends Widget  {
 //    });    
     var criteria = {};
     for(var key in this.criteria){
-      criteria[key] = this.criteria[key];
+      var cond = this.criteria[key];
+      if(typeof cond === 'string' && cond.indexOf('this.') === 0){
+        try {
+          var realProp = cond.replace('this.', '');
+          cond = this.getPropValue(this.entity, realProp);
+          Observer.observe(this.entity, realProp.split('.')[0], ()=> {
+            this.applyFilter('', true);
+          });
+        }
+        catch(e){
+          continue;
+        }
+      }
+      criteria[key] = cond;
     }
     if(!(searchText === '' || searchText === null || searchText === undefined)){
       criteria['$or'] = this.searchCriteriaBuilder.getOrCriteria(searchText,

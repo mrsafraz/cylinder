@@ -22,6 +22,10 @@ class EntityGrid extends Widget  {
     this.editEntity();
   }
 
+  canShow(property){
+    return !property.show || property.show.list !== false;
+  }
+
   editEntity(entity){
     var settings = this.settings;
     settings.entity = entity;

@@ -34,11 +34,22 @@ class EntityDetailWidget extends Widget  {
   }
 
   isEditable(property){
-    var canAttr = 'canEdit';
+    var canAttr = 'edit';
     if(this.entity.entityAspect.entityState.isAdded()){
-      canAttr = 'canAdd';
+      canAttr = 'add';
     }
-    return this.editMode && property[canAttr] !== false;
+    return this.editMode && (!property.can || property.can[canAttr] !== false);
+  }
+
+  canShow(property){
+    var showAttr = 'view';
+    if(this.editMode){
+      showAttr = 'edit';
+      if(this.entity.entityAspect.entityState.isAdded()){
+        showAttr = 'add';
+      }
+    }
+    return !property.show || property.show[showAttr] !== false;
   }
 
   activate(settings){

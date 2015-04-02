@@ -35,7 +35,8 @@
   <table class="table">
     <thead>
       <tr>
-        <th bind-repeat="settings.properties as property">
+        <template bind-repeat="settings.properties as property">
+        <th if.bind="canShow(property)">
           <span if.bind="property.sortable === false">
             ${property.label}
           </span>
@@ -45,12 +46,15 @@
             </grid-header>
           </span>
         </th>
+        </template>
         <th class="column-actions"></th>
       </tr>
     </thead>
     <tbody>
-      <tr bind-repeat="entities as entity">
-        <td bind-repeat="settings.properties as property">
+      <template bind-repeat="entities as entity">
+      <tr>
+        <template bind-repeat="settings.properties as property">
+        <td if.bind="canShow(property)">
         <div bind-if="['date', 'image', 'boolean'].indexOf(property.formType) === -1">
           {{getValue(entity, property)}}
         </div>
@@ -65,12 +69,14 @@
           <i class="fa fa-check" bind-if="getValue(entity, property)"></i>
         </div>
         </td>
+        </template>
         <td class="column-actions">
             <a on-click="editEntity(entity);" class="btn btn-primary btn-outline btn-xs btn-icon btn-round">
               <i class="fa fa-info"></i>
             </a>
         </td>
       </tr>
+      </template>
     </tbody>
   </table>
 
