@@ -1,0 +1,32 @@
+<section class="row">
+  <div class="col-md-3">
+	<p>
+	<strong>Module</strong>, <strong>Widget</strong> and <strong>Dialog</strong> classes has built in support for events
+	</p>
+  	<label>Your Name</label>
+  	<input type="text" class="form-control" value.bind="yourName">
+  	<button class="btn btn-primary btn-light" click.delegate="sayHi()">Say Hi</button>
+  </div>
+  <div class="col-md-9">
+<pre><code class="javascript" hljs.bind="true">
+import {Module} from 'framework';
+
+class Sub2Module extends Module  {
+
+	constructor(){
+		this.yourName = 'Dragon';
+		this.on('sub2:hi').then((name)=> {
+			alert('Hi ' + name);
+		});
+	}
+
+	sayHi(){
+		this.trigger('sub2:hi', this.yourName);
+	}
+
+}
+
+export default Sub2Module;
+</code></pre>
+  </div>
+</section>

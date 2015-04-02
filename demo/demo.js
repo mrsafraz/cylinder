@@ -105,6 +105,13 @@ class Demo extends Module {
         title: 'Layout',
         hasChildRoutes: true,
         nav: true,
+      },
+      {
+        route: 'events',
+        moduleId: 'events',
+        title: 'Events',
+        hasChildRoutes: true,
+        nav: true,
       }
     ];
   }

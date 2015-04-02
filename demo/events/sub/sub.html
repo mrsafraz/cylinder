@@ -1,0 +1,45 @@
+<section class="row">
+<div class="col-md-3">
+  	<button disabled.bind="started" class="btn btn-success btn-light" click.delegate="start()">Start Adding Items</button>
+  	<button disabled.bind="!started || stopped" class="btn btn-danger btn-light" click.delegate="stop()">Stop Adding Items</button>
+  	<ul>
+  		<li repeat.for="item of items">${item}</li>
+  	</ul>
+  	<span if.bind="stopped">That's all</span>
+
+</div>
+<div class="col-md-9">
+<pre><code class="javascript" hljs.bind="true">
+import {Events} from 'framework';
+
+export class MyService {
+  constructor(){
+    this.on('item:start').then(()=> {
+      this.trigger('item:started');
+      this.addItem();
+    });
+    // ...
+  }
+}
+
+Events.support(MyService); // important
+</code></pre>
+<pre><code class="javascript" hljs.bind="true">
+class SubModule extends Module  {
+
+  constructor(myService: MyService){
+    this.myService = myService;
+    this.myService.on('item:started').then(()=> {
+      this.started = true;
+    });
+    // ...
+  }
+
+  start(){
+    this.myService.trigger('item:start');
+  }
+}
+</code></pre>
+</div>
+
+</section>

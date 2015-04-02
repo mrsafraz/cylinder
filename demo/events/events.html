@@ -1,0 +1,16 @@
+<section class="row">
+  <div class="col-md-2">
+  	${itemCount} items <br>
+  	<span if.bind="stopped"><i class="fa fa-exclamation"></i> Stopped</span>
+    <ul class="nav nav-pills nav-stacked">
+      <li repeat.for="route of navigation" css.bind="{active: route.isActive}">
+        <a href.bind="route.href">
+            ${route.title}
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-10">
+  	<router></router>
+  </div>
+</section>

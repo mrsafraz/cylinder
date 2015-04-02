@@ -5,6 +5,8 @@ import {RouteBuilder} from './route-builder';
 import {ModuleLoader} from '../core/module-loader';
 import {annotate, TransientScope} from 'di';
 
+import {Events} from '../core/events';
+
 function ensureDialogInstance(objOrModuleId) {
   return system.defer(function (dfd) {
       if (system.isString(objOrModuleId)) {
@@ -100,6 +102,7 @@ export class Dialog {
 
 }
 
+Events.support(Dialog);
 
 class ActionSheetDialog extends Dialog {
   constructor(){

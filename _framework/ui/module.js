@@ -2,6 +2,7 @@ import router from 'plugins/router';
 import {RouteBuilder} from './route-builder';
 import ko from 'knockout';
 import app from 'durandal/app';
+import {Events} from '../core/events';
 
 var cachedRouters = {};
 
@@ -98,6 +99,8 @@ export class Module {
     this.router = _router;
   }
 }
+
+Events.support(Module);
 
 export class RootModule extends Module {
 
