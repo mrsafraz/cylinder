@@ -46,7 +46,8 @@ export class Application {
     var _systemWidgets = [
       'clamped-text',
       'date-picker',
-      'dropdown-picker',
+      'option-picker',
+      'entity-picker',
       'navigation-picker',
       'search-input',
       'pagination',

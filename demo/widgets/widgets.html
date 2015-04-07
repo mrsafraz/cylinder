@@ -1,120 +1,62 @@
 <section>
-	<div class="page-header">
-		<h3>Chart</h3>
-	</div>
-	<div>
-		<chart chart.bind="testChart"></chart>
-	</div>
-	<div class="page-header">
-		<h3>Tree Selector</h3>
-	</div>
-	<div>
-		<tree-selector nodes.bind="nodes" on-select.bind="onNodeSelectCallback()"></tree-selector>
-	</div>
-	<div class="page-header">
-		<h3>Toast</h3>
-	</div>
-	<div>
-		<a href="#" click.delegate="showToast()">Show Toast</a>
-		<a class="btn btn-success" click.delegate="showToast('Positive')">Show Positive Toast</a>
-		<a class="btn btn-danger" click.delegate="showToast('Negative')">Show Negative Toast</a>
-	</div>
-	<div class="page-header">
-		<h3>Dialog</h3>
-	</div>
-	<div>
-		<a href="#" click.delegate="showDialog()">Show Dialog</a>
-		<a click.delegate="showDialog($event)">Show as Popup</a>
-		Position:
-		<div class="toggle toggle-xs">
-			<label repeat.for="position of popoverPositions">
-				<input type="radio" checked.bind="popoverPosition" value.bind="position">
-				<span>${position}</span>
-			</label>
-		</div>
-		Alignment:
-		<div class="toggle toggle-xs">
-			<label repeat.for="alignment of popoverAlignments">
-				<input type="radio" checked.bind="popoverAlignment" value.bind="alignment">
-				<span>${alignment}</span>
-			</label>
-		</div>
-	</div>
-	<div class="page-header">
-		<h3>File Upload</h3>
-	</div>
-	<div>
-		<div class="attachment-container">
-			<div class="attachment-block">
-				<file-upload file.bind="attachment"></file-upload>
-			</div>
-		</div>
-	</div>
-	<div class="page-header">
-		<h3>Clamped Text</h3>
-	</div>
-	<div>
-		<clamped-text
-			text.bind="longText"
-			lines.bind="2"
-			reveal.bind="revealCallback()"
-		></clamped-text>
-	</div>
-	<div class="page-header">
-		<h3>Date Picker</h3>
-	</div>
-	<div>
-		<a class="btn btn-default">
-			<date-picker object.bind="myModel" property.bind="'someDate'" caption.bind="'No Date!'" on-change.bind="datePickerCallback()"></date-picker>
-		</a>
-	</div>
-	<div class="page-header">
-		<a click.delegate="dropdown($event)"><h3>Dropdown Picker</h3></a>
-	</div>
-	<div>
-		Color: ${myModel.color}
-		<!-- <date-picker object.bind="myModel" property.bind="'someDate'" caption.bind="'No Date!'" on-change.bind="datePickerCallback()"></date-picker> -->
-		<!-- <dropdown-picker object.bind="myModel" property.bind="'color'" options.bind="colors" caption.bind="'-- Choose Color --'"></dropdown-picker> -->
-	</div>
-	<div class="page-header">
-		<h3>Navigation Picker</h3>
-	</div>
-	<div>
-		Branch: ${selectedBranch.name}<br>
-		Branch Type: ${selectedBranch.branchType && selectedBranch.branchType.name}
-		<navigation-picker entity.bind="selectedBranch"
-		                   property.bind="'branchType.name'">
-		</navigation-picker>
-	</div>
+  <div>
+  	<h2>Option Picker</h2>
+  	Selected Color: ${optionDemo.selectedColor && optionDemo.selectedColor.name}
+  	<option-picker options.bind="colors" object.bind="optionDemo" property.bind="'selectedColor'" display-text.bind="function(color){ return color.name; }"></option-picker>
 
-	<div class="page-header">
-		<h3>Paginator</h3>
-	</div>
-	<div>
+<div style="margin: 20 0;"></div>
 
-	<div class="row">
-		<div class="col-md-9">
-			<search-input paginator.bind="paginator" properties.bind="[
-			 'name',
-			 'branchType.name',
-			]" label.bind="'Search by Branch name, Branch Type'">
-			</search-input>
-		</div>
-		<div class="col-md-3">
-            <grid-header paginator.bind="paginator" property.bind="'name'" label.bind="'Branch Name'"></grid-header>
-            <grid-header paginator.bind="paginator" property.bind="'branchType.name'" label.bind="'Branch Type Name'"></grid-header>
-		</div>
-	</div>
-	<ul class="list-group">
-		<li class="list-group-item" repeat.for="branch of branches">
-			<p>
-				<strong>${branch.name}</strong><br>
-				${branch.branchType && branch.branchType.name}
-			</p>
-		</li>
-	</ul>
-	<div>
-	  <pagination paginator.bind="paginator"></pagination>
-	</div>
-	</div>
+<pre><code class="javascript" hljs.bind="true">
+	this.colors = [
+		new Color('Red'),
+		new Color('Blue'),
+		new Color('White'),
+		new Color('Orange'),
+		new Color('Black')
+	];
+	this.optionDemo = {
+		selectedColor: null,
+		darkColors: [this.colors[0], this.colors[1], this.colors[4]]
+	};
+</code></pre>
+
+<pre><code class="html" hljs.bind="true">
+&lt;option-picker options.bind="colors" object.bind="optionDemo" property.bind="'selectedColor'" display-text.bind="function(color){ return color.name; }"&gt;&lt;/option-picker&gt;
+</code></pre>
+
+<div style="margin: 20 0;"></div>
+
+  	<h3>Multiple Selection</h3>
+  	Dark Colors: <span repeat.for="color of optionDemo.darkColors">${color.name}, </span>
+  	<option-picker options.bind="colors" object.bind="optionDemo" property.bind="'darkColors'" display-text.bind="function(color){ return color.name; }"></option-picker>
+
+<div style="margin: 20 0;"></div>
+
+<pre><code class="html" hljs.bind="true">
+&lt;option-picker options.bind="colors" object.bind="optionDemo" property.bind="'darkColors'" display-text.bind="function(color){ return color.name; }"&gt;&lt;/option-picker&gt;
+</code></pre>
+
+<div style="margin: 20 0;"></div>
+
+  	<h2>Entity Picker</h2>
+  	<div>
+  		Selected branch: ${entityDemo.selectedBranch && entityDemo.selectedBranch.name}</span>
+  	</div>
+  	<entity-picker entity-type.bind="'Branch'" object.bind="entityDemo" property.bind="'selectedBranch'" search-by.bind="['name', 'code']" display-text.bind="function(branch){ return branch.name; }"></entity-picker>
+
+<div style="margin: 20 0;"></div>
+
+<pre><code class="javascript" hljs.bind="true">
+  this.entityDemo = {
+    selectedBranch: null,
+  }
+</code></pre>
+
+<pre><code class="html" hljs.bind="true">
+&lt;entity-picker entity-type.bind="'Branch'" object.bind="entityDemo" property.bind="'selectedBranch'" search-by.bind="['name', 'code']" display-text.bind="function(branch){ return branch.name; }"&gt;&lt;/entity-picker&gt;
+</code></pre>
+
+<div style="margin: 20 0;"></div>
+
+  </div>
 </section>

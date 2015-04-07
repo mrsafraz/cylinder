@@ -212,11 +212,13 @@ class NavigationPickerWidget extends Widget  {
     }
 //    options.limit: 10;
     options.sort = {[this.optionsText]: 1};
-    if(localOnly){
+
     // this.entities = this.dataService.getAll(this.navigationEntityType, this.criteria, {sort: {[this.optionsText]: 1}});
       this.entities = this.dataService.getAll(this.navigationEntityType, criteria, options);
+    if(localOnly || !criteria['$or']) {
       return;
     }
+
     this.dataService.findAll(this.navigationEntityType, criteria, options).then(results => {
       this.entities = results;
     });

@@ -1,0 +1,35 @@
+<div class="navigation-picker-container">
+  <div class="navigation-mask" on-click="dismiss()" bind-if="editMode">
+  </div>
+  <div class="navigation-picker">
+    <div class="selector">
+      <div class="list-group">
+        <a href="#" class="list-group-item" on-click="startEditing()">
+          <span class="indicator"><i class="fa fa-caret-down"></i></span>
+          <p class="list-group-item-text">
+            {{getSelectedValue()}} &nbsp;
+          </p>
+        </a>
+      </div>
+    </div>
+    <div class="results" bind-if="editMode">
+      <div bind-if="editMode">
+        <div class="input-container">
+            <i class="fa fa-times-circle" bind-if="searchText !== ''" on-click="reset()"></i>
+            <input type="text" class="form-control" bind-value="searchText"
+                   placeholder="{{getSelectedValue()}}" on-blurk="stopEditing()">
+            <button class="btn btn-primary btn-light" type="button" on-click="dismiss()">Done</button>
+        </div>
+      </div>
+
+      <div class="list-group" bind-if="editMode">
+        <a href="#" class="list-group-item" bind-repeat="options as option" on-click="selectValue(option)">
+          <i class="fa fa-check text-muted pull-left" bind-if="isOptionSelected(option)"></i>
+          <p class="list-group-item-text">
+            {{getOptionsText(option)}} 
+          </p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

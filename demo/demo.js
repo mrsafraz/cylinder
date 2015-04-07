@@ -1,7 +1,8 @@
 import {Module} from 'framework';
-import hljs from '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js';
-// import hljsCss from 'text!//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css';
+import highlight from './vendor/highlight/highlight';
 import ko from 'knockout';
+
+var hljs = window.hljs;
 
 ko.bindingHandlers.hljs = {
     update: function(element, valueAccessor) {
@@ -16,7 +17,6 @@ var hljsInjected = false;
 class Demo extends Module {
   constructor(){
     this.resetSideBars();
-    this.injectHljs();
   }
   resetSideBars(){
     this.isLeftSideActive = false;
@@ -116,28 +116,6 @@ class Demo extends Module {
     ];
   }
 
-  injectHljs(){
-    if(hljsInjected){
-      return;
-    }
-
-
-    var styles = document.createElement('link');
-    styles.rel = 'stylesheet';
-    styles.type = 'text/css';
-    styles.media = 'screen';
-    styles.href = '//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css';
-    document.getElementsByTagName('head')[0].appendChild(styles);
-
-    hljsInjected = true;
-
-    return;
-
-    var hljsScript = document.createElement('script');
-    hljsScript.setAttribute('src','//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js');
-    document.head.appendChild(hljsScript);
-
-  }
   activate(){
     this.resetSideBars();
   }
