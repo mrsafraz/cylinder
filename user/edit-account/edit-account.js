@@ -61,6 +61,8 @@ class EditAccountDialog extends Dialog {
 
   activate(){
     this.findUserInfo();
+    this.enableChangePassword(false);
+    this.clearFields();
   }
 
   clearFields(){
@@ -81,6 +83,7 @@ class EditAccountDialog extends Dialog {
       (this.username, this.newPassword, this.existingPassword).then(()=> {
         this.close('done');
         this.clearFields();
+        this.logout();
       }, (error)=> {
         this.clearFields();
         if(('' + error).indexOf('Invalid hash') !== -1) {
