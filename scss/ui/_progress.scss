@@ -1,0 +1,42 @@
+$progress-bg: #E0E0E0;
+$progress-fg: $brand-primary;
+$progress-radius: 0;
+
+progress {
+	background-color: $progress-bg;
+	border: 0;
+	border-radius: $progress-radius;
+	&::-webkit-progress-bar {
+		background-color: $progress-bg;
+		border-radius: $progress-radius;
+	}
+	&::-webkit-progress-value {
+		background: $progress-fg;
+		border-radius: $progress-radius;
+	}
+	&::-moz-progress-bar {
+		background: $progress-fg;
+		border-radius: $progress-radius;
+	}
+}
+
+// @each $variant, $color in (high: $meter-fill-high, medium: $meter-fill-medium, low: $meter-fill-low) {
+@each $variant, $color in (warning: $brand-warning, success: $brand-success, danger: $brand-danger) {
+  progress.#{$variant} {
+		&::-webkit-progress-value {
+			background: $color;
+		}
+		// &::-moz-progress-bar {
+		// 	background: $brand-#{$variant};
+		// }
+  }
+}
+
+progress.success {
+	&::-webkit-progress-value {
+		background: $brand-success;
+	}
+	&::-moz-progress-bar {
+		background: $brand-success;
+	}
+}

@@ -8,3 +8,49 @@ input[type="search"],
 textarea {
   -webkit-appearance: none;
 }
+
+// Custom Form
+
+.form-group {
+	// background: yellow;
+	// border-bottom: 1px solid #AAA;
+	border-bottom: 1px solid #CCC;
+	padding: 10px 0;
+	// padding: 0;
+	margin: 0;
+
+	.form-control {
+		border: 0;
+		border-radius: 0;
+		padding-left: 0;
+		padding-right: 0;
+		margin-bottom: -10px;
+	}
+
+	.selector .list-group .list-group-item {
+		border: 0;
+		padding-left: 0;
+		padding-right: 0;
+		&:hover {
+			background: transparent;
+		}
+	}
+
+	.modal-body & {
+		margin: 0 -20px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	&.horizontal {
+		@include clearfix;
+		label {
+			float: left;
+			padding-top: 11px;
+			padding-right: 11px;
+			// & + .control-group {
+			// 	float: left;
+			// }
+		}
+	}
+}

@@ -284,6 +284,17 @@ $zindex-main: 1;
     
       .nav {
 //        border-radius: 0;
+        .badge {
+          color: #999;
+          color: #AAA;
+          font-weight: bold;
+          background: transparent;
+          background: #FAFAFA;
+          // background: #FFF;
+          // float: right;
+          float: none;
+          font-size: 70%;
+        }
         li a {
           border-radius: 0;
           font-weight: bold;
@@ -300,6 +311,9 @@ $zindex-main: 1;
           // background: #FAFAFA;
           color: $brand-primary;
           font-weight: bold;
+          .badge {
+            color: $brand-primary;
+          }
         }
       }
       .panel {
