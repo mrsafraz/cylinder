@@ -10,6 +10,7 @@ export {Authenticator} from './auth/authenticator';
 export {AuthenticationProvider} from './auth/authentication-provider';
 export {Encoder} from './auth/encoder';
 export {WsseRequest} from './auth/wsse-request';
+export {Authorizer} from './auth/authorizer';
 
 export {Entity} from './data/entity';
 export {Initializer} from './data/initializer';

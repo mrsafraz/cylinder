@@ -4,16 +4,21 @@ import {Initializer} from 'framework';
 import {Config} from 'framework';
 import $ from 'jquery';
 import EditAccountDialog from '../user/edit-account/edit-account';
+import {Authorizer} from 'framework';
+import {CurrentUser} from '_lib/CurrentUser';
 
 class Shell extends RootModule {
 
-  constructor(authenticator: Authenticator, initializer: Initializer, config: Config, editAccountDialog: EditAccountDialog){
+  constructor(authenticator: Authenticator, initializer: Initializer, config: Config, currentUser: CurrentUser, authorizer: Authorizer, editAccountDialog: EditAccountDialog){
     this.authenticator = authenticator;
     this.initializer = initializer;
     this.config = config;
+    this.currentUser = currentUser;
+    this.authorizer = authorizer;
     this.onAjaxRequest = false;
     this.isAuthenticated = !this.config.enableAuthentication;
     this.editAccountDialog = editAccountDialog;
+    this.navigationFiltered = [];
   }
 
   get routes(){
@@ -60,6 +65,17 @@ class Shell extends RootModule {
     $('#shell-reset-button').remove();
   }
 
+  filterNavigation(){
+    var navigationAll = this.navigation;
+    var navigationFiltered = [];
+    for(var nav of navigationAll){
+      if(this.authorizer.canAccess(nav)){
+        navigationFiltered.push(nav);
+      }
+    }
+    this.navigationFiltered = navigationFiltered;
+  }
+
   activate(){
     this.addResetButton();
     $(document).ajaxStart(()=> {
@@ -69,6 +85,7 @@ class Shell extends RootModule {
         this.onAjaxRequest = false;
     });
     this.authenticator.onChange((authenticated)=> {
+      this.filterNavigation();
       this.isAuthenticated = authenticated;
       if(this.isAuthenticated){
         this.removeResetButton();

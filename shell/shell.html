@@ -13,7 +13,7 @@
         </a>
       </div> -->
       <div class="navigation links" if.bind="isAuthenticated">
-        <a href="${route.href}" repeat.bind="route of navigation" title="${route.title}"
+        <a href="${route.href}" repeat.bind="route of navigationFiltered" title="${route.title}"
         css.bind="{active: route.isActive}"
         >
           <div class="icon-wrapper">

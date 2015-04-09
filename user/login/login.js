@@ -2,12 +2,14 @@ import {Authenticator} from 'framework';
 import {Initializer} from 'framework';
 import {Progress} from 'framework';
 import {Config} from 'framework';
+import {Authorizer} from 'framework';
 
 class Login {
 
-  constructor(authenticator: Authenticator, initializer: Initializer, progress: Progress, config: Config){
+  constructor(authenticator: Authenticator, authorizer: Authorizer, initializer: Initializer, progress: Progress, config: Config){
     this.config = config;
     this.authenticator = authenticator;
+    this.authorizer = authorizer;
     this.initializer = initializer;
     this.progress = progress;
     this.loadingPercentage = 0;
@@ -64,17 +66,32 @@ class Login {
     })
   }
 
+  authorize(){
+    if(this.config.enableAuthorization){
+      return this.authorizer.authorize();
+    }
+    return new Promise((resolve, reject)=> {
+      resolve();
+    });
+  }
+
   login(){
     // copy the plain password before it's removed
     var plainPassword = this.plainPassword + '';
     this.progress.start();
     this.startLogin();
     this.authenticator.authenticate(this.username, plainPassword).then(()=> {
-      this.stopLoggingIn();
-      this.isLoggedIn = true;
-      this.initialize().then(()=> {
-        this.progress.done();
-        this.authenticator.navigateBack();
+      this.authorize().then(()=> {
+        this.stopLoggingIn();
+        this.isLoggedIn = true;
+        this.initialize().then(()=> {
+          this.progress.done();
+          this.authenticator.navigateBack();
+        });
+      }, (error)=> {
+        this.errorMessage = error.message || error;
+        this.loginFailed();
+        this.stopLoggingIn();
       });
     }, (error)=> {
       this.errorMessage = error.message || error;
