@@ -9,7 +9,8 @@
   .panel {
     border: 0;
     @include box-shadow(none);
-    background: transparent;
+    // background: transparent;
+    background: #FFF;
     .panel-heading {
       background: transparent;
       border: 0;
@@ -21,6 +22,11 @@
       // border: 2px solid #EEE;
 
       // background: lighten($brand-primary, 10%);
+      margin-top: 20px;
+    }
+    .form-control[disabled] {
+      background: transparent;
+      opacity: 0.75;
     }
   }
 }
