@@ -1,6 +1,25 @@
 import {Widget} from 'framework';
 import $ from 'jquery';
-import dialog from 'plugins/dialog';
+import {Dialog} from 'framework';
+
+class RevealDialog extends Dialog {
+	constructor(text){
+		this.autoclose = true;
+		this.text = text;
+	}
+	revealAt(target){
+		this.show({}, {
+			popover: target,
+		});
+	}
+	getView(){
+		return $(`<div class="modal-content">
+			<div class="modal-body text-justify">
+			<p>\${text}</p>
+			<a href="#" class="secondary expand button" click.delegate="close()">Close</a>
+		</div></div>`).get(0);
+	}
+}
 
 class ClampedText extends Widget {
 	constructor(){
@@ -49,33 +68,9 @@ class ClampedText extends Widget {
 		this.revealContent(event);
 	}
 
-	revealContent(event){
-		var item = {
-			text: this.text,
-			getView: function(){
-				return $(`<div class="grid-content text-justify" style="padding-top: 1rem">
-					<p>\${text}</p>
-					<a href="#" class="secondary expand button" click.delegate="close()">Close</a>
-				</div>`).get(0);
-			},
-			autoclose: true,
-			// animationIn: 'hingeInFromMiddleX',
-			// animationOut: 'hingeOutFromMiddleX',
-			animationIn: 'fadeIn',
-			animationOut: 'fadeOut',
-			animationSpeed: 'fast',
-			overlay: true,
-			position: 'left',
-			size: 'small',
-			close: function(){
-				dialog.close(this);
-			},
-			target: $(this.view).find('.popup-target').get(0),
-			// target: $(this.view).find('a').get(0),
-		};
-		dialog.show(item);
-		// dialog.showPopup(item);
-		// dialog.showActionsheet(item);
+	revealContent($event){
+		var revealDialog = new RevealDialog(this.text);
+		revealDialog.revealAt($event.target);
 	}
 
 	attached(view){

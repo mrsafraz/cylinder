@@ -7,12 +7,15 @@ class TreeSelector {
 		this.treeSelectorPopup = treeSelectorPopup;
 		this.chosenNode = null;
 		this.nodes = [];
+		this.caption = 'Select';
+		this.title = 'All';
 	}
 	treeSelect($event){
 		this.treeSelectorPopup.show({
 			onSelect: this.onSelect,
 			selected: this.chosenNode,
-			nodes: this.nodes
+			nodes: this.nodes,
+			title: this.title,
 		}, {
 			popover: $event.target,
 			autoclose: true,
@@ -30,6 +33,12 @@ class TreeSelector {
 	activate(settings){
 		this.onSelect = settings.onSelect;
 		this.nodes = settings.nodes;
+		if(settings.caption){
+			this.caption = settings.caption;
+		}
+		if(settings.title){
+			this.title = settings.title;
+		}
 	}
 }
 

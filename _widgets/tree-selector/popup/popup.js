@@ -8,6 +8,7 @@ class TreeSelector extends Dialog {
 		this.chosenNode = null;
 		this.chosenNodeLast = null;
 		this.leafOnly = true;
+		this.rootTitle = 'All';
 	}
 
 	reset(){
@@ -83,6 +84,9 @@ class TreeSelector extends Dialog {
 		this.chosenNode = null;
 		this.chosenNodeLast = null;
 		this.onSelect = settings.onSelect;
+		if(settings.title){
+			this.rootTitle = settings.title;
+		}
 		this.reset();
 		if(selectedNode){
 			if(selectedNode.parent){
