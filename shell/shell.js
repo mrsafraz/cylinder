@@ -19,6 +19,9 @@ class Shell extends RootModule {
     this.isAuthenticated = !this.config.enableAuthentication;
     this.editAccountDialog = editAccountDialog;
     this.navigationFiltered = [];
+    this.currentUser.on('appCategory.changed', (category)=> {
+      this.filterNavigation();
+    });
   }
 
   get routes(){
@@ -68,7 +71,13 @@ class Shell extends RootModule {
   filterNavigation(){
     var navigationAll = this.navigation;
     var navigationFiltered = [];
+    var currentAppCategory = this.currentUser.getAppCategory();
+    var categories;
     for(var nav of navigationAll){
+      categories = nav.categories || [];
+      if(categories.indexOf(currentAppCategory) === -1){
+        continue;
+      }
       if(this.authorizer.canAccess(nav)){
         navigationFiltered.push(nav);
       }

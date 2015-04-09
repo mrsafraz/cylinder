@@ -12,7 +12,26 @@
   <div if.bind="username && !changePassword">
     <!-- <div class="modal-body"></div> -->
     <div class="modal-body">
-      <a class="btn btn-primary btn-light" click.delegate="enableChangePassword()">${'Change Password'|trans}</a>
+      <div class="list-group collapsed">
+        <a href="#" class="list-group-item" click.delegate="enableChangePassword()">
+          ${'Change Password'|trans}
+          <i class="fa fa-chevron-right pull-right"></i>
+        </a>
+      </div>
+      <div style="margin: 40px 0 30px 0;">
+        <label style="margin: 0;">${'Application Group'|trans}</label>
+      </div>
+      <div class="list-group collapsed">
+        <template repeat.for="category of appCategories">
+          <div if.bind="currentAppCategory == category.code" class="list-group-item">
+            <i class="fa fa-check"></i> ${category.title|trans}
+          </div>
+          <a if.bind="currentAppCategory != category.code" href="#"
+          class="list-group-item" click.delegate="switchAppCategory(category)">
+            ${category.title|trans}
+          </a>
+        </template>
+      </div>
     </div>
   </div>
   <div if.bind="username && changePassword">
@@ -42,7 +61,7 @@
     </div>
 
     <div class="modal-footer">
-      <button type="submit" class="btn btn-primary" click.delegate="saveChanges()">${'Save Changes'|trans}</button>
+      <button type="submit" class="btn btn-primary" click.delegate="saveChanges()">${'Save'|trans}</button>
       <button type="button" class="btn btn-default" on-click="close();">${'Close'|trans}</button>
     </div>
   </div>
