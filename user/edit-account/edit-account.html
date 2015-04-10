@@ -9,10 +9,10 @@
     </h3>
   </div>
 
-  <div if.bind="username && !changePassword">
     <!-- <div class="modal-body"></div> -->
     <div class="modal-body">
-      <div class="list-group collapsed">
+      <div>
+      <div class="list-group collapsed" if.bind="username && !changePassword">
         <a href="#" class="list-group-item" click.delegate="enableChangePassword()">
           ${'Change Password'|trans}
           <i class="fa fa-chevron-right pull-right"></i>

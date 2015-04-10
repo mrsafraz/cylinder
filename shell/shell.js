@@ -86,6 +86,7 @@ class Shell extends RootModule {
   }
 
   activate(){
+    this.filterNavigation();
     this.addResetButton();
     $(document).ajaxStart(()=> {
         this.onAjaxRequest = true;
