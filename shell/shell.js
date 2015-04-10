@@ -78,7 +78,7 @@ class Shell extends RootModule {
       if(categories.indexOf(currentAppCategory) === -1){
         continue;
       }
-      if(this.authorizer.canAccess(nav)){
+      if(!this.config.enableAuthorization || this.authorizer.canAccess(nav)){
         navigationFiltered.push(nav);
       }
     }
