@@ -1,9 +1,12 @@
 import http from 'plugins/http';
 
 export class Http {
-	constructor(){
-		for(var key in http){
-			this[key] = http[key];
+	doClone(obj){
+		for(var key in obj){
+			this[key] = obj[key];
 		}
+	}
+	constructor(){
+		this.doClone(http);
 	}
 }

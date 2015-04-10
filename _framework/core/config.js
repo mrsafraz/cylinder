@@ -1,8 +1,11 @@
 export class Config {
+	doClone(obj){
+		for(var key in obj){
+			this[key] = obj[key];
+		}
+	}
 	constructor(params = {}){
 		this._params = params;
-		for(var key in params){
-			this[key] = params[key];
-		}
+		this.doClone(params);
 	}
 }
