@@ -4,6 +4,7 @@ import ko from 'knockout';
 //import fileBindings from 'lib/kobindings/fileBindings';
 import koFileBindings from 'knockout-file-bindings';
 import {ColorFactory} from './ColorFactory';
+import {Dialog} from 'framework';
 
 
 // define(['kingdom', 'jquery', 'knockout', 'lib/kobindings/fileBindings'], function(kingdom, $, ko, fileBindings) {
@@ -67,11 +68,23 @@ class FileUploadWidget extends Widget {
         return;
     }
 
-    resetFile(){
-        var fileData = this.getFileData();
-        if(fileData && typeof fileData.clear === 'function'){
-            fileData.clear();
-        }
+    resetFile($event){
+        Dialog.showContent(
+            '<div class="list-group collapsed text-center">'
+            + '<a href="#" click.delegate="close(true)" class="list-group-item">'
+            +'<span class="text-danger">Reset File</span></a>'
+            + '<a href="#" click.delegate="close()" class="list-group-item">Cancel</a> </div>', {}, {
+            popover: $event.target,
+            autoclose: true,
+            // position: 'top right',
+        }).then((ok)=> {
+            if(ok){
+                var fileData = this.getFileData();
+                if(fileData && typeof fileData.clear === 'function'){
+                    fileData.clear();
+                }
+            }
+        });
     }
 
     activate(settings){
@@ -116,9 +129,7 @@ class FileUploadWidget extends Widget {
         var isInvalidFileData = false;
         if(this.getFileData().dataURL()){
             var file = this.getFileData().file();
-            console.log('File 1 ', this.getFileData().dataURL());
             if(file){
-            console.log('File 2');
                 staticFile = false;
                 fileInfo.name = file.name;
                 fileInfo.ext = this.getExt(file);
@@ -133,10 +144,8 @@ class FileUploadWidget extends Widget {
             }
         }
         if(staticFile){// && !this.settings.editable) {
-            console.log('File 3');
             var file = ko.unwrap(this.settings.file);
             if(file){
-            console.log('File 4');
                 fileInfo.name = file.name;
                 fileInfo.ext = file.extension || '';
                 fileInfo.color = this.getColor(fileInfo.ext);

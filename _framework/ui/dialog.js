@@ -25,6 +25,11 @@ export class Dialog {
 
   // static closeAll(){
   // }
+  //
+  static showContent(content, activationData, options = {}){
+    var instance = new SimpleDialog(content);
+    return instance.show(activationData, options);
+  }
 
   show(activationData, options = {}){
     var context;
@@ -103,6 +108,21 @@ export class Dialog {
 }
 
 Events.support(Dialog);
+
+export class SimpleDialog extends Dialog {
+  constructor(content){
+    this.content = content;
+  }
+  getView(){
+    return viewEngine.processMarkup([
+      '<section class="modal-content">',
+        '<div class="modal-body">',
+          this.content,
+        '</div>',
+      '</section>',
+      ].join('\n'));
+  }
+}
 
 class ActionSheetDialog extends Dialog {
   constructor(){
