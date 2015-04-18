@@ -108,7 +108,7 @@ export class FileEntity extends Entity {
                     return getDataURLFromBase64String(this.contentBase64, this.mimeType);
                 }
                 if (this.entityAspect.entityState == breeze.EntityState.Added) {
-                    return getNoFileUrl();
+                    // return getNoFileUrl();
                 }
                 if (!this.useBase64
                         && this.entityAspect.entityState != breeze.EntityState.Added
@@ -118,7 +118,7 @@ export class FileEntity extends Entity {
                     fileData.dataURL(url);
                     return url;
                 }
-                return getNoFileUrl();
+                // return getNoFileUrl();
             });
         }
 
