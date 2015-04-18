@@ -126,7 +126,6 @@ class FileUploadWidget extends Widget {
     getFile(){
         var fileInfo = {isEmpty: true};
         var staticFile = true;
-        var isInvalidFileData = false;
         if(this.getFileData().dataURL()){
             var file = this.getFileData().file();
             if(file){
@@ -138,9 +137,6 @@ class FileUploadWidget extends Widget {
                 fileInfo.isImage = file.type.indexOf('image/') === 0;
                 fileInfo.size = this.getSize(file.size);
                 fileInfo.isEmpty = false;
-            }
-            else {
-                isInvalidFileData = true;
             }
         }
         if(staticFile){// && !this.settings.editable) {
@@ -156,7 +152,7 @@ class FileUploadWidget extends Widget {
                 if(['undefined', 'null', 'false', 'true'].indexOf(fileInfo.url) !== -1){
                     fileInfo.url = null;
                 }
-                fileInfo.isEmpty = isInvalidFileData || !fileInfo.url;
+                fileInfo.isEmpty = !fileInfo.url;
             }
         }
         return fileInfo;

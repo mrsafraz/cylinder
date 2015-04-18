@@ -65,6 +65,9 @@ export class FileEntity extends Entity {
     }
 
     getUrl(){
+        if(!this.id || this.id < 1){
+            return null;
+        }
         return getFileUrlForId(this.urlPrefix, this.id, null);
     }
 
