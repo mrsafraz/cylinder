@@ -1,16 +1,16 @@
 import {Dialog} from 'framework';
 import {Config} from 'framework';
-import {CurrentUser} from '_lib/CurrentUser';
 import {Authenticator, DataService} from 'framework';
 import {LogoutHelper} from '../logout-helper';
+import {AppCategoryManager} from '_lib/AppCategoryManager';
 
 class EditAccountDialog extends Dialog {
-  constructor(authenticator: Authenticator, currentUser: CurrentUser, config: Config, dataService: DataService, logoutHelper: LogoutHelper){
+  constructor(authenticator: Authenticator, appCategoryManager: AppCategoryManager, config: Config, dataService: DataService, logoutHelper: LogoutHelper){
     this.authenticator = authenticator;
     this.config = config;
     this.dataService = dataService;
     this.logoutHelper = logoutHelper;
-    this.currentUser = currentUser;
+    this.appCategoryManager = appCategoryManager;
     var currentUser = this.authenticator.currentUser || {};
     this.userId = currentUser.id;
     this.username = currentUser.username;
@@ -24,15 +24,15 @@ class EditAccountDialog extends Dialog {
     this.isSaving = false;
     this.invalidExistingPassword = false;
     this.changePassword = false;
-    this.appCategories = this.currentUser.getAppCategories();
-    this.currentAppCategory = this.currentUser.getAppCategory();
-    this.currentUser.on('appCategory.changed', (category)=> {
+    this.activateAppCategories = this.appCategoryManager.getActiveAppCategories();
+    this.currentAppCategory = this.appCategoryManager.getCurrentAppCategory();
+    this.appCategoryManager.on('currentAppCategory.changed', (category)=> {
       this.currentAppCategory = category;
     });
   }
 
   switchAppCategory(category){
-    this.currentUser.setAppCategory(category);
+    this.appCategoryManager.setCurrentAppCategory(category);
     this.close();
   }
 

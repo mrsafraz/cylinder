@@ -5,21 +5,21 @@ import {Config} from 'framework';
 import $ from 'jquery';
 import EditAccountDialog from '../user/edit-account/edit-account';
 import {Authorizer} from 'framework';
-import {CurrentUser} from '_lib/CurrentUser';
+import {AppCategoryManager} from '_lib/AppCategoryManager';
 
 class Shell extends RootModule {
 
-  constructor(authenticator: Authenticator, initializer: Initializer, config: Config, currentUser: CurrentUser, authorizer: Authorizer, editAccountDialog: EditAccountDialog){
+  constructor(authenticator: Authenticator, initializer: Initializer, config: Config, appCategoryManager: AppCategoryManager, authorizer: Authorizer, editAccountDialog: EditAccountDialog){
     this.authenticator = authenticator;
     this.initializer = initializer;
     this.config = config;
-    this.currentUser = currentUser;
+    this.appCategoryManager = appCategoryManager;
     this.authorizer = authorizer;
     this.onAjaxRequest = false;
     this.isAuthenticated = !this.config.enableAuthentication;
     this.editAccountDialog = editAccountDialog;
     this.navigationFiltered = [];
-    this.currentUser.on('appCategory.changed', (category)=> {
+    this.appCategoryManager.on('currentAppCategory.changed', (category)=> {
       this.filterNavigation();
     });
   }
@@ -71,7 +71,7 @@ class Shell extends RootModule {
   filterNavigation(){
     var navigationAll = this.navigation;
     var navigationFiltered = [];
-    var currentAppCategory = this.currentUser.getAppCategory();
+    var currentAppCategory = this.appCategoryManager.getCurrentAppCategory();
     var categories;
     for(var nav of navigationAll){
       categories = nav.categories || [];

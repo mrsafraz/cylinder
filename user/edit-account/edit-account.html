@@ -22,7 +22,7 @@
         <label style="margin: 0;">${'Application Group'|trans}</label>
       </div>
       <div class="list-group collapsed">
-        <template repeat.for="category of appCategories">
+        <template repeat.for="category of activateAppCategories">
           <div if.bind="currentAppCategory == category.code" class="list-group-item">
             <i class="fa fa-check"></i> ${category.title|trans}
           </div>
