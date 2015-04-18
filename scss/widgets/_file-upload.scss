@@ -4,7 +4,7 @@ $min-width: 105px;
     position: relative;
     min-width: $min-width;
     min-height: $min-width;
-    background: #F1F1F1;
+    background: #F1F1F1 !important;
     // border: 1px solid #EEE;
 
     display: flex;
