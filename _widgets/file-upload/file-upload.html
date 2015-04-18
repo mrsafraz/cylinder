@@ -1,7 +1,7 @@
 <div>
   <div class="filedrag" file-drag.bind="getFileData()" title.bind="getFile().name">
-    <div class="file-upload-container" style="${getFile().color ? 'background-color: ' + getFile().color : ''}">
-      <!-- ko if: getFile().isImage -->
+    <div class="file-upload-container" style="${!getFile().isEmpty && getFile().color ? 'background-color: ' + getFile().color : ''}">
+      <!-- ko if: !getFile().isEmpty && getFile().isImage -->
       <img class="file-upload-preview" src.bind="getFile().url" alt="Image">
       <!-- /ko -->
       <span class="file-upload-icon" if.bind="settings.editable && getFile().isEmpty">
@@ -19,7 +19,7 @@
       <div class="file-upload-banner">
         <div class="file-upload-file-name">${getFile().name}</div>
         <!-- ko if: settings.editable -->
-        <a class="file-upload-close" click.delegate="resetFile()">
+        <a class="file-upload-close" click.delegate="resetFile($event)">
           <!-- &times; -->
           <i class="fa fa-times-circle"></i>
         </a>

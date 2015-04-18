@@ -113,30 +113,41 @@ class FileUploadWidget extends Widget {
     getFile(){
         var fileInfo = {isEmpty: true};
         var staticFile = true;
+        var isInvalidFileData = false;
         if(this.getFileData().dataURL()){
             var file = this.getFileData().file();
+            console.log('File 1 ', this.getFileData().dataURL());
             if(file){
+            console.log('File 2');
                 staticFile = false;
                 fileInfo.name = file.name;
                 fileInfo.ext = this.getExt(file);
                 fileInfo.color = this.getColor(fileInfo.ext);
                 fileInfo.url = this.getFileData().dataURL();
-                fileInfo.isImage = file.type.indexOf('image/') === 0; 
+                fileInfo.isImage = file.type.indexOf('image/') === 0;
                 fileInfo.size = this.getSize(file.size);
                 fileInfo.isEmpty = false;
             }
+            else {
+                isInvalidFileData = true;
+            }
         }
         if(staticFile){// && !this.settings.editable) {
+            console.log('File 3');
             var file = ko.unwrap(this.settings.file);
             if(file){
+            console.log('File 4');
                 fileInfo.name = file.name;
                 fileInfo.ext = file.extension || '';
                 fileInfo.color = this.getColor(fileInfo.ext);
                 // fileInfo.url = file.url();
                 fileInfo.url = file;
                 fileInfo.isImage = (file.mimeType || '').indexOf('image/') === 0;
-                // fileInfo.size = this.getSize(file.size);
-                fileInfo.isEmpty = false;
+                fileInfo.url += '';
+                if(['undefined', 'null', 'false', 'true'].indexOf(fileInfo.url) !== -1){
+                    fileInfo.url = null;
+                }
+                fileInfo.isEmpty = isInvalidFileData || !fileInfo.url;
             }
         }
         return fileInfo;
