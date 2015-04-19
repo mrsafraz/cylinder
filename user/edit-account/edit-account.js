@@ -3,6 +3,7 @@ import {Config} from 'framework';
 import {Authenticator, DataService} from 'framework';
 import {LogoutHelper} from '../logout-helper';
 import {AppCategoryManager} from '_lib/AppCategoryManager';
+import router from 'plugins/router';
 
 class EditAccountDialog extends Dialog {
   constructor(authenticator: Authenticator, appCategoryManager: AppCategoryManager, config: Config, dataService: DataService, logoutHelper: LogoutHelper){
@@ -24,8 +25,11 @@ class EditAccountDialog extends Dialog {
     this.isSaving = false;
     this.invalidExistingPassword = false;
     this.changePassword = false;
-    this.activateAppCategories = this.appCategoryManager.getActiveAppCategories();
-    this.currentAppCategory = this.appCategoryManager.getCurrentAppCategory();
+    this.activateAppCategories = [];
+    this.appCategoryManager.on('activeAppCategories.changed', (activeAppCategories)=> {
+      this.activateAppCategories = activeAppCategories;
+    });
+    this.currentAppCategory = null;
     this.appCategoryManager.on('currentAppCategory.changed', (category)=> {
       this.currentAppCategory = category;
     });
@@ -33,6 +37,11 @@ class EditAccountDialog extends Dialog {
 
   switchAppCategory(category){
     this.appCategoryManager.setCurrentAppCategory(category);
+    window.setTimeout(()=> {
+      var categoryCode = this.appCategoryManager.getCurrentAppCategory();
+      router.navigate('/' + categoryCode + '-dashboard');
+    }, 1);
+
     this.close();
   }
 

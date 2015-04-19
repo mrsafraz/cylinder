@@ -18,7 +18,7 @@
           <i class="fa fa-chevron-right pull-right"></i>
         </a>
       </div>
-      <template if.bind="!changePassword">
+      <template if.bind="!changePassword && activateAppCategories.length > 1">
       <div style="margin: 40px 0 30px 0;">
         <label style="margin: 0;">${'Application Group'|trans}</label>
       </div>
