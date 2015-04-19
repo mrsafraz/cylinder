@@ -6,6 +6,7 @@ import $ from 'jquery';
 import EditAccountDialog from '../user/edit-account/edit-account';
 import {Authorizer} from 'framework';
 import {AppCategoryManager} from '_lib/AppCategoryManager';
+import router from 'plugins/router';
 
 class Shell extends RootModule {
 
@@ -21,6 +22,9 @@ class Shell extends RootModule {
     this.navigationFiltered = [];
     this.appCategoryManager.on('currentAppCategory.changed', (category)=> {
       this.filterNavigation();
+      window.setTimeout(()=> {
+        router.navigate('/' + category + '-dashboard');
+      }, 10);
     });
   }
 
