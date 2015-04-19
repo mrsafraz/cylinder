@@ -13,6 +13,8 @@ class EntityPicker extends Widget  {
     this.searchText = '';
     this.object = null;
     this.property = null;
+    this.searchCriteria = {};
+    this.searchOptions = {};
     this.options = [];
     this.caption = ' -- Select -- ';
     this.valueObservable = null;
@@ -70,11 +72,17 @@ class EntityPicker extends Widget  {
 
   applyFilter(searchText, localOnly = false){
     var criteria = {};
+    for(var key in this.searchCriteria){
+      criteria[key] = this.searchCriteria[key];
+    }
     if(searchText !== undefined && searchText !== '') {
       criteria['$or'] = this.searchCriteriaBuilder.getOrCriteria(searchText,
           this.entityType, this.searchBy);
     }
     var options = {limit: 100};
+    for(var key in this.searchOptions){
+      options[key] = this.searchOptions[key];
+    }
     this.options = this.dataService.getAll(this.entityType, criteria, options);
     if(localOnly){
       return;
@@ -104,6 +112,12 @@ class EntityPicker extends Widget  {
     this.searchBy = searchBy;
     if(settings.caption){
       this.caption = settings.caption;
+    }
+    if(settings.criteria){
+      this.searchCriteria = settings.criteria;
+    }
+    if(settings.options){
+      this.searchOptions = settings.options;
     }
     this.valueObservable = Observer.getObservable(this.object, this.property);
     if(settings.displayText){
