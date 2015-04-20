@@ -112,6 +112,14 @@ $zindex-main: 1;
   footer {
       height: $footer-height;
       bottom: 0;
+      &.light-footer {
+        background: #FAFAFA;
+        padding: 10px 15px;
+        padding-right: 5px;
+        padding-left: 5px;
+
+        border-top: 1px solid #EEE;
+      }
   }
 
   .body {
@@ -121,6 +129,16 @@ $zindex-main: 1;
       bottom: 0;
       top: 0;
       @include enable-scrolling;
+      .list-group.collapsed {
+        margin-bottom: 0;
+        margin: 0 -15px;
+        .list-group-item {
+          border-radius: 0;
+          // border: 0;
+          border-left: 0;
+          border-right: 0;
+        }
+      }
   }
   
   // .has-footer .body, 

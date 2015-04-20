@@ -226,3 +226,14 @@ table,
 //     border-radius: $input-border-radius;
 //   }
 // }
+// 
+.list-group {
+  .list-group-item {
+    @include clearfix;
+    .list-group-item-image {
+      width: 60px;
+      float: left;
+      margin-right: 10px;
+    }
+  }
+}

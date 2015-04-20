@@ -19,6 +19,8 @@ $side-nav-width: 50px;
 			a {
 				color: #FFF;
 				color: #EEE;
+				color: #AAA;
+				color: #BBB;
 				font-size: 20px;
 				text-align: center;
 				display: block;
@@ -26,10 +28,17 @@ $side-nav-width: 50px;
 				// margin-bottom: 10px;
 				// background: #AAA;
 				// border: 1px solid red;
+				&.dashboard {
+					// background: red;
+					background: #AAA;
+					color: #EEE;
+					padding: 15px 10px;
+				}
 				&:hover {
-					color: #FFF;
+					color: #DDD;
 				}
 				&.active {
+					color: #EEE;
 					background: #666;
 				}
 			}

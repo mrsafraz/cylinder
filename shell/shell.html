@@ -14,7 +14,7 @@
       </div> -->
       <div class="navigation links" if.bind="isAuthenticated">
         <a href="${route.href}" repeat.bind="route of navigationFiltered" title="${route.title}"
-        css.bind="{active: route.isActive}"
+        css.bind="{active: route.isActive, 'dashboard': route.isDashboard}"
         >
           <div class="icon-wrapper">
             <div class="fa-container" if.bind="route.icon">
