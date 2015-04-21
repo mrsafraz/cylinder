@@ -11,7 +11,7 @@ textarea {
 
 // Custom Form
 
-.form-group {
+.form-group.nice {
 	// background: yellow;
 	// border-bottom: 1px solid #AAA;
 	border-bottom: 1px solid #CCC;
@@ -42,15 +42,34 @@ textarea {
 		padding-right: 20px;
 	}
 
+	&.xhorizontal {
+		display: table;
+		border-collapse: separate;
+		width: 100%;
+		label {
+			display: table-cell;
+			width: 1%;
+			white-space: nowrap;
+			padding: 0;
+			margin: 0;
+			padding-right: 10px;
+			// vertical-align: middle;
+			& + .control-group {
+				display: table-cell;
+				// vertical-align: middle;
+				// vertical-align: top;
+			}
+		}
+	}
 	&.horizontal {
 		@include clearfix;
 		label {
 			float: left;
 			padding-top: 11px;
 			padding-right: 11px;
-			// & + .control-group {
-			// 	float: left;
-			// }
+			& + .control-group {
+				float: left;
+			}
 		}
 	}
 }
