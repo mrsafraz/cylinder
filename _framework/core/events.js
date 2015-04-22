@@ -12,3 +12,5 @@ export class Events {
 		Events.includeIn(obj);
 	}
 }
+
+Events.support(Events);
