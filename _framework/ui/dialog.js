@@ -111,6 +111,7 @@ Events.support(Dialog);
 
 export class SimpleDialog extends Dialog {
   constructor(content){
+    super();
     this.content = content;
   }
   getView(){
@@ -126,6 +127,7 @@ export class SimpleDialog extends Dialog {
 
 class ActionSheetDialog extends Dialog {
   constructor(){
+    super();
     this.title = '';
     this.actions = [];
   }

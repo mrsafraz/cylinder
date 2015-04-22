@@ -6,6 +6,7 @@ import $ from 'jquery';
 class SearchInputWidget extends Widget  {
 
   constructor(dataService: DataService, searchCriteriaBuilder: SearchCriteriaBuilder){
+    super();
     this.dataService = dataService;
     this.searchCriteriaBuilder = searchCriteriaBuilder;
     this.searchText = '';

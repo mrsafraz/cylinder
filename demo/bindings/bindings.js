@@ -3,6 +3,7 @@ import {Module} from 'framework';
 class BindingModule extends Module {
   
   constructor(){
+    super();
   }
   
   get routes(){

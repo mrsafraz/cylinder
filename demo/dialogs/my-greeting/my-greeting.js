@@ -2,6 +2,7 @@ import {Dialog} from 'framework';
 
 class MyGreeting extends Dialog {
 	constructor(){
+		super();
 		this.name = null;
 	}
 	ok(){

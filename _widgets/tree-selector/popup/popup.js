@@ -2,6 +2,7 @@ import {Dialog} from 'framework';
 
 class TreeSelector extends Dialog {
 	constructor(){
+		super();
 		this.rootNodes = [];
 		this.nodes = [];
 		this.parentNodes = [];

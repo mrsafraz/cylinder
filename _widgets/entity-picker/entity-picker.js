@@ -6,6 +6,7 @@ import {SearchCriteriaBuilder} from '../search-input/SearchCriteriaBuilder';
 class EntityPicker extends Widget  {
 
   constructor(dataService: DataService, searchCriteriaBuilder: SearchCriteriaBuilder){
+    super();
     this.searchCriteriaBuilder = searchCriteriaBuilder;
     this.dataService = dataService;
     this.editMode = false;

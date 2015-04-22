@@ -4,6 +4,7 @@ import {MyService} from '../MyService';
 class SubModule extends Module  {
 
   constructor(myService: MyService){
+    super();
   	this.myService = myService;
   	this.items = [];
   	this.started = false;

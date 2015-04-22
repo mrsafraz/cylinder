@@ -9,6 +9,7 @@ class Color {
 class WidgetsModule extends Module  {
 
   constructor(){
+    super();
     this.colors = [
       new Color('Red'),
       new Color('Blue'),

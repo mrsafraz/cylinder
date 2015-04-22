@@ -8,6 +8,7 @@ import {Property} from './_lib/Property';
 class EntityGrid extends Widget  {
 
   constructor(paginator: Paginator, detailDialog: DetailDialog, propertyResolver: PropertyResolver){
+    super();
     this.entities = [];
     this.settings = {};
     this.propertyResolver = propertyResolver;

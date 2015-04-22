@@ -2,6 +2,7 @@ import {Module} from 'framework';
 
 class Ui extends Module {
   constructor(){
+    super();
     this.resetSideBars();
   }
   resetSideBars(){

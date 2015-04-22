@@ -5,6 +5,7 @@ import {Toast} from 'framework';
 class EntityDialog extends Dialog  {
   
   constructor(dataService: DataService){
+    super();
     this.dataService = dataService;
     this.entity = null;
     this.isNew = false;

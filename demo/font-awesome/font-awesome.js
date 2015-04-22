@@ -11,6 +11,7 @@ for(var icon of icons){
 class FontAwesomeModule extends Module  {
 
   constructor(){
+    super();
     this.icons = [];
     this.searchResults = [];
     this.searchText = '';

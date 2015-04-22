@@ -10,6 +10,7 @@ import $ from 'jquery';
 class ChartWidget extends Widget {
 
 	constructor(){
+		super();
 		// this.view = null;
 		// this._chartObj = {};
 	}

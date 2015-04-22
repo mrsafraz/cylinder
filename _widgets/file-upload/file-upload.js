@@ -11,6 +11,7 @@ import {Dialog} from 'framework';
 
 class FileUploadWidget extends Widget {
     constructor(){
+        super();
         this.settings = {
             editable: true,
             fileData: null,

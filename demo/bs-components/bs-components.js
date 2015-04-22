@@ -3,6 +3,7 @@ import {Module} from 'framework';
 class BootstrapComponentsModule extends Module {
   
   constructor(){
+    super();
     this.isLeftSideActive = false;
     this.isRightSideActive = false;
   }

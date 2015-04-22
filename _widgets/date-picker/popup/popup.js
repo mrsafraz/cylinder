@@ -3,6 +3,7 @@ import {Dialog} from 'framework';
 
 class DatePicker extends Dialog { 
 	constructor(){
+		super();
 		this.months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 		this.years = [2015, 2014, 2013, 2012, 2011, 2010];
 		// this.weekNames = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];

@@ -3,6 +3,7 @@ import {DataProvider} from './data-provider';
 
 class Branches extends Module {
   constructor(dataProvider: DataProvider){
+    super();
     this.dataProvider = dataProvider;
     this.isLeftSideActive = false;
     this.isRightSideActive = false;

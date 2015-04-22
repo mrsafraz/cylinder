@@ -6,7 +6,7 @@ import {SearchCriteriaBuilder} from '../search-input/SearchCriteriaBuilder';
 class NavigationPickerWidget extends Widget  {
 
   constructor(dataService: DataService, propertyResolver: PropertyResolver, searchCriteriaBuilder: SearchCriteriaBuilder){
-
+    super();
     this.propertyResolver = propertyResolver;
     this.dataService = dataService;
     this.searchCriteriaBuilder = searchCriteriaBuilder;

@@ -5,6 +5,7 @@ import $ from 'jquery';
 class LookupPopup extends Dialog {
 
   constructor(){
+    super();
     this.editMode = true;
     this.view = null;
     this.searchText = '';

@@ -3,6 +3,7 @@ import {Module} from 'framework';
 class LeftNavOnlyModule extends Module  {
 
   constructor(){
+  	super();
   	this.isNavActive = false;
   }
 

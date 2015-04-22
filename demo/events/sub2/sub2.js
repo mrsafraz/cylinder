@@ -3,6 +3,7 @@ import {Module} from 'framework';
 class Sub2Module extends Module  {
 
   constructor(){
+  	super();
   	this.yourName = 'Dragon';
   	this.on('sub2:hi').then((name)=> {
   		alert('Hi ' + name);

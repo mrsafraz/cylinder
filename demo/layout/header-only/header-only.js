@@ -3,6 +3,7 @@ import {Module} from 'framework';
 class HeaderOnlyModule extends Module  {
 
   constructor(){
+  	super();
     
   }
 

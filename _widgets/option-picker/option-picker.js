@@ -5,6 +5,7 @@ import ko from 'knockout';
 class DropdownPicker extends Widget  {
 
   constructor(){
+    super();
     this.editMode = false;
     this.view = null;
     this.searchText = '';

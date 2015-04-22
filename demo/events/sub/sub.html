@@ -14,6 +14,7 @@ import {Events} from 'framework';
 
 export class MyService {
   constructor(){
+    super();
     this.on('item:start').then(()=> {
       this.trigger('item:started');
       this.addItem();
@@ -28,6 +29,7 @@ Events.support(MyService); // important
 class SubModule extends Module  {
 
   constructor(myService: MyService){
+    super();
     this.myService = myService;
     this.myService.on('item:started').then(()=> {
       this.started = true;

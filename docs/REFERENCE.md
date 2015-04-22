@@ -42,6 +42,7 @@ import {CustomerDetail} from '_lib/customer-detail';
 
 class MyViewModel extends Module {
     constructor(customerDetail: CustomerDetail){
+        super();
         this.customerDetail = customerDetail;
         this.firstName = 'John';
         this.lastName = 'Smith';

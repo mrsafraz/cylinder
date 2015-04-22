@@ -3,6 +3,7 @@ import {Module} from 'framework';
 class Layout extends Module  {
 
   constructor(){
+    super();
   	this.dockLeftNav = true;
   	this.dockRightNav = false;
   	this.moduleTitle = 'Layout';

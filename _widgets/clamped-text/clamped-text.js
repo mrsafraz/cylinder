@@ -4,6 +4,7 @@ import {Dialog} from 'framework';
 
 class RevealDialog extends Dialog {
 	constructor(text){
+		super();
 		this.autoclose = true;
 		this.text = text;
 	}
@@ -23,6 +24,7 @@ class RevealDialog extends Dialog {
 
 class ClampedText extends Widget {
 	constructor(){
+		super();
 		this.text = null;
 		this.originalText = null;
 		this.lines = 1000;

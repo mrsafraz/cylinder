@@ -6,6 +6,7 @@ import DatePopupDialog from './popup/popup';
 
 class DatePickerWidget extends Widget {
 	constructor(datePopupDialog: DatePopupDialog){
+		super();
 		this.datePopupDialog = datePopupDialog;
 		this.settings = {};
 		this.selectedValue = null;//new Date();

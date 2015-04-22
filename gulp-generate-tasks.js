@@ -4,7 +4,7 @@ var fs = require('fs');
 gulp.task('generate-module', function(){
   writeFiles('app', 'import {Module} from \'framework\';\n\nclass '
             + '{ModuleName}Module extends Module  {\n'
-            + '\n  constructor(){\n    \n  }\n'
+            + '\n  constructor(){\n    super();\n  }\n'
             + '\n  activate(settings){\n    \n  }\n'
             + '\n}\n\n'
             + 'export default {ModuleName}Module;',
@@ -14,7 +14,7 @@ gulp.task('generate-module', function(){
 gulp.task('generate-widget', function(){
   writeFiles('app', 'import {Widget} from \'framework\';\n\nclass '
             + '{ModuleName}Widget extends Widget  {\n'
-            + '\n  constructor(){\n    \n  }\n'
+            + '\n  constructor(){\n    super();\n  }\n'
             + '\n  activate(settings){\n    \n  }\n'
             + '\n}\n\n'
             + 'export default {ModuleName}Widget;',
@@ -39,7 +39,8 @@ var htmlContent = [
 ].join('\n');
 
   writeFiles('app', 'import {Dialog} from \'framework\';\n\nclass '
-            + '{ModuleName}Dialog extends Dialog  {\n' 
+            + '{ModuleName}Dialog extends Dialog  {\n'
+            + '\n  constructor(){\n    super();\n  }\n'
              + '\n  ok(){\n  }\n\n  cancel(){\n    return this.close();\n  }\n'
              + '\n}\n\n'
             + 'export default {ModuleName}Dialog;',

@@ -5,7 +5,7 @@ import {PropertyResolver} from '../entity-grid/_lib/PropertyResolver';
 class NavigationPicker extends Dialog  {
 
   constructor(dataService: DataService, propertyResolver: PropertyResolver){
-
+    super();
     this.propertyResolver = propertyResolver;
     this.dataService = dataService;
     this.entity = null;

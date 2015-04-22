@@ -3,6 +3,7 @@ import {Widget} from 'framework';
 class GridHeaderWidget extends Widget  {
 
   constructor(){
+    super();
     this.paginator = null;
     this.property = null;
     this.label = null;

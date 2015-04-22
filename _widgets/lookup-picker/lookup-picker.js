@@ -5,6 +5,7 @@ import {Observer} from 'framework';
 class LookupPicker extends Widget  {
 
   constructor(dataService: DataService){
+    super();
     this.dataService = dataService;
     this.label = null;
     this.valueObservable = null;

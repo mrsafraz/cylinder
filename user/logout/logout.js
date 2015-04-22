@@ -4,6 +4,7 @@ import {LogoutHelper} from '../logout-helper';
 
 class Logout extends Module {
   constructor(logoutHelper: LogoutHelper){
+    super();
     this.logoutHelper = logoutHelper;
   }
 

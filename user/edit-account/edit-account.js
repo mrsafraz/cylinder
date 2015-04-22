@@ -7,6 +7,7 @@ import router from 'plugins/router';
 
 class EditAccountDialog extends Dialog {
   constructor(authenticator: Authenticator, appCategoryManager: AppCategoryManager, config: Config, dataService: DataService, logoutHelper: LogoutHelper){
+    super();
     this.authenticator = authenticator;
     this.config = config;
     this.dataService = dataService;

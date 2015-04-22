@@ -10,6 +10,7 @@ import {AppCategoryManager} from '_lib/AppCategoryManager';
 class Shell extends RootModule {
 
   constructor(authenticator: Authenticator, initializer: Initializer, config: Config, appCategoryManager: AppCategoryManager, authorizer: Authorizer, editAccountDialog: EditAccountDialog){
+    super();
     this.authenticator = authenticator;
     this.initializer = initializer;
     this.config = config;

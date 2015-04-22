@@ -5,6 +5,7 @@ import {DataProvider} from '../data-provider';
 class SingleModule extends Module  {
 
   constructor(dataProvider: DataProvider){
+  	super();
     this.dataProvider = dataProvider;
   }
 

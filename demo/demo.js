@@ -16,6 +16,7 @@ var hljsInjected = false;
 
 class Demo extends Module {
   constructor(){
+    super();
     this.resetSideBars();
   }
   resetSideBars(){

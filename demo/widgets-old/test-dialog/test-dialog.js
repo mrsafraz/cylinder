@@ -2,6 +2,7 @@ import {Dialog} from 'framework';
 
 class TestDialog extends Dialog {
 	constructor(){
+		super();
 	}
 
 	ok(){

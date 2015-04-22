@@ -4,6 +4,7 @@ import {MyService} from './MyService';
 class EventsModule extends Module  {
 
   constructor(myService: MyService){
+    super();
   	this.myService = myService;
   	this.itemCount = 0;
   	this.stopped = false;

@@ -5,6 +5,7 @@ import {PropertyResolver} from '../entity-grid/_lib/PropertyResolver';
 class EntityDetailWidget extends Widget  {
 
   constructor(propertyResolver: PropertyResolver){
+    super();
     this.settings = {};
     this.propertyResolver = propertyResolver;
     this.editMode = false;
