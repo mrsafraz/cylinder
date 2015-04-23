@@ -55,6 +55,16 @@ class EntityPicker extends Widget  {
       this.valueObservable(null);
       return;
     }
+    if(this.multiple){
+      var alreadyIndex = this.valueObservable.indexOf(value);
+      if(alreadyIndex !== -1){
+        this.valueObservable.splice(alreadyIndex, 1);
+      }
+      else {
+        this.valueObservable.push(value);
+      }
+      return;
+    }
     this.valueObservable(value);
     this.dismiss();
   }
@@ -67,6 +77,16 @@ class EntityPicker extends Widget  {
   getSelectedValue(){
     if(!this.valueObservable()){
       return this.caption;
+    }
+    if(this.multiple){
+      var values = [];
+      for(var value of this.valueObservable()){
+        values.push(this.displayText(value));
+      }
+      if(!values.length){
+        return this.caption;
+      }
+      return values.join(', ');
     }
     return this.displayText(this.valueObservable());
   }
@@ -99,6 +119,9 @@ class EntityPicker extends Widget  {
   }
 
   isOptionSelected(option){
+    if(this.multiple){
+      return this.valueObservable.indexOf(option) !== -1;
+    }
     return this.valueObservable() === option;
   }
 
@@ -121,6 +144,7 @@ class EntityPicker extends Widget  {
       this.searchOptions = settings.options;
     }
     this.valueObservable = Observer.getObservable(this.object, this.property);
+    this.multiple = ko.isObservable(this.valueObservable) && 'push' in this.valueObservable;
     if(settings.displayText){
       this.displayText = settings.displayText;
     }
