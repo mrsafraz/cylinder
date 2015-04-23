@@ -1,6 +1,7 @@
 import {Widget, Observer} from 'framework';
 import {DataService} from 'framework';
 import $ from 'jquery';
+import ko from 'knockout';
 import {SearchCriteriaBuilder} from '../search-input/SearchCriteriaBuilder';
 
 class EntityPicker extends Widget  {
