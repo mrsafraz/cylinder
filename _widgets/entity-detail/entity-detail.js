@@ -36,7 +36,7 @@ class EntityDetailWidget extends Widget  {
 
   isEditable(property){
     var canAttr = 'edit';
-    if(this.entity.entityAspect.entityState.isAdded()){
+    if(this.entity.entityAspect && this.entity.entityAspect.entityState.isAdded()){
       canAttr = 'add';
     }
     return this.editMode && (!property.can || property.can[canAttr] !== false);
@@ -46,7 +46,7 @@ class EntityDetailWidget extends Widget  {
     var showAttr = 'view';
     if(this.editMode){
       showAttr = 'edit';
-      if(this.entity.entityAspect.entityState.isAdded()){
+      if(this.entity.entityAspect && this.entity.entityAspect.entityState.isAdded()){
         showAttr = 'add';
       }
     }
