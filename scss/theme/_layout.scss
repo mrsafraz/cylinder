@@ -6,6 +6,14 @@
 		box-shadow: none !important;
 
 		background: #FAFAFA;
+		.nav li {
+			&:hover a {
+
+			}
+			&.active a {
+				background: #F1F1F1;
+			}
+		}
 	}
 }
 
