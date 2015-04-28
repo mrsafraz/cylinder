@@ -1,0 +1,23 @@
+.shell-container {
+	.shell-sidebar {
+		background: #555;
+		.shell-brand-logo {
+			display: none;
+		}
+		.links {
+			a {
+				&.dashboard {
+					background: #444;
+				}
+				padding: 15px 10px;
+				transition: all 300ms;
+				&:hover {
+					background: #666;
+				}
+				&.active {
+					background: #777;
+				}
+			}
+		}
+	}
+}

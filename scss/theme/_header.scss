@@ -1,0 +1,50 @@
+@mixin placeholder-text($placeholder-color, $placeholder-opacity: 1){
+
+	::-webkit-input-placeholder {
+	   color: $placeholder-color;
+	   opacity: $placeholder-opacity;
+	}
+
+	:-moz-placeholder { /* Firefox 18- */
+	   color: $placeholder-color;
+	   opacity: $placeholder-opacity;
+	}
+
+	::-moz-placeholder {  /* Firefox 19+ */
+	   color: $placeholder-color;
+	   opacity: $placeholder-opacity;
+	}
+
+	:-ms-input-placeholder {
+	   color: $placeholder-color;
+	   opacity: $placeholder-opacity;
+	}
+}
+
+.navbar-default, .modal-primary .modal-header {
+	background: $brand-primary;
+	color: #FFF;
+	border-radius: 0;
+	a, .btn {
+		color: #FFF !important;
+		background: transparent !important;
+	}
+	.search-container {
+		.form-control {
+			background: rgba(0,0,0,0.125);
+			color: #FFF;
+			border-color: transparent;
+			&:focus {
+				background: rgba(0,0,0,0.25);
+			}
+		}
+		@include placeholder-text(rgba(255, 255, 255, 0.75), 1);
+	}
+}
+
+.modal-primary .modal-footer {
+	a, .btn {
+		color: #FFF !important;
+		background: transparent !important;
+	}
+}
