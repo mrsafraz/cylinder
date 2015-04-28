@@ -62,6 +62,9 @@ $side-nav-width: 50px;
 
 .brand-logo {
 	font-size: 20px;
+	img {
+		max-height: 50px;
+	}
 }
 
 .shell-brand-logo {
@@ -78,5 +81,9 @@ $side-nav-width: 50px;
 
 .login-brand-logo {
 	color: $brand-primary;
-	margin-bottom: 15px;
+	// margin-bottom: 15px;
+	img {
+		max-height: 26px;
+		margin: 10px 0;
+	}
 }
