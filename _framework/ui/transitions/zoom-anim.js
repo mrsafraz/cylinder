@@ -18,6 +18,9 @@ var transformSmall = 0.5;
 var transformBig = 1.1;
 var transformSmall = 0.9;
 
+var transformBig = 1.03;
+var transformSmall = 0.97;
+
 var opacityLow = 0;
 
 export default function(context) {
