@@ -154,6 +154,7 @@ export class Preloader {
         // this.entityManager.executeQuery(query).then((data) => {
         let criteria = entityType.criteria;
         let options = entityType.options;
+        options.localFirst = false;
         this.dataService.findAll(resourceName, criteria, options).then((results)=> {
           fetched[resourceName] = true;
           tryToResolve.apply(this);
