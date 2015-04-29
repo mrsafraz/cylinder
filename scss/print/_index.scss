@@ -1,0 +1,15 @@
+@media print {
+	* {
+		position: static !important;
+	}
+	.shell-container {
+		.shell-sidebar {
+			display: none;
+		}
+	}
+	.dock {
+		.left-side, .right-side {
+			display: none;
+		}
+	}
+}
