@@ -24,13 +24,16 @@ export class PropertyResolver {
           break;
         }
         value = value[props[i]];
-        if(i == 0 && props.length == 2 && Array.isArray(value)){
-          var arrValue = [];
+        if(i == 0 && props.length >= 2 && Array.isArray(value)){
+          var arrValue = [], innerValue;
           for(var x = 0; x < value.length; x++){
-            arrValue.push(value[x][props[i+1]]);
+            innerValue = value[x];
+            for(var j = i+1; j < props.length; j++){
+              innerValue = innerValue[props[j]];
+            }
+            arrValue.push(innerValue);
           }
-          // return arrValue;
-          return arrValue.join(', ');
+          return arrValue;
         }
       }
       return value;
