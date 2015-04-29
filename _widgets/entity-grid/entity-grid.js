@@ -50,9 +50,21 @@ class EntityGrid extends Widget  {
         return ''; // silently fail invalid displayText function
       }
     }
-    return this.propertyResolver.getValue(entity, property);
+    var value = this.propertyResolver.getValue(entity, property);
+    // if(Array.isArray(value)){
+    //   return value.join(', ');
+    // }
+    return value;
   }
-  
+
+  getArrayValue(entity, property){
+    var value = this.getValue(entity, property);
+    if(Array.isArray(value)){
+      return value;
+    }
+    return [value];
+  }
+
   getSearchProperties(){
     if(this.settings.searchBy){
       return this.settings.searchBy;

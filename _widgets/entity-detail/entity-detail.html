@@ -10,7 +10,12 @@
     </div>
     <div if.bind="!isEditable(property)">
       <span if.bind="['image', 'date', 'boolean'].indexOf(property.formType) === -1">
-        {{getValue(entity, property) || '~'}}
+        <!-- {{getValue(entity, property) || '~'}} -->
+      <ul class="list-unstyled raw-value-list">
+          <li repeat.for="value of getArrayValue(entity, property)">
+            ${value}
+          </li>
+        </ul>
       </span>
       <div if.bind="property.formType == 'image'">
             <img style="max-height: 200px; max-width: 200px;" 

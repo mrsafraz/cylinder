@@ -21,10 +21,18 @@ class EntityDetailWidget extends Widget  {
       }
     }
     var value = this.propertyResolver.getValue(entity, property);
-    if(Array.isArray(value)){
-      return value.join(', ');
-    }
+    // if(Array.isArray(value)){
+    //   return value.join(', ');
+    // }
     return value;
+  }
+
+  getArrayValue(entity, property) {
+    var value = this.getValue(entity, property);
+    if(Array.isArray(value)){
+      return value;
+    }
+    return [value];
   }
 
   getRawValue(entity, property){

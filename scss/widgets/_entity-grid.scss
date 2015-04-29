@@ -81,3 +81,14 @@ zheader.secondary {
 .column-actions {
   text-align: right;
 }
+
+.entity-grid-table, .entity-detail-container {
+  ul.raw-value-list {
+    list-style-type: circle;
+    padding-left: 20px;
+    li:only-of-type {
+      list-style-type: none;
+      margin-left: -20px;
+    }
+  }
+}

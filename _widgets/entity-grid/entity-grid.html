@@ -32,7 +32,7 @@
   </div>
 -->
   
-  <table class="table">
+  <table class="table entity-grid-table">
     <thead>
       <tr>
         <template bind-repeat="settings.properties as property">
@@ -56,7 +56,11 @@
         <template bind-repeat="settings.properties as property">
         <td if.bind="canShow(property)">
         <div bind-if="['date', 'image', 'boolean'].indexOf(property.formType) === -1">
-          {{getValue(entity, property)}}
+          <ul class="list-unstyled raw-value-list">
+            <li repeat.for="value of getArrayValue(entity, property)">
+              ${value}
+            </li>
+          </ul>
         </div>
         <div bind-if="property.formType == 'image'">
               <img style="max-height: 50px; max-width: 50px;" 
