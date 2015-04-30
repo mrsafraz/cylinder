@@ -11,7 +11,7 @@ textarea {
 
 // Custom Form
 
-.form-group.nice {
+@mixin nice-form-group {
 	// background: yellow;
 	// border-bottom: 1px solid #AAA;
 	border-bottom: 1px solid #CCC;
@@ -72,4 +72,8 @@ textarea {
 			}
 		}
 	}
+}
+
+.form-group.nice {
+	@include nice-form-group;
 }
