@@ -4,6 +4,7 @@ import sugar from 'breeze.sugar';
 import {Storage} from './storage';
 
 var _queriesFetched = new Map();
+var _queriesCountCache = new Map();
 
 var {EntityManager, EntityQuery, EntityState, Predicate, FetchStrategy} = breeze;
 
@@ -16,6 +17,15 @@ export class DataService {
 
   find(...params){
     return this.findAll(...params);
+  }
+
+  addCount(results, queryId){
+    var countAlready = _queriesCountCache.get(queryId);
+    if(countAlready){
+      results.count = countAlready;
+      return countAlready;
+    }
+    return results.count;
   }
 
   findAll(from, criteria = {}, options = {}){
@@ -39,17 +49,25 @@ export class DataService {
     if(localFirst !== false){
       var results = this.getAll(from, criteria, options);
       if(results.length){
+        if(options.count){
+          this.addCount(results, queryId);
+        }
         deferred.resolve(results);
         findFromServer = false;
       }
     }
     if(findFromServer) {
       this.findResultsByQuery(query, false, false, true).then((results)=> {
+        _queriesCountCache.set(queryId, results.count);
         if(localFirst === false){
           deferred.resolve(results);
         }
         else {
-          deferred.resolve(this.getAll(from, criteria, options, results.count));
+          results = this.getAll(from, criteria, options, results.count);
+          // if(options.count){
+          //   this.addCount(results, queryId);
+          // }
+          deferred.resolve(results);
         }
       }, (error)=> {
         deferred.reject(error);
